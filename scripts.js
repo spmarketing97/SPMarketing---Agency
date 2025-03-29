@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 setTimeout(function() {
                     if (localStorage.getItem('formSubmitted') === 'true') {
                         localStorage.removeItem('formSubmitted');
-                        window.location.href = 'thank-you.html';
+                        window.location.href = 'https://spmarketing97.github.io/SPMarketing-Agency/thank-you.html';
                     }
                 }, 3000);
             }
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Verificar si venimos de otra página después de un envío
         if (document.referrer.includes('formsubmit.co')) {
-            window.location.href = 'thank-you.html';
+            window.location.href = 'https://spmarketing97.github.io/SPMarketing-Agency/thank-you.html';
         }
         
         // Limpiar mensajes de error al escribir
