@@ -1,0 +1,733 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPMarketing - Agency</title>
+    <link rel="icon" href="IMG/LOGO PRINCIPAL.jpg" type="image/jpeg">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="animation.css">
+    <meta name="description" content="Agencia de marketing digital especializada en estrategias personalizadas para impulsar tu negocio.">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N8Z75S5TWD"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-N8Z75S5TWD');
+    </script>
+    <style>
+        .nav-cta-btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-cta-btn:hover {
+            background-color: #e63900;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 69, 0, 0.3);
+        }
+
+        .testimonial-highlight {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: var(--primary-color);
+            text-align: center;
+            margin: 0 auto 1.5rem;
+            max-width: 800px;
+            line-height: 1.6;
+            padding: 0.5rem 1rem;
+            background-color: rgba(0, 51, 102, 0.05);
+            border-radius: 8px;
+        }
+        
+        .cta-center {
+            display: flex;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+
+        .optional {
+            color: #777;
+            font-size: 0.9rem;
+            font-weight: normal;
+        }
+        
+        .privacy-link {
+            color: var(--primary-color);
+            font-weight: 500;
+            text-decoration: underline;
+            transition: color 0.3s ease;
+        }
+        
+        .privacy-link:hover {
+            color: var(--accent-color);
+        }
+
+        .contact-calendar {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .contact-calendar h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            text-align: center;
+            font-size: 1.8rem;
+        }
+        
+        .calendar-intro {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #666;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .calendar-container {
+            margin-top: 1.5rem;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.2rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .month-nav {
+            background-color: var(--primary-color);
+            color: white;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        
+        .month-nav:hover {
+            background-color: var(--accent-color);
+            transform: scale(1.05);
+        }
+        
+        .current-month {
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+        }
+        
+        .weekdays {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            margin-bottom: 0.8rem;
+        }
+        
+        .weekday {
+            text-align: center;
+            font-weight: 600;
+            color: #777;
+            padding: 0.5rem;
+        }
+        
+        .calendar-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .time-selector {
+            margin-top: 1.5rem;
+            border-top: 1px solid #eee;
+            padding-top: 1.5rem;
+        }
+        
+        .time-selector h4 {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            text-align: center;
+        }
+        
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+        
+        .selected-datetime {
+            margin-top: 1.5rem;
+            background-color: rgba(0, 51, 102, 0.05);
+            padding: 1rem;
+            border-radius: 5px;
+            text-align: center;
+            display: none;
+        }
+        
+        .selected-datetime p {
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .selected-datetime span {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="inicio">
+        <div class="contador-flotante" id="countdown">
+            <div class="contador-titulo">Oferta Especial</div>
+            <div class="contador-tiempo">
+                <span id="minutos">25</span>:<span id="segundos">00</span>
+            </div>
+        </div>
+
+        <div class="container">
+            <nav id="navbar">
+                <div class="logo">
+                    <a href="#inicio"><img src="IMG/LOGO PRINCIPAL.jpg" alt="SPMarketing Logo"></a>
+                </div>
+                <div class="menu" id="menu">
+                    <ul>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#servicios">Servicios</a></li>
+                        <li><a href="#beneficios">Beneficios</a></li>
+                        <li><a href="#testimonios">Testimonios</a></li>
+                        <li><a href="#sobre-nosotros">Sobre Nosotros</a></li>
+                        <li><a href="precios.html">Planes</a></li>
+                        <li><button onclick="location.href='#contacto'" class="nav-cta-btn">CONSULTA GRATUITA</button></li>
+                    </ul>
+                </div>
+                <div class="hamburger" id="hamburger">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+            </nav>
+
+            <div class="hero-content">
+                <div class="social-proof">
+                    <span>+6.849 <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                    <span>Clientes Satisfechos</span>
+                </div>
+                <h1 class="hero-title">Transformamos <span class="highlight">Negocios</span> y <span class="highlight">Emprendedores</span> con Estrategias Digitales</h1>
+                <h2 class="hero-subtitle">Aumenta tus <span class="highlight">ventas</span> y <span class="highlight">alcance</span> con soluciones digitales personalizadas</h2>
+                <a href="#contacto" class="cta-btn">Obtener Consulta Gratuita</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sección de Bienvenida -->
+    <section class="welcome" id="nuestra-vision">
+        <div class="container">
+            <div class="vision-content text-center">
+                <h2 class="section-title"><span class="destacado">NUESTRA VISIÓN</span></h2>
+                <div class="vision-text">
+                    <p>En <span class="ia-highlight">SPMarketing <i class="fas fa-cog fa-spin"></i></span> no solo nos adaptamos al futuro del marketing digital, lo creamos.</p>
+                    <p>Nuestra misión es potenciar tu presencia online con estrategias personalizadas que generan resultados medibles y sostenibles.</p>
+                    <p>Somos expertos en transformar visitas en clientes y convertir tus clientes en embajadores de tu marca.</p>
+                    <div class="center-btn">
+                        <a href="#servicios" class="btn btn-primary">Descubre Nuestros Servicios</a>
+                    </div>
+                </div>
+                <div class="ia-highlight">
+                    <span><i class="fas fa-robot"></i> Potenciamos tu crecimiento con tecnología AI avanzada</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servicios Ofrecidos -->
+    <section class="services" id="servicios">
+        <div class="container">
+            <h2 class="section-title">Nuestros Servicios</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Desarrollo Web</h3>
+                    <p>💻 Creamos sitios web atractivos, funcionales y optimizados para dispositivos móviles que convierten visitantes en clientes.</p>
+                    <a href="#contacto" class="btn btn-primary">CONSULTA GRATUITA</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-file-code"></i>
+                    </div>
+                    <h3>Diseño de Landing Pages</h3>
+                    <p>🚀 Desarrollamos páginas de aterrizaje optimizadas para maximizar la conversión de tus campañas.</p>
+                    <a href="#contacto" class="btn btn-primary">CONSULTA GRATUITA</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>SEO</h3>
+                    <p>🔍 Optimizamos tu presencia online para que los clientes te encuentren primero en los motores de búsqueda.</p>
+                    <a href="#contacto" class="btn btn-primary">CONSULTA GRATUITA</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fab fa-facebook"></i>
+                    </div>
+                    <h3>Marketing en Facebook</h3>
+                    <p>👍 Campañas publicitarias estratégicas para aumentar seguidores, interacciones y ventas en Facebook.</p>
+                    <a href="#contacto" class="btn btn-primary">CONSULTA GRATUITA</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <h3>Marketing en Instagram</h3>
+                    <p>📸 Estrategias visuales para captar la atención de tu audiencia y convertir seguidores en clientes.</p>
+                    <a href="#contacto" class="btn btn-primary">CONSULTA GRATUITA</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                    <h3>Marketing en YouTube</h3>
+                    <p>🎬 Estrategias de video marketing para posicionar tu marca y generar autoridad en tu sector.</p>
+                    <a href="#contacto" class="btn btn-primary">CONSULTA GRATUITA</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Beneficios para el Cliente -->
+    <section class="benefits" id="beneficios">
+        <div class="container">
+            <h2 class="section-title">Beneficios para tu Negocio</h2>
+            <div class="benefits-container">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Aumento en tráfico orgánico</h3>
+                    <p>🔍 Incrementa la cantidad de visitantes que llegan naturalmente a tu sitio web desde los motores de búsqueda.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Incremento en interacciones sociales</h3>
+                    <p>👍 Mejora la participación y engagement de tu audiencia en todas tus plataformas sociales.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-funnel-dollar"></i>
+                    </div>
+                    <h3>Mejora en la tasa de conversión</h3>
+                    <p>💯 Aumenta el porcentaje de visitantes que realizan la acción deseada en tu sitio web o landing page.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Soporte continuo y análisis de resultados</h3>
+                    <p>🔍 Recibes informes periódicos y asistencia continua para optimizar constantemente tu estrategia.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre Nosotros -->
+    <section id="sobre-nosotros" class="about-us">
+        <div class="container">
+            <h2 class="section-title">Sobre Nosotros</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="IMG/SOBRE NOSOTROS.png" alt="Equipo SPMarketing">
+                </div>
+                <div class="about-text">
+                    <div class="about-card">
+                        <div class="about-icon">
+                            <i class="fas fa-history"></i>
+                        </div>
+                        <h3>Nuestra Historia</h3>
+                        <p>SPMarketing Agency nació en 2020 con la visión de revolucionar el marketing digital para pequeñas y medianas empresas.</p>
+                    </div>
+                    
+                    <div class="about-card">
+                        <div class="about-icon">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <h3>Nuestro Enfoque</h3>
+                        <p>Creemos que cada negocio es único y merece una estrategia personalizada que se adapte a sus objetivos específicos.</p>
+                    </div>
+                    
+                    <div class="about-card">
+                        <div class="about-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Nuestro Equipo</h3>
+                        <p>Contamos con especialistas en SEO, diseño web, marketing de contenidos y publicidad en redes sociales.</p>
+                    </div>
+                    
+                    <div class="about-card values">
+                        <div class="about-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h3>Valores</h3>
+                        <ul class="values-list">
+                            <li><i class="fas fa-check-circle"></i> <span>Integridad</span></li>
+                            <li><i class="fas fa-check-circle"></i> <span>Innovación</span></li>
+                            <li><i class="fas fa-check-circle"></i> <span>Resultados</span></li>
+                            <li><i class="fas fa-check-circle"></i> <span>Colaboración</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Planes de Precios -->
+    <section class="pricing" id="precios">
+        <div class="container">
+            <h2 class="section-title">Nuestros Planes</h2>
+            <div class="pricing-container">
+                <div class="pricing-card free">
+                    <div class="pricing-header">
+                        <h3>Consulta Inicial</h3>
+                        <div class="price">
+                            <span class="price-value">GRATIS</span>
+                        </div>
+                        <div class="offer-tag">Primera Sesión</div>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Análisis de mercado y competencia</li>
+                            <li><i class="fas fa-check"></i> Propuesta de estrategia</li>
+                            <li><i class="fas fa-check"></i> Diseño e Identificación de Mejoras</li>
+                            <li><i class="fas fa-times"></i> Sin permanencia</li>
+                            <li><i class="fas fa-times"></i> Sin soporte</li>
+                        </ul>
+                    </div>
+                    <a href="#contacto" class="pricing-btn">CONSULTA GRATIS</a>
+                </div>
+                <div class="pricing-card premium">
+                    <div class="pricing-header">
+                        <h3>Plan Premium</h3>
+                        <div class="price">
+                            <span class="price-original">399€</span>
+                            <span class="price-value">299€/mes</span>
+                        </div>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Desarrollo de Landing Page o Sitio Web</li>
+                            <li><i class="fas fa-check"></i> Optimización SEO básica</li>
+                            <li><i class="fas fa-check"></i> Gestión de redes sociales</li>
+                            <li><i class="fas fa-check"></i> 3 Publicaciones semanales (Creación de contenido)</li>
+                            <li><i class="fas fa-check"></i> Análisis de mercado y competencia</li>
+                            <li><i class="fas fa-check"></i> Propuesta de mejoras</li>
+                            <li><i class="fas fa-check"></i> Estrategias personalizadas adaptadas al mercado</li>
+                            <li><i class="fas fa-check"></i> Presentación de estrategias y proyecto</li>
+                            <li><i class="fas fa-check"></i> Informe detallado semanal</li>
+                            <li><i class="fas fa-check"></i> Soporte continuo hasta la cancelación del plan</li>
+                            <li><i class="fas fa-check"></i> Sin permanencia alguna</li>
+                            <li><i class="fas fa-check"></i> Prioridad máxima</li>
+                        </ul>
+                    </div>
+                    <a href="#contacto" class="pricing-btn">Agendar Llamada</a>
+                </div>
+                <div class="pricing-card pro">
+                    <div class="pricing-header">
+                        <h3>Plan Pro</h3>
+                        <div class="price">
+                            <span class="price-original">799€</span>
+                            <span class="price-value">599€/mes</span>
+                        </div>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Desarrollo de Landing Page o Sitio Web</li>
+                            <li><i class="fas fa-check"></i> Optimización SEO básica</li>
+                            <li><i class="fas fa-check"></i> Gestión de redes sociales</li>
+                            <li><i class="fas fa-check"></i> 5 Publicaciones semanales (Creación de contenido)</li>
+                            <li><i class="fas fa-check"></i> Análisis de mercado y competencia</li>
+                            <li><i class="fas fa-check"></i> Propuesta de mejoras</li>
+                            <li><i class="fas fa-check"></i> Estrategias personalizadas adaptadas al mercado</li>
+                            <li><i class="fas fa-check"></i> Presentación de estrategias y proyecto</li>
+                            <li><i class="fas fa-check"></i> Informe detallado semanal</li>
+                            <li><i class="fas fa-check"></i> Soporte continuo hasta la cancelación del plan</li>
+                            <li><i class="fas fa-check"></i> Sin permanencia alguna</li>
+                            <li><i class="fas fa-check"></i> Prioridad máxima</li>
+                        </ul>
+                    </div>
+                    <a href="#contacto" class="pricing-btn">Agendar Llamada</a>
+                </div>
+                <div class="pricing-card business">
+                    <div class="pricing-header">
+                        <h3>Plan Business</h3>
+                        <div class="price">
+                            <span class="price-value">A convenir</span>
+                        </div>
+                        <p class="business-description">Solución completa y personalizada para empresas que buscan maximizar su presencia digital y resultados de marketing.</p>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Todo incluido a medida</li>
+                            <li><i class="fas fa-check"></i> Estrategia completamente personalizada</li>
+                            <li><i class="fas fa-check"></i> Soluciones adaptadas a sus necesidades</li>
+                            <li><i class="fas fa-check"></i> Soporte prioritario</li>
+                            <li><i class="fas fa-check"></i> Prioridad máxima</li>
+                        </ul>
+                    </div>
+                    <a href="#contacto" class="pricing-btn">Consultar</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Testimonios -->
+    <section id="testimonios" class="testimonials">
+        <div class="container">
+            <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+            <div class="testimonials-container" id="testimonialSlider">
+                <div class="testimonial-card fade">
+                    <div class="testimonial-content">
+                        <p>"Desde que comenzamos a trabajar con SPMarketing, nuestras ventas en línea han aumentado un 75%. Su estrategia de SEO nos posicionó en los primeros resultados de Google."</p>
+                    </div>
+                    <div class="testimonial-info">
+                        <div class="testimonial-image">
+                            <img src="IMG/testimonio1.jpg" alt="María Rodríguez">
+                        </div>
+                        <h3>María Rodríguez</h3>
+                        <p class="testimonial-business">Boutique Online</p>
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card fade">
+                    <div class="testimonial-content">
+                        <p>"Su enfoque en marketing revolucionó nuestra marca. Pasamos de 500 a 15,000 seguidores en solo dos meses. Impresionante servicio."</p>
+                    </div>
+                    <div class="testimonial-info">
+                        <div class="testimonial-image">
+                            <img src="IMG/testimonio2.jpg" alt="Carlos Méndez">
+                        </div>
+                        <h3>Carlos Méndez</h3>
+                        <p class="testimonial-business">Marca de Ropa Urbana</p>
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card fade">
+                    <div class="testimonial-content">
+                        <p>"La landing page que diseñaron para nuestra promoción de verano tuvo una tasa de conversión del 12%, muy por encima del 3% que teníamos anteriormente."</p>
+                    </div>
+                    <div class="testimonial-info">
+                        <div class="testimonial-image">
+                            <img src="IMG/testimonio3.jpg" alt="Laura Sánchez">
+                        </div>
+                        <h3>Laura Sánchez</h3>
+                        <p class="testimonial-business">Agencia de Viajes</p>
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-cta">
+                <p class="testimonial-highlight">Únete a nuestros clientes satisfechos y potencia tu negocio con estrategias de marketing efectivas.</p>
+                <div class="cta-center">
+                    <a href="#contacto" class="btn btn-primary">Solicitar Consulta Gratuita</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Contacto -->
+    <section id="contacto" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Contáctanos</h2>
+                <p class="section-description">Completa el formulario y un experto se pondrá en contacto contigo para asesorarte sin compromiso.</p>
+            </div>
+            
+            <div class="contact-grid">
+                <!-- Formulario de contacto -->
+                <div class="contact-form">
+                    <h3>Envíanos un mensaje</h3>
+                    <form id="contactForm" action="https://formsubmit.co/hristiankrasimirov7@gmail.com" method="POST">
+                        <input type="hidden" name="_subject" value="SPMarketing - Agency">
+                        <input type="hidden" name="_next" value="thank-you.html">
+                        <input type="hidden" name="_captcha" value="false">
+                        
+                        <div class="form-group">
+                            <label for="name">Nombre y apellidos <span class="required">*</span></label>
+                            <input type="text" id="name" name="name" placeholder="Tu nombre completo" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Correo electrónico <span class="required">*</span></label>
+                            <input type="email" id="email" name="email" placeholder="Tu email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Teléfono (WhatsApp) <span class="optional">(opcional)</span></label>
+                            <input type="tel" id="phone" name="phone" placeholder="Tu número de teléfono">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Consulta <span class="required">*</span></label>
+                            <textarea id="message" name="message" rows="5" placeholder="Explícanos en qué podemos ayudarte" required></textarea>
+                        </div>
+                        
+                        <div class="form-group privacy-checkbox">
+                            <label>
+                                <input type="checkbox" name="acepto_politica" required>
+                                ACEPTO la <a href="privacy-policy.html" target="_blank" class="privacy-link">política de privacidad</a> y el tratamiento de mis datos.
+                            </label>
+                        </div>
+                        
+                        <div class="form-submit">
+                            <button type="submit" class="btn btn-primary">Enviar consulta</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Calendario para agendar cita -->
+                <div class="contact-calendar">
+                    <h3>Programa una llamada</h3>
+                    <p class="calendar-intro">Selecciona una fecha y hora para que nuestros especialistas te contacten.</p>
+                    
+                    <div class="calendar-options">
+                        <label class="toggle-option">
+                            <input type="checkbox" id="hideDateTime">
+                            <span class="toggle-label">Prefiero que me llamen en cualquier momento</span>
+                        </label>
+                    </div>
+                    
+                    <div class="calendar-container" id="calendarContainer">
+                        <div class="calendar-header">
+                            <button id="prevMonth" class="month-nav"><i class="fas fa-chevron-left"></i></button>
+                            <div class="current-month">Agosto 2023</div>
+                            <button id="nextMonth" class="month-nav"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                        
+                        <div class="weekdays">
+                            <div class="weekday">L</div>
+                            <div class="weekday">M</div>
+                            <div class="weekday">X</div>
+                            <div class="weekday">J</div>
+                            <div class="weekday">V</div>
+                            <div class="weekday">S</div>
+                            <div class="weekday">D</div>
+                        </div>
+                        
+                        <div class="calendar-days">
+                            <!-- JavaScript generará los días aquí -->
+                        </div>
+                        
+                        <div class="time-selector">
+                            <h4>Selecciona una hora disponible:</h4>
+                            <div class="time-slots">
+                                <!-- JavaScript generará las franjas horarias aquí -->
+                            </div>
+                        </div>
+                        
+                        <div class="selected-datetime">
+                            <p>Fecha: <span id="selectedDate">Ninguna</span></p>
+                            <p>Hora: <span id="selectedTime">Ninguna</span></p>
+                        </div>
+                        
+                        <input type="hidden" id="selectedDatetime" name="selectedDatetime" form="contactForm">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-contact">
+                    <h3>Contacto</h3>
+                    <ul>
+                        <li><a href="https://wa.link/uxacg0" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
+                        <li><a href="mailto:solucionesworld2016@gmail.com?subject=SPMarketing%20-%20Agency"><i class="far fa-envelope"></i> Email</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h3>Redes Sociales</h3>
+                    <ul>
+                        <li><a href="https://www.facebook.com/SPMarketingKR/" target="_blank"><i class="fab fa-facebook"></i> Facebook</a></li>
+                        <li><a href="https://www.instagram.com/spmarketing_agency?igsh=MWM2YTZnd25nbDcwZg=" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
+                        <li><a href="https://t.me/SPMarketing_KR" target="_blank"><i class="fab fa-telegram"></i> Telegram</a></li>
+                        <li><a href="https://www.youtube.com/@SPM3103" target="_blank"><i class="fab fa-youtube"></i> YouTube</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul>
+                        <li><a href="privacy-policy.html" target="_blank">Política de Privacidad</a></li>
+                        <li><a href="terms-of-use.html" target="_blank">Términos de Uso</a></li>
+                    </ul>
+                </div>
+                <div class="footer-logo">
+                    <img src="IMG/LOGO PRINCIPAL.jpg" alt="SPMarketing Logo">
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <p>&copy; 2025 SPMarketing - Agency. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botón Volver Arriba -->
+    <div class="scroll-top-btn" id="scrollTopBtn">
+        <i class="fas fa-arrow-up"></i>
+        <span></span>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html> 

@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conoce Tu Negocio - SPMarketing Agency</title>
+    <link rel="icon" href="IMG/LOGO PRINCIPAL.jpg" type="image/jpeg">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #003366;
+            --secondary-color: #1B5E20;
+            --accent-color: #FF4500;
+            --light-color: #FFFFFF;
+            --gray-color: #F5F5F5;
+            --dark-color: #212121;
+            --border-radius: 8px;
+            --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--primary-color);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(rgba(0, 51, 102, 0.9), rgba(0, 51, 102, 0.9)), url('IMG/LOGO PRINCIPAL.jpg') no-repeat center center/cover;
+            min-height: 25vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--light-color);
+            padding: 2rem 0;
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--light-color);
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        header p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.5;
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 0.8rem;
+            border-radius: 5px;
+        }
+
+        .logo {
+            width: 120px;
+            height: auto;
+            margin-bottom: 1.5rem;
+            border-radius: 10px;
+            background-color: white;
+            padding: 5px;
+        }
+
+        .questionnaire-container {
+            background-color: var(--light-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin: -50px auto 50px;
+            position: relative;
+            z-index: 10;
+            padding: 2rem;
+            max-width: 800px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background-color: #eee;
+            border-radius: 4px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+            width: 0;
+            transition: width 0.5s ease;
+        }
+
+        .question {
+            display: none;
+            padding: 1rem 0;
+        }
+
+        .question.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        .question h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .question p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .options label {
+            display: block;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background-color: var(--gray-color);
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .options label:hover {
+            background-color: #e8e8e8;
+        }
+
+        .options input[type="radio"],
+        .options input[type="checkbox"] {
+            display: none;
+        }
+
+        .options input[type="radio"]:checked + label,
+        .options input[type="checkbox"]:checked + label {
+            background-color: rgba(0, 51, 102, 0.1);
+            border-color: var(--primary-color);
+        }
+
+        .text-input {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .text-input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-prev {
+            background-color: #e0e0e0;
+            color: #333;
+        }
+
+        .btn-prev:hover {
+            background-color: #d0d0d0;
+        }
+
+        .btn-next {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-next:hover {
+            background-color: var(--accent-color);
+        }
+
+        .btn-submit {
+            background-color: var(--accent-color);
+            color: white;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .btn-submit:hover {
+            background-color: #e63900;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .thank-you {
+            text-align: center;
+            padding: 2rem;
+            display: none;
+        }
+
+        .thank-you h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .thank-you p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .thank-you i {
+            font-size: 4rem;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .error-message {
+            color: #e74c3c;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            .questionnaire-container {
+                margin-top: -30px;
+                padding: 1.5rem;
+            }
+            
+            .question h3 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <img src="IMG/LOGO PRINCIPAL.jpg" alt="SPMarketing Logo" class="logo">
+            <h1>Conoce Tu Negocio</h1>
+            <p>Ayúdanos a entender mejor tu negocio para ofrecerte la mejor estrategia de marketing digital</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="questionnaire-container">
+            <div class="progress-bar">
+                <div class="progress" id="progress"></div>
+            </div>
+
+            <form id="questionnaireForm">
+                <!-- Pregunta 1 -->
+                <div class="question active" data-question="1">
+                    <h3>¿A qué sector pertenece tu negocio?</h3>
+                    <p>Selecciona la opción que mejor describa tu actividad empresarial</p>
+                    <div class="options">
+                        <input type="radio" id="sector1" name="sector" value="Comercio minorista">
+                        <label for="sector1">Comercio minorista o tienda física</label>
+                        
+                        <input type="radio" id="sector2" name="sector" value="E-commerce">
+                        <label for="sector2">E-commerce o tienda online</label>
+                        
+                        <input type="radio" id="sector3" name="sector" value="Servicios profesionales">
+                        <label for="sector3">Servicios profesionales (abogados, consultores, etc.)</label>
+                        
+                        <input type="radio" id="sector4" name="sector" value="Hostelería y restauración">
+                        <label for="sector4">Hostelería y restauración</label>
+                        
+                        <input type="radio" id="sector5" name="sector" value="Educación y formación">
+                        <label for="sector5">Educación y formación</label>
+                        
+                        <input type="radio" id="sector6" name="sector" value="Salud y bienestar">
+                        <label for="sector6">Salud y bienestar</label>
+                        
+                        <input type="radio" id="sector7" name="sector" value="Otro">
+                        <label for="sector7">Otro</label>
+                    </div>
+                    <div id="sectorError" class="error-message">Por favor, selecciona un sector</div>
+                </div>
+
+                <!-- Pregunta 2 -->
+                <div class="question" data-question="2">
+                    <h3>¿En qué fase se encuentra tu negocio?</h3>
+                    <p>Selecciona la etapa actual de tu empresa</p>
+                    <div class="options">
+                        <input type="radio" id="fase1" name="fase" value="Idea">
+                        <label for="fase1">Idea o pre-lanzamiento</label>
+                        
+                        <input type="radio" id="fase2" name="fase" value="Recién lanzado">
+                        <label for="fase2">Recién lanzado (menos de 1 año)</label>
+                        
+                        <input type="radio" id="fase3" name="fase" value="En crecimiento">
+                        <label for="fase3">En crecimiento (1-3 años)</label>
+                        
+                        <input type="radio" id="fase4" name="fase" value="Establecido">
+                        <label for="fase4">Negocio establecido (más de 3 años)</label>
+                        
+                        <input type="radio" id="fase5" name="fase" value="En renovación">
+                        <label for="fase5">En proceso de renovación o transformación</label>
+                    </div>
+                    <div id="faseError" class="error-message">Por favor, selecciona una fase</div>
+                </div>
+
+                <!-- Pregunta 3 -->
+                <div class="question" data-question="3">
+                    <h3>¿Cuáles son tus objetivos principales de marketing digital?</h3>
+                    <p>Selecciona hasta 3 opciones que mejor reflejen tus metas</p>
+                    <div class="options">
+                        <input type="checkbox" id="objetivo1" name="objetivos" value="Aumentar ventas">
+                        <label for="objetivo1">Aumentar ventas</label>
+                        
+                        <input type="checkbox" id="objetivo2" name="objetivos" value="Generar leads">
+                        <label for="objetivo2">Generar leads (contactos cualificados)</label>
+                        
+                        <input type="checkbox" id="objetivo3" name="objetivos" value="Mejorar visibilidad">
+                        <label for="objetivo3">Mejorar visibilidad de marca</label>
+                        
+                        <input type="checkbox" id="objetivo4" name="objetivos" value="Fidelizar clientes">
+                        <label for="objetivo4">Fidelizar clientes existentes</label>
+                        
+                        <input type="checkbox" id="objetivo5" name="objetivos" value="Lanzar producto">
+                        <label for="objetivo5">Lanzar un nuevo producto o servicio</label>
+                        
+                        <input type="checkbox" id="objetivo6" name="objetivos" value="Expansión">
+                        <label for="objetivo6">Expandirse a nuevos mercados</label>
+                    </div>
+                    <div id="objetivosError" class="error-message">Por favor, selecciona al menos un objetivo</div>
+                </div>
+
+                <!-- Pregunta 4 -->
+                <div class="question" data-question="4">
+                    <h3>¿Qué estrategias de marketing digital has utilizado hasta ahora?</h3>
+                    <p>Selecciona todas las que apliquen</p>
+                    <div class="options">
+                        <input type="checkbox" id="estrategia1" name="estrategias" value="Redes sociales">
+                        <label for="estrategia1">Redes sociales (orgánico)</label>
+                        
+                        <input type="checkbox" id="estrategia2" name="estrategias" value="Publicidad pagada">
+                        <label for="estrategia2">Publicidad pagada (Facebook Ads, Google Ads)</label>
+                        
+                        <input type="checkbox" id="estrategia3" name="estrategias" value="SEO">
+                        <label for="estrategia3">SEO (posicionamiento en buscadores)</label>
+                        
+                        <input type="checkbox" id="estrategia4" name="estrategias" value="Email marketing">
+                        <label for="estrategia4">Email marketing</label>
+                        
+                        <input type="checkbox" id="estrategia5" name="estrategias" value="Marketing de contenidos">
+                        <label for="estrategia5">Marketing de contenidos (blog, videos)</label>
+                        
+                        <input type="checkbox" id="estrategia6" name="estrategias" value="Influencers">
+                        <label for="estrategia6">Marketing con influencers</label>
+                        
+                        <input type="checkbox" id="estrategia7" name="estrategias" value="Ninguna">
+                        <label for="estrategia7">Ninguna hasta el momento</label>
+                    </div>
+                </div>
+
+                <!-- Pregunta 5 -->
+                <div class="question" data-question="5">
+                    <h3>¿Cuál es tu presupuesto mensual estimado para marketing digital?</h3>
+                    <p>Selecciona el rango que más se ajuste a tu situación</p>
+                    <div class="options">
+                        <input type="radio" id="presupuesto1" name="presupuesto" value="Menos de 300€">
+                        <label for="presupuesto1">Menos de 300€</label>
+                        
+                        <input type="radio" id="presupuesto2" name="presupuesto" value="300€ - 600€">
+                        <label for="presupuesto2">300€ - 600€</label>
+                        
+                        <input type="radio" id="presupuesto3" name="presupuesto" value="600€ - 1200€">
+                        <label for="presupuesto3">600€ - 1200€</label>
+                        
+                        <input type="radio" id="presupuesto4" name="presupuesto" value="1200€ - 3000€">
+                        <label for="presupuesto4">1200€ - 3000€</label>
+                        
+                        <input type="radio" id="presupuesto5" name="presupuesto" value="Más de 3000€">
+                        <label for="presupuesto5">Más de 3000€</label>
+                        
+                        <input type="radio" id="presupuesto6" name="presupuesto" value="No definido">
+                        <label for="presupuesto6">Aún no tengo un presupuesto definido</label>
+                    </div>
+                    <div id="presupuestoError" class="error-message">Por favor, selecciona un rango de presupuesto</div>
+                </div>
+
+                <!-- Pregunta 6 -->
+                <div class="question" data-question="6">
+                    <h3>¿Qué desafíos específicos estás enfrentando actualmente?</h3>
+                    <p>Cuéntanos brevemente tus principales problemas o retos</p>
+                    <textarea id="desafios" name="desafios" class="text-input" rows="4" placeholder="Ejemplo: No generamos suficientes leads, nuestras ventas en línea son bajas, no sabemos cómo destacar frente a la competencia..."></textarea>
+                </div>
+
+                <!-- Pregunta 7 (Nueva) -->
+                <div class="question" data-question="7">
+                    <h3>¿Cuáles son tus objetivos específicos de crecimiento para los próximos 6 meses?</h3>
+                    <p>Comparte tus metas para que podamos alinear mejor nuestra estrategia</p>
+                    <textarea id="objetivos_crecimiento" name="objetivos_crecimiento" class="text-input" rows="4" placeholder="Ejemplo: Aumentar ventas en un 30%, captar 500 nuevos seguidores en redes sociales, lanzar un nuevo producto..."></textarea>
+                </div>
+
+                <!-- Pregunta 8 -->
+                <div class="question" data-question="8">
+                    <h3>Información de contacto</h3>
+                    <p>Estos datos nos permitirán enviarte un análisis personalizado</p>
+                    <input type="text" id="nombre" name="nombre" class="text-input" placeholder="Nombre completo" required>
+                    <div id="nombreError" class="error-message">Por favor, introduce tu nombre</div>
+                    
+                    <input type="email" id="email" name="email" class="text-input" placeholder="Correo electrónico" required>
+                    <div id="emailError" class="error-message">Por favor, introduce un email válido</div>
+                    
+                    <input type="tel" id="telefono" name="telefono" class="text-input" placeholder="Teléfono (opcional)">
+                    
+                    <input type="text" id="empresa" name="empresa" class="text-input" placeholder="Nombre de tu empresa/negocio" required>
+                    <div id="empresaError" class="error-message">Por favor, introduce el nombre de tu empresa</div>
+                    
+                    <button type="submit" id="submitBtn" class="btn btn-submit">Enviar y Ver Soluciones</button>
+                </div>
+
+                <div class="btn-container">
+                    <button type="button" id="prevBtn" class="btn btn-prev hidden">Anterior</button>
+                    <button type="button" id="nextBtn" class="btn btn-next">Siguiente</button>
+                </div>
+            </form>
+
+            <div class="thank-you" id="thankYou">
+                <i class="fas fa-check-circle"></i>
+                <h2>¡Gracias por completar el cuestionario!</h2>
+                <p>Hemos recibido tu información. Te redirigiremos a nuestras soluciones personalizadas en unos segundos...</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('questionnaireForm');
+            const questions = document.querySelectorAll('.question');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const progress = document.getElementById('progress');
+            const thankYou = document.getElementById('thankYou');
+            
+            let currentQuestion = 1;
+            const totalQuestions = questions.length;
+            
+            // Actualizar barra de progreso
+            function updateProgress() {
+                const progressPercentage = ((currentQuestion - 1) / (totalQuestions - 1)) * 100;
+                progress.style.width = `${progressPercentage}%`;
+            }
+            
+            // Mostrar pregunta actual
+            function showQuestion(questionNumber) {
+                questions.forEach(question => {
+                    question.classList.remove('active');
+                });
+                
+                document.querySelector(`.question[data-question="${questionNumber}"]`).classList.add('active');
+                
+                // Mostrar/ocultar botones según corresponda
+                if (questionNumber === 1) {
+                    prevBtn.classList.add('hidden');
+                } else {
+                    prevBtn.classList.remove('hidden');
+                }
+                
+                if (questionNumber === totalQuestions) {
+                    nextBtn.classList.add('hidden');
+                } else {
+                    nextBtn.classList.remove('hidden');
+                }
+                
+                updateProgress();
+            }
+            
+            // Validar la pregunta actual
+            function validateCurrentQuestion() {
+                let isValid = true;
+                const activeQuestion = document.querySelector('.question.active');
+                const questionNumber = parseInt(activeQuestion.getAttribute('data-question'));
+                
+                // Ocultar todos los mensajes de error
+                activeQuestion.querySelectorAll('.error-message').forEach(error => {
+                    error.style.display = 'none';
+                });
+                
+                // Validar según el número de pregunta
+                switch(questionNumber) {
+                    case 1: // Sector
+                        const sectorSelected = activeQuestion.querySelector('input[name="sector"]:checked');
+                        if (!sectorSelected) {
+                            document.getElementById('sectorError').style.display = 'block';
+                            isValid = false;
+                        }
+                        break;
+                    case 2: // Fase
+                        const faseSelected = activeQuestion.querySelector('input[name="fase"]:checked');
+                        if (!faseSelected) {
+                            document.getElementById('faseError').style.display = 'block';
+                            isValid = false;
+                        }
+                        break;
+                    case 3: // Objetivos
+                        const objetivosSelected = activeQuestion.querySelectorAll('input[name="objetivos"]:checked');
+                        if (objetivosSelected.length === 0) {
+                            document.getElementById('objetivosError').style.display = 'block';
+                            isValid = false;
+                        }
+                        break;
+                    case 5: // Presupuesto
+                        const presupuestoSelected = activeQuestion.querySelector('input[name="presupuesto"]:checked');
+                        if (!presupuestoSelected) {
+                            document.getElementById('presupuestoError').style.display = 'block';
+                            isValid = false;
+                        }
+                        break;
+                }
+                
+                return isValid;
+            }
+            
+            // Validar información de contacto
+            function validateContactInfo() {
+                let isValid = true;
+                const nombre = document.getElementById('nombre');
+                const email = document.getElementById('email');
+                const empresa = document.getElementById('empresa');
+                
+                // Validar nombre
+                if (!nombre.value.trim()) {
+                    document.getElementById('nombreError').style.display = 'block';
+                    isValid = false;
+                }
+                
+                // Validar email
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!email.value.trim() || !emailRegex.test(email.value.trim())) {
+                    document.getElementById('emailError').style.display = 'block';
+                    isValid = false;
+                }
+                
+                // Validar empresa
+                if (!empresa.value.trim()) {
+                    document.getElementById('empresaError').style.display = 'block';
+                    isValid = false;
+                }
+                
+                return isValid;
+            }
+            
+            // Evento del botón siguiente
+            nextBtn.addEventListener('click', function() {
+                if (validateCurrentQuestion()) {
+                    if (currentQuestion < totalQuestions) {
+                        currentQuestion++;
+                        showQuestion(currentQuestion);
+                    }
+                }
+            });
+            
+            // Evento del botón anterior
+            prevBtn.addEventListener('click', function() {
+                if (currentQuestion > 1) {
+                    currentQuestion--;
+                    showQuestion(currentQuestion);
+                }
+            });
+            
+            // Enviar formulario
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                if (validateContactInfo()) {
+                    // Recopilar todos los datos del formulario
+                    const formData = new FormData(form);
+                    
+                    // Crear objeto con los datos
+                    const data = {};
+                    for (let [key, value] of formData.entries()) {
+                        if (key === 'objetivos' || key === 'estrategias') {
+                            if (!data[key]) data[key] = [];
+                            data[key].push(value);
+                        } else {
+                            data[key] = value;
+                        }
+                    }
+                    
+                    // Enviar datos por email (simulado)
+                    sendEmail(data);
+                    
+                    // Mostrar mensaje de agradecimiento
+                    form.style.display = 'none';
+                    thankYou.style.display = 'block';
+                    
+                    // Redireccionar después de 3 segundos
+                    setTimeout(function() {
+                        window.location.href = 'index.html';
+                    }, 3000);
+                }
+            });
+            
+            // Simulación de envío de email
+            function sendEmail(data) {
+                // En un entorno real, aquí enviarías los datos al servidor
+                console.log('Datos enviados:', data);
+                
+                // Ejemplo de código para enviar por fetch en un entorno real:
+                /*
+                fetch('enviar-cuestionario.php', {
+                    method: 'POST',
+                    body: JSON.stringify(data),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => console.log('Success:', data))
+                .catch(error => console.error('Error:', error));
+                */
+            }
+            
+            // Inicializar
+            showQuestion(currentQuestion);
+        });
+    </script>
+</body>
+</html>

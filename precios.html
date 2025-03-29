@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Precios - SPMarketing - Agency</title>
+    <link rel="icon" href="IMG/LOGO PRINCIPAL.jpg" type="image/jpeg">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .pricing-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('IMG/pricing-background.jpg') no-repeat center center/cover;
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light-color);
+            padding: 8rem 0 4rem;
+            text-align: center;
+        }
+        
+        .pricing-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            animation: fadeInDown 1.2s;
+        }
+        
+        .pricing-hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeInUp 1.2s;
+        }
+        
+        .pricing-section {
+            padding: 6rem 0;
+            background-color: var(--light-color);
+        }
+        
+        .features-list {
+            padding: 3rem 0;
+            background-color: var(--gray-color);
+        }
+        
+        .features-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background-color: var(--light-color);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--box-shadow);
+            text-align: center;
+            transition: var(--transition);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: var(--light-color);
+            font-size: 2rem;
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .feature-card p {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        .faq-section {
+            padding: 5rem 0;
+            background-color: var(--light-color);
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            margin-bottom: 1.5rem;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            padding: 1.5rem;
+            background-color: var(--gray-color);
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-question:hover {
+            background-color: #e9e9e9;
+        }
+        
+        .faq-question i {
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-question.active i {
+            transform: rotate(180deg);
+        }
+        
+        .faq-answer {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background-color: var(--light-color);
+        }
+        
+        .faq-answer.active {
+            padding: 1.5rem;
+            max-height: 500px;
+        }
+        
+        .hero-title-pricing {
+            font-size: 3.5rem;
+            color: #fff;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: fadeInDown 1.2s;
+        }
+        
+        .hero-subtitle-pricing {
+            font-size: 1.4rem;
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeInUp 1.2s;
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+        
+        .footer-minimal {
+            background-color: var(--dark-color);
+            color: var(--light-color);
+            padding: 2rem 0;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .footer-logo img {
+            height: 80px;
+            width: auto;
+            border-radius: 50%;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-links-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .footer-contact-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-contact-links a {
+            color: var(--light-color);
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+        
+        .footer-contact-links a:hover {
+            color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+        
+        .footer-legal-links {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-legal-links a {
+            color: #aaa;
+            transition: var(--transition);
+        }
+        
+        .footer-legal-links a:hover {
+            color: var(--light-color);
+        }
+        
+        .separator {
+            color: #666;
+            margin: 0 10px;
+        }
+        
+        .footer-copyright {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #777;
+            margin-top: 1rem;
+        }
+        
+        .cta-btn, .secondary-btn {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .cta-btn {
+            background-color: var(--accent-color);
+            color: white;
+        }
+        
+        .cta-btn:hover {
+            background-color: #e63900;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 69, 0, 0.3);
+        }
+        
+        .secondary-btn {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        
+        .secondary-btn:hover {
+            background-color: white;
+            color: var(--dark-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="pricing-hero">
+        <div class="container">
+            <nav id="navbar">
+                <div class="logo">
+                    <a href="index.html"><img src="IMG/LOGO PRINCIPAL.jpg" alt="SPMarketing Logo"></a>
+                </div>
+                <div class="menu" id="menu">
+                    <ul>
+                        <li><a href="index.html#inicio">Inicio</a></li>
+                        <li><a href="index.html#servicios">Servicios</a></li>
+                        <li><a href="index.html#beneficios">Beneficios</a></li>
+                        <li><a href="index.html#testimonios">Testimonios</a></li>
+                        <li><a href="index.html#sobre-nosotros">Sobre Nosotros</a></li>
+                        <li><a href="precios.html">Precios</a></li>
+                        <li><a href="index.html#contacto" class="cta-btn">CONSULTA GRATUITA</a></li>
+                    </ul>
+                </div>
+                <div class="hamburger" id="hamburger">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+            </nav>
+
+            <h1 class="hero-title-pricing">Planes y Precios</h1>
+            <p class="hero-subtitle-pricing">Elige el plan que mejor se adapte a las necesidades de tu negocio y comienza a crecer en el mundo digital</p>
+        </div>
+    </header>
+
+    <!-- Planes de Precios -->
+    <section class="pricing-section">
+        <div class="container">
+            <h2 class="section-title">Nuestros Planes</h2>
+            <div class="pricing-container">
+                <div class="pricing-card free">
+                    <div class="pricing-header">
+                        <h3>Consulta Inicial</h3>
+                        <div class="price">
+                            <span class="price-value">GRATIS</span>
+                        </div>
+                        <div class="offer-tag">Primera Sesión</div>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Análisis de mercado y competencia</li>
+                            <li><i class="fas fa-check"></i> Propuesta de estrategia</li>
+                            <li><i class="fas fa-check"></i> Diseño e Identificación de Mejoras</li>
+                            <li><i class="fas fa-times"></i> Sin permanencia</li>
+                            <li><i class="fas fa-times"></i> Sin soporte</li>
+                        </ul>
+                    </div>
+                    <a href="index.html#contacto" class="pricing-btn">CONSULTA GRATIS</a>
+                </div>
+                <div class="pricing-card premium">
+                    <div class="pricing-header">
+                        <h3>Plan Premium</h3>
+                        <div class="price">
+                            <span class="price-original">399€</span>
+                            <span class="price-value">299€/mes</span>
+                        </div>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Desarrollo de Landing Page o Sitio Web</li>
+                            <li><i class="fas fa-check"></i> Optimización SEO básica</li>
+                            <li><i class="fas fa-check"></i> Gestión de redes sociales</li>
+                            <li><i class="fas fa-check"></i> 3 Publicaciones semanales (Creación de contenido)</li>
+                            <li><i class="fas fa-check"></i> Análisis de mercado y competencia</li>
+                            <li><i class="fas fa-check"></i> Propuesta de mejoras</li>
+                            <li><i class="fas fa-check"></i> Estrategias personalizadas adaptadas al mercado</li>
+                            <li><i class="fas fa-check"></i> Presentación de estrategias y proyecto</li>
+                            <li><i class="fas fa-check"></i> Informe detallado semanal</li>
+                            <li><i class="fas fa-check"></i> Soporte durante 6 meses continuos</li>
+                            <li><i class="fas fa-check"></i> Sin permanencia alguna</li>
+                            <li><i class="fas fa-check"></i> Prioridad máxima</li>
+                        </ul>
+                    </div>
+                    <a href="index.html#contacto" class="pricing-btn">Agendar Llamada</a>
+                </div>
+                <div class="pricing-card pro">
+                    <div class="pricing-header">
+                        <h3>Plan Pro</h3>
+                        <div class="price">
+                            <span class="price-original">799€</span>
+                            <span class="price-value">599€/mes</span>
+                        </div>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Desarrollo de Landing Page o Sitio Web</li>
+                            <li><i class="fas fa-check"></i> Optimización SEO básica</li>
+                            <li><i class="fas fa-check"></i> Gestión de redes sociales</li>
+                            <li><i class="fas fa-check"></i> 5 Publicaciones semanales (Creación de contenido)</li>
+                            <li><i class="fas fa-check"></i> Análisis de mercado y competencia</li>
+                            <li><i class="fas fa-check"></i> Propuesta de mejoras</li>
+                            <li><i class="fas fa-check"></i> Estrategias personalizadas adaptadas al mercado</li>
+                            <li><i class="fas fa-check"></i> Presentación de estrategias y proyecto</li>
+                            <li><i class="fas fa-check"></i> Informe detallado semanal</li>
+                            <li><i class="fas fa-check"></i> Soporte durante 12 meses continuos</li>
+                            <li><i class="fas fa-check"></i> Sin permanencia alguna</li>
+                            <li><i class="fas fa-check"></i> Prioridad máxima</li>
+                        </ul>
+                    </div>
+                    <a href="index.html#contacto" class="pricing-btn">Agendar Llamada</a>
+                </div>
+                <div class="pricing-card business">
+                    <div class="pricing-header">
+                        <h3>Plan Business</h3>
+                        <div class="price">
+                            <span class="price-value">A convenir</span>
+                        </div>
+                        <p class="business-description">Solución completa y personalizada para empresas que buscan maximizar su presencia digital y resultados de marketing.</p>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Todo incluido a medida</li>
+                            <li><i class="fas fa-check"></i> Estrategia completamente personalizada</li>
+                            <li><i class="fas fa-check"></i> Soluciones adaptadas a sus necesidades</li>
+                            <li><i class="fas fa-check"></i> Soporte prioritario</li>
+                            <li><i class="fas fa-check"></i> Prioridad máxima</li>
+                        </ul>
+                    </div>
+                    <a href="index.html#contacto" class="pricing-btn">Consultar</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Características -->
+    <section class="features-list">
+        <div class="container">
+            <h2 class="section-title">¿Por qué elegir SPMarketing?</h2>
+            <div class="benefits-container">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Experiencia</h3>
+                    <p>Expertos en marketing digital con más de 5 años en el sector.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Resultados</h3>
+                    <p>Estrategias orientadas a resultados medibles y crecimiento real.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Personalización</h3>
+                    <p>Soluciones a medida según tus objetivos específicos.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>Tecnología IA</h3>
+                    <p>Optimización avanzada con inteligencia artificial.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Preguntas Frecuentes -->
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="section-title">Preguntas Frecuentes</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question" data-accordion="header">
+                        ¿Cuál es la duración de los contratos? <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer" data-accordion="content">
+                        <p>Para el Plan Premium, los contratos son mensuales, sin permanencia mínima. Puedes cancelar en cualquier momento con un preaviso de 15 días. El Plan Vitalicio es un pago único con soporte garantizado por 12 años.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" data-accordion="header">
+                        ¿Cómo se realiza la consulta gratuita? <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer" data-accordion="content">
+                        <p>La consulta gratuita se realiza a través de videollamada o llamada telefónica. Durante la misma, analizaremos tu situación actual y te proporcionaremos recomendaciones personalizadas sin compromiso.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" data-accordion="header">
+                        ¿Qué incluye exactamente el Plan Premium? <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer" data-accordion="content">
+                        <p>El Plan Premium incluye implementación estratégica, optimización SEO básica, gestión de redes sociales, soporte prioritario y sin permanencia. El precio es de 79€/mes.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" data-accordion="header">
+                        ¿Qué ventajas tiene el Plan Vitalicio? <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer" data-accordion="content">
+                        <p>El Plan Vitalicio ofrece todas las ventajas del Plan Premium con un pago único de 189€ (en lugar de 329€). Incluye soporte garantizado por 12 años, acceso a todas las actualizaciones y prioridad máxima en la atención.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" data-accordion="header">
+                        ¿Para qué tipo de negocios son adecuados estos planes? <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer" data-accordion="content">
+                        <p>Nuestros planes están diseñados principalmente para pequeñas y medianas empresas, emprendedores y profesionales independientes que buscan mejorar su presencia digital y aumentar sus ventas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="section-title">¿Listo para potenciar tu negocio?</h2>
+            <p class="cta-text">Da el primer paso hacia el crecimiento digital de tu empresa</p>
+            <div class="cta-buttons">
+                <button onclick="location.href='index.html#contacto'" class="cta-btn">Solicitar Consulta Gratuita</button>
+                <button onclick="location.href='index.html#sobre-nosotros'" class="secondary-btn">Conocer Más</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-minimal">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="IMG/LOGO PRINCIPAL.jpg" alt="SPMarketing Logo">
+                </div>
+                <div class="footer-links-container">
+                    <div class="footer-contact-links">
+                        <a href="https://wa.link/uxacg0" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        <a href="mailto:solucionesworld2016@gmail.com?subject=SPMarketing%20-%20Agency"><i class="far fa-envelope"></i></a>
+                        <a href="https://www.facebook.com/SPMarketingKR/" target="_blank"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/spmarketing_agency?igsh=MWM2YTZnd25nbDcwZg=" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://t.me/SPMarketing_KR" target="_blank"><i class="fab fa-telegram"></i></a>
+                        <a href="https://www.youtube.com/@SPM3103" target="_blank"><i class="fab fa-youtube"></i></a>
+                    </div>
+                    <div class="footer-legal-links">
+                        <a href="privacy-policy.html" target="_blank">Política de Privacidad</a>
+                        <span class="separator">|</span>
+                        <a href="terms-of-use.html" target="_blank">Términos de Uso</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <p>&copy; 2025 SPMarketing - Agency. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botón Volver Arriba -->
+    <div class="scroll-top-btn" id="scrollTopBtn">
+        <i class="fas fa-arrow-up"></i>
+        <span></span>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // FAQs Accordion
+        document.querySelectorAll('[data-accordion="header"]').forEach(header => {
+            header.addEventListener('click', function() {
+                const content = this.nextElementSibling;
+                this.classList.toggle('active');
+                content.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html> 

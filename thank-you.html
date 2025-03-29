@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gracias por tu mensaje - SPMarketing - Agency</title>
+    <link rel="icon" href="IMG/LOGO PRINCIPAL.jpg" type="image/jpeg">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #003366;
+            --secondary-color: #1B5E20;
+            --light-color: #FFFFFF;
+            --dark-color: #000000;
+            --gray-color: #F5F5F5;
+            --accent-color: #FF4500;
+            --text-color: #333333;
+            --border-radius: 4px;
+            --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: var(--gray-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+        
+        .thank-you-container {
+            max-width: 800px;
+            width: 100%;
+            background-color: var(--light-color);
+            border-radius: 10px;
+            padding: 3rem;
+            text-align: center;
+            box-shadow: var(--box-shadow);
+            animation: fadeIn 1s ease;
+        }
+        
+        .logo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 2rem;
+            object-fit: cover;
+        }
+        
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+        }
+        
+        .thank-you-message {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .check-icon {
+            font-size: 4rem;
+            color: var(--secondary-color);
+            margin-bottom: 2rem;
+        }
+        
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .button {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            border-radius: var(--border-radius);
+            font-weight: 500;
+            text-transform: uppercase;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .primary-btn {
+            background-color: var(--accent-color);
+            color: var(--light-color);
+        }
+        
+        .primary-btn:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+        
+        .secondary-btn {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+        
+        .secondary-btn:hover {
+            background-color: var(--primary-color);
+            color: var(--light-color);
+        }
+        
+        .social-links {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .thank-you-container {
+                padding: 2rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .thank-you-message {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="thank-you-container">
+        <img src="IMG/LOGO PRINCIPAL.jpg" alt="SPMarketing Logo" class="logo">
+        <i class="fas fa-check-circle check-icon"></i>
+        <h1>¡Gracias por tu mensaje!</h1>
+        <p class="thank-you-message">Hemos recibido tu consulta y nos pondremos en contacto contigo en menos de 24 horas. Mientras tanto, puedes seguirnos en nuestras redes sociales para conocer más sobre nuestros servicios y consejos de marketing digital.</p>
+        
+        <div class="buttons">
+            <a href="index.html" class="button primary-btn">Volver al inicio</a>
+            <a href="precios.html" class="button secondary-btn">Ver planes</a>
+        </div>
+        
+        <div class="social-links">
+            <a href="https://www.facebook.com/SPMarketingKR/" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com/spmarketing_agency?igsh=MWM2YTZnd25nbDcwZg=" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://t.me/SPMarketing_KR" target="_blank"><i class="fab fa-telegram"></i></a>
+            <a href="https://www.youtube.com/@SPM3103" target="_blank"><i class="fab fa-youtube"></i></a>
+        </div>
+    </div>
+</body>
+</html> 
