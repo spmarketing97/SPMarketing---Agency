@@ -600,7 +600,7 @@
                     <h3>Envíanos un mensaje</h3>
                     <form id="contactForm" action="https://formsubmit.co/6272e52adf5d1fb560a967de6019f639" method="POST">
                         <input type="hidden" name="_subject" value="SPMarketing - Agency">
-                        <input type="hidden" name="_next" value="thank-you.html">
+                        <input type="hidden" name="_next" value="https://spmarketing-agency.com/thank-you.html">
                         <input type="hidden" name="_captcha" value="false">
                         <input type="hidden" name="_cc" value="hristiankrasimirov7@gmail.com">
                         
@@ -631,6 +631,21 @@
                         <div class="form-submit">
                             <button type="submit" class="btn btn-primary">Enviar consulta</button>
                         </div>
+                        
+                        <script>
+                            // Redirección forzada después del envío del formulario
+                            document.getElementById('contactForm').addEventListener('submit', function(e) {
+                                // Permitir el envío normal del formulario
+                                // Guardamos un indicador para verificar si ya se envió
+                                sessionStorage.setItem('formWasSubmitted', 'true');
+                            });
+                            
+                            // Si volvemos a esta página después de enviar el formulario, redirigir inmediatamente
+                            if (sessionStorage.getItem('formWasSubmitted') === 'true') {
+                                sessionStorage.removeItem('formWasSubmitted');
+                                window.location.href = 'thank-you.html';
+                            }
+                        </script>
                     </form>
                 </div>
                 

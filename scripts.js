@@ -22,20 +22,23 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!isValid) {
                 e.preventDefault();
             } else {
-                // Guardar en localStorage que el formulario se ha enviado correctamente
-                // para redireccionar manualmente si FormSubmit.co no lo hace
+                // Si el formulario es válido, aseguramos la redirección
                 localStorage.setItem('formSubmitted', 'true');
                 
-                // Establecer un timeout para redireccionar manualmente 
-                // si formsubmit.co no redirecciona después de 3 segundos
+                // Si FormSubmit falla en redireccionar, lo haremos manualmente
                 setTimeout(function() {
                     if (localStorage.getItem('formSubmitted') === 'true') {
                         localStorage.removeItem('formSubmitted');
-                        window.location.href = '/thank-you.html';
+                        window.location.href = 'thank-you.html';
                     }
                 }, 3000);
             }
         });
+        
+        // Verificar si venimos de otra página después de un envío
+        if (document.referrer.includes('formsubmit.co')) {
+            window.location.href = 'thank-you.html';
+        }
         
         // Limpiar mensajes de error al escribir
         const requiredFields = form.querySelectorAll('[required]');
