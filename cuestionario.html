@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conoce Tu Negocio - SPMarketing Agency</title>
-    <link rel="icon" href="IMG/LOGO PRINCIPAL.jpg" type="image/jpeg">
+    <link rel="icon" href="assets/favicon.jpg" type="image/jpeg" sizes="32x32">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -44,42 +44,62 @@
         }
 
         header {
-            background: linear-gradient(rgba(0, 51, 102, 0.9), rgba(0, 51, 102, 0.9)), url('IMG/LOGO PRINCIPAL.jpg') no-repeat center center/cover;
-            min-height: 25vh;
+            background: linear-gradient(rgba(0, 51, 102, 0.85), rgba(0, 51, 102, 0.95)), url('assets/LOGO PRINCIPAL.jpg') no-repeat center center/cover;
+            min-height: 30vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             color: var(--light-color);
-            padding: 2rem 0;
+            padding: 2.5rem 0;
+        }
+
+        header .header-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
         header h1 {
-            font-size: 2.8rem;
+            font-size: 3rem;
             margin-bottom: 1.5rem;
             color: var(--light-color);
             font-weight: 700;
             letter-spacing: 1px;
             text-transform: uppercase;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         header p {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             max-width: 700px;
             margin: 0 auto;
             line-height: 1.5;
             background-color: rgba(0, 0, 0, 0.2);
-            padding: 0.8rem;
+            padding: 1rem 1.5rem;
             border-radius: 5px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
         }
 
         .logo {
-            width: 120px;
-            height: auto;
-            margin-bottom: 1.5rem;
-            border-radius: 10px;
+            width: 150px;
+            height: 150px;
+            margin-bottom: 2rem;
+            border-radius: 50%;
             background-color: white;
             padding: 5px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
 
         .questionnaire-container {
@@ -274,11 +294,13 @@
 <body>
     <header>
         <div class="container">
-            <div class="logo">
-                <img src="./IMG/LOGO PRINCIPAL.jpg" alt="SPMarketing Logo" class="logo">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="assets/LOGO PRINCIPAL.jpg" alt="SPMarketing Logo">
+                </div>
+                <h1>Conoce Tu Negocio</h1>
+                <p>Ayúdanos a entender mejor tu negocio para ofrecerte la mejor estrategia de marketing digital</p>
             </div>
-            <h1>Conoce Tu Negocio</h1>
-            <p>Ayúdanos a entender mejor tu negocio para ofrecerte la mejor estrategia de marketing digital</p>
         </div>
     </header>
 
@@ -469,23 +491,56 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Variables globales
             const form = document.getElementById('questionnaireForm');
             const questions = document.querySelectorAll('.question');
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
-            const progress = document.getElementById('progress');
-            const thankYou = document.getElementById('thankYou');
-            
-            let currentQuestion = 1;
+            const progressBar = document.getElementById('progress');
             const totalQuestions = questions.length;
+            let currentQuestion = 1;
             
-            // Actualizar barra de progreso
-            function updateProgress() {
-                const progressPercentage = ((currentQuestion - 1) / (totalQuestions - 1)) * 100;
-                progress.style.width = `${progressPercentage}%`;
+            // Función para validar campo requerido individual
+            function validateField(field) {
+                if (field.type === 'radio' || field.type === 'checkbox') {
+                    const groupName = field.getAttribute('name');
+                    const checked = document.querySelector(`input[name="${groupName}"]:checked`);
+                    return !!checked;
+                } else {
+                    return field.value.trim() !== '';
+                }
             }
             
-            // Mostrar pregunta actual
+            // Función para validar la pregunta actual
+            function validateCurrentQuestion() {
+                const currentQuestionElement = document.querySelector(`.question[data-question="${currentQuestion}"]`);
+                const requiredFields = currentQuestionElement.querySelectorAll('[required]');
+                
+                let isValid = true;
+                
+                requiredFields.forEach(field => {
+                    const errorElement = document.getElementById(`${field.name}Error`);
+                    
+                    if (!validateField(field)) {
+                        isValid = false;
+                        if (errorElement) {
+                            errorElement.style.display = 'block';
+                        }
+                    } else {
+                        if (errorElement) {
+                            errorElement.style.display = 'none';
+                        }
+                    }
+                });
+                
+                return isValid;
+            }
+            
+            // Función para actualizar la barra de progreso
+            function updateProgressBar() {
+                const progressPercentage = (currentQuestion / totalQuestions) * 100;
+                progressBar.style.width = `${progressPercentage}%`;
+            }
+            
+            // Función para mostrar una pregunta específica
             function showQuestion(questionNumber) {
                 questions.forEach(question => {
                     question.classList.remove('active');
@@ -493,170 +548,169 @@
                 
                 document.querySelector(`.question[data-question="${questionNumber}"]`).classList.add('active');
                 
-                // Mostrar/ocultar botones según corresponda
-                if (questionNumber === 1) {
-                    prevBtn.classList.add('hidden');
-                } else {
-                    prevBtn.classList.remove('hidden');
-                }
+                // Actualizar botones
+                updateButtonVisibility();
                 
-                if (questionNumber === totalQuestions) {
-                    nextBtn.classList.add('hidden');
-                } else {
-                    nextBtn.classList.remove('hidden');
-                }
-                
-                updateProgress();
+                // Actualizar barra de progreso
+                updateProgressBar();
             }
             
-            // Validar la pregunta actual
-            function validateCurrentQuestion() {
-                let isValid = true;
-                const activeQuestion = document.querySelector('.question.active');
-                const questionNumber = parseInt(activeQuestion.getAttribute('data-question'));
+            // Función para actualizar visibilidad de botones
+            function updateButtonVisibility() {
+                const prevButton = document.getElementById('prevBtn');
+                const nextButton = document.getElementById('nextBtn');
+                const submitButton = document.getElementById('submitBtn');
                 
-                // Ocultar todos los mensajes de error
-                activeQuestion.querySelectorAll('.error-message').forEach(error => {
-                    error.style.display = 'none';
-                });
-                
-                // Validar según el número de pregunta
-                switch(questionNumber) {
-                    case 1: // Sector
-                        const sectorSelected = activeQuestion.querySelector('input[name="sector"]:checked');
-                        if (!sectorSelected) {
-                            document.getElementById('sectorError').style.display = 'block';
-                            isValid = false;
-                        }
-                        break;
-                    case 2: // Fase
-                        const faseSelected = activeQuestion.querySelector('input[name="fase"]:checked');
-                        if (!faseSelected) {
-                            document.getElementById('faseError').style.display = 'block';
-                            isValid = false;
-                        }
-                        break;
-                    case 3: // Objetivos
-                        const objetivosSelected = activeQuestion.querySelectorAll('input[name="objetivos"]:checked');
-                        if (objetivosSelected.length === 0) {
-                            document.getElementById('objetivosError').style.display = 'block';
-                            isValid = false;
-                        }
-                        break;
-                    case 5: // Presupuesto
-                        const presupuestoSelected = activeQuestion.querySelector('input[name="presupuesto"]:checked');
-                        if (!presupuestoSelected) {
-                            document.getElementById('presupuestoError').style.display = 'block';
-                            isValid = false;
-                        }
-                        break;
+                if (prevButton) {
+                    prevButton.style.display = currentQuestion === 1 ? 'none' : 'block';
                 }
                 
-                return isValid;
+                if (nextButton) {
+                    nextButton.style.display = currentQuestion === totalQuestions ? 'none' : 'block';
+                }
+                
+                if (submitButton) {
+                    submitButton.style.display = currentQuestion === totalQuestions ? 'block' : 'none';
+                }
             }
             
-            // Validar información de contacto
-            function validateContactInfo() {
-                let isValid = true;
-                const nombre = document.getElementById('nombre');
-                const email = document.getElementById('email');
-                const empresa = document.getElementById('empresa');
-                
-                // Validar nombre
-                if (!nombre.value.trim()) {
-                    document.getElementById('nombreError').style.display = 'block';
-                    isValid = false;
-                }
-                
-                // Validar email
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!email.value.trim() || !emailRegex.test(email.value.trim())) {
-                    document.getElementById('emailError').style.display = 'block';
-                    isValid = false;
-                }
-                
-                // Validar empresa
-                if (!empresa.value.trim()) {
-                    document.getElementById('empresaError').style.display = 'block';
-                    isValid = false;
-                }
-                
-                return isValid;
-            }
-            
-            // Evento del botón siguiente
-            nextBtn.addEventListener('click', function() {
-                if (validateCurrentQuestion()) {
-                    if (currentQuestion < totalQuestions) {
-                        currentQuestion++;
-                        showQuestion(currentQuestion);
-                    }
-                }
-            });
-            
-            // Evento del botón anterior
-            prevBtn.addEventListener('click', function() {
+            // Navegación entre preguntas
+            document.getElementById('prevBtn').addEventListener('click', function() {
                 if (currentQuestion > 1) {
                     currentQuestion--;
                     showQuestion(currentQuestion);
                 }
             });
             
-            // Enviar formulario
+            document.getElementById('nextBtn').addEventListener('click', function() {
+                if (validateCurrentQuestion() && currentQuestion < totalQuestions) {
+                    currentQuestion++;
+                    showQuestion(currentQuestion);
+                    
+                    // Scroll al principio del formulario
+                    document.querySelector('.questionnaire-container').scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+            
+            // Envío del formulario
             form.addEventListener('submit', function(e) {
                 e.preventDefault();
                 
-                if (validateContactInfo()) {
+                if (validateCurrentQuestion()) {
                     // Recopilar todos los datos del formulario
-                    const formData = new FormData(form);
+                    const formData = {};
                     
-                    // Crear objeto con los datos
-                    const data = {};
-                    for (let [key, value] of formData.entries()) {
-                        if (key === 'objetivos' || key === 'estrategias') {
-                            if (!data[key]) data[key] = [];
-                            data[key].push(value);
-                        } else {
-                            data[key] = value;
+                    // Campos de texto
+                    form.querySelectorAll('input[type="text"], input[type="email"], textarea, input[type="tel"]').forEach(field => {
+                        formData[field.name] = field.value;
+                    });
+                    
+                    // Campos radio
+                    form.querySelectorAll('input[type="radio"]:checked').forEach(field => {
+                        formData[field.name] = field.value;
+                    });
+                    
+                    // Campos checkbox
+                    const checkboxGroups = {};
+                    form.querySelectorAll('input[type="checkbox"]:checked').forEach(field => {
+                        if (!checkboxGroups[field.name]) {
+                            checkboxGroups[field.name] = [];
                         }
+                        
+                        checkboxGroups[field.name].push(field.value);
+                    });
+                    
+                    // Añadir grupos de checkbox al formulario
+                    Object.keys(checkboxGroups).forEach(groupName => {
+                        formData[groupName] = checkboxGroups[groupName];
+                    });
+                    
+                    // Mostrar mensaje de éxito y redirigir independientemente de la respuesta
+                    function redirectToThankYou() {
+                        document.querySelector('.questionnaire-container').style.display = 'none';
+                        document.querySelector('.thank-you').style.display = 'block';
+                        
+                        setTimeout(() => {
+                            window.location.href = 'thank-you.html';
+                        }, 2000);
                     }
                     
-                    // Enviar datos por email (simulado)
-                    sendEmail(data);
+                    // Enviar datos al servidor
+                    document.getElementById('submitBtn').disabled = true;
+                    document.getElementById('submitBtn').textContent = 'Enviando...';
                     
-                    // Mostrar mensaje de agradecimiento
-                    form.style.display = 'none';
-                    thankYou.style.display = 'block';
+                    // Establecer un tiempo límite para la redirección en caso de que la petición falle
+                    const redirectTimeout = setTimeout(() => {
+                        redirectToThankYou();
+                    }, 5000); // 5 segundos como máximo para esperar respuesta
                     
-                    // Redireccionar después de 3 segundos
-                    setTimeout(function() {
-                        window.location.href = 'index.html';
+                    fetch('enviar-cuestionario.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(formData)
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        clearTimeout(redirectTimeout); // Limpiar el timeout si la respuesta es exitosa
+                        if (data.success) {
+                            redirectToThankYou();
+                        } else {
+                            alert('Hubo un error al enviar el formulario. Te redirigiremos de todos modos.');
+                            redirectToThankYou();
+                        }
+                    })
+                    .catch(error => {
+                        clearTimeout(redirectTimeout); // Limpiar el timeout si hay error
+                        console.error('Error:', error);
+                        redirectToThankYou();
+                    });
+                }
+            });
+            
+            // Evento adicional para el botón de envío
+            document.getElementById('submitBtn').addEventListener('click', function() {
+                // Validar manualmente los campos requeridos de la última pregunta
+                if (validateCurrentQuestion()) {
+                    // Asegurar que después de unos segundos se haga la redirección
+                    // independientemente de si la petición fetch se completó o no
+                    setTimeout(() => {
+                        if (window.location.href.indexOf('thank-you.html') === -1) {
+                            window.location.href = 'thank-you.html';
+                        }
                     }, 3000);
                 }
             });
             
-            // Simulación de envío de email
-            function sendEmail(data) {
-                // En un entorno real, aquí enviarías los datos al servidor
-                console.log('Datos enviados:', data);
-                
-                // Ejemplo de código para enviar por fetch en un entorno real:
-                /*
-                fetch('enviar-cuestionario.php', {
-                    method: 'POST',
-                    body: JSON.stringify(data),
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                })
-                .then(response => response.json())
-                .then(data => console.log('Success:', data))
-                .catch(error => console.error('Error:', error));
-                */
-            }
-            
             // Inicializar
-            showQuestion(currentQuestion);
+            updateButtonVisibility();
+            updateProgressBar();
+            
+            // Validación en tiempo real
+            form.querySelectorAll('input, textarea').forEach(field => {
+                field.addEventListener('input', function() {
+                    const errorElement = document.getElementById(`${field.name}Error`);
+                    if (errorElement && validateField(field)) {
+                        errorElement.style.display = 'none';
+                    }
+                });
+            });
+            
+            // Validación para checkboxes y radio buttons
+            form.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach(field => {
+                field.addEventListener('change', function() {
+                    const groupName = field.getAttribute('name');
+                    const errorElement = document.getElementById(`${groupName}Error`);
+                    
+                    if (errorElement) {
+                        const isChecked = document.querySelector(`input[name="${groupName}"]:checked`);
+                        if (isChecked) {
+                            errorElement.style.display = 'none';
+                        }
+                    }
+                });
+            });
         });
     </script>
 </body>
