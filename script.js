@@ -105,7 +105,7 @@ function setupTestimonialFade() {
     testimonialCards[0].classList.add('active');
     
     let currentIndex = 0;
-    const interval = 5000; // Cambiar cada 5 segundos
+    const interval = 7000; // Cambiar cada 7 segundos
     
     // Función para cambiar el testimonio activo
     function changeTestimonial() {
@@ -119,7 +119,7 @@ function setupTestimonialFade() {
         testimonialCards[currentIndex].classList.add('active');
     }
     
-    // Cambiar automáticamente cada 5 segundos
+    // Cambiar automáticamente cada 7 segundos
     setInterval(changeTestimonial, interval);
 }
 

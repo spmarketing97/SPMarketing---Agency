@@ -1299,9 +1299,30 @@ footer {
     }
     
     .contador-flotante {
-        top: 80px;
-        right: 10px;
-        padding: 8px 12px;
+        width: 100%;
+        left: 0;
+        right: 0;
+        border-radius: 0;
+        z-index: 1000;
+    }
+    
+    .container {
+        width: 100%;
+        max-width: 100%;
+        padding-left: 15px;
+        padding-right: 15px;
+        overflow-x: hidden;
+    }
+    
+    body {
+        overflow-x: hidden;
+        width: 100%;
+    }
+    
+    /* Asegura que el contenido no se desborde horizontalmente */
+    html, body {
+        max-width: 100%;
+        overflow-x: hidden;
     }
     
     .contact-grid {
@@ -1718,4 +1739,25 @@ footer {
 
 .time-selector.active {
     display: block;
+}
+
+/* Ajustes específicos para la sección de contacto en móviles */
+@media (max-width: 768px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Invertir el orden para dispositivos móviles: calendario primero, luego formulario */
+    .contact-grid {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .contact-grid .contact-calendar {
+        order: 1;
+    }
+    
+    .contact-grid .contact-form {
+        order: 2;
+    }
 } 

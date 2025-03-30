@@ -16,6 +16,6 @@
 
 .fade {
     animation-name: fadeInOut;
-    animation-duration: 5s;
+    animation-duration: 7s;
     animation-fill-mode: forwards;
 } 

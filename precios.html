@@ -20,6 +20,67 @@
             text-align: center;
         }
         
+        /* Estilos del contador flotante */
+        .contador-flotante {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background-color: rgba(0, 0, 0, 0.85);
+            color: white;
+            width: auto;
+            padding: 15px 20px;
+            z-index: 9999;
+            font-family: 'Montserrat', sans-serif;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .contador-titulo {
+            font-size: 16px;
+            margin-bottom: 5px;
+            text-align: center;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .contador-tiempo {
+            font-size: 26px;
+            font-weight: 700;
+            text-align: center;
+            letter-spacing: 2px;
+        }
+        
+        .contador-flotante.expired {
+            background-color: rgba(220, 53, 69, 0.9);
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+        
+        @media (max-width: 767px) {
+            .contador-flotante {
+                top: 80px;
+                right: 15px;
+                padding: 10px 15px;
+                max-width: 150px;
+            }
+            
+            .contador-titulo {
+                font-size: 14px;
+            }
+            
+            .contador-tiempo {
+                font-size: 22px;
+            }
+        }
+        
         .pricing-hero h1 {
             font-size: 3rem;
             margin-bottom: 1.5rem;
@@ -267,6 +328,12 @@
     </style>
 </head>
 <body>
+    <!-- Contador regresivo flotante -->
+    <div id="countdown" class="contador-flotante">
+        <div class="contador-titulo">Oferta Especial</div>
+        <div class="contador-tiempo"><span id="minutos">25</span>:<span id="segundos">00</span></div>
+    </div>
+    
     <!-- Header -->
     <header class="pricing-hero">
         <div class="container">
@@ -383,14 +450,16 @@
                     </div>
                     <div class="pricing-features">
                         <ul>
-                            <li><i class="fas fa-check"></i> Todo incluido a medida</li>
-                            <li><i class="fas fa-check"></i> Estrategia completamente personalizada</li>
-                            <li><i class="fas fa-check"></i> Soluciones adaptadas a sus necesidades</li>
-                            <li><i class="fas fa-check"></i> Soporte prioritario</li>
-                            <li><i class="fas fa-check"></i> Prioridad máxima</li>
+                            <li><i class="fas fa-check"></i> Todo incluido en un plan personalizado</li>
+                            <li><i class="fas fa-check"></i> Estrategia de marketing a medida</li>
+                            <li><i class="fas fa-check"></i> Presencia digital completa</li>
+                            <li><i class="fas fa-check"></i> Desarrollo web completo</li>
+                            <li><i class="fas fa-check"></i> Publicaciones diarias en redes sociales</li>
+                            <li><i class="fas fa-check"></i> Campañas publicitarias personalizadas</li>
+                            <li><i class="fas fa-check"></i> Soporte prioritario 24/7</li>
                         </ul>
                     </div>
-                    <a href="index.html#contacto" class="pricing-btn">Consultar</a>
+                    <a href="index.html#contacto" class="pricing-btn">Contactar</a>
                 </div>
             </div>
         </div>
@@ -443,7 +512,7 @@
                         ¿Cuál es la duración de los contratos? <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer" data-accordion="content">
-                        <p>Para el Plan Premium, los contratos son mensuales, sin permanencia mínima. Puedes cancelar en cualquier momento con un preaviso de 15 días. El Plan Vitalicio es un pago único con soporte garantizado por 12 años.</p>
+                        <p>Nuestros planes Premium y Pro son mensuales, sin compromiso de permanencia. Puedes cancelar en cualquier momento con un preaviso de 15 días. El Plan Business se adapta a tus necesidades con condiciones personalizadas.</p>
                     </div>
                 </div>
                 <div class="faq-item">
@@ -451,23 +520,23 @@
                         ¿Cómo se realiza la consulta gratuita? <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer" data-accordion="content">
-                        <p>La consulta gratuita se realiza a través de videollamada o llamada telefónica. Durante la misma, analizaremos tu situación actual y te proporcionaremos recomendaciones personalizadas sin compromiso.</p>
+                        <p>La consulta inicial gratuita se realiza a través de videollamada o llamada telefónica. Durante esta sesión, analizamos tu situación actual, estudiamos a tu competencia y te proporcionamos recomendaciones personalizadas sin ningún compromiso.</p>
                     </div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question" data-accordion="header">
-                        ¿Qué incluye exactamente el Plan Premium? <i class="fas fa-chevron-down"></i>
+                        ¿Qué diferencia hay entre el Plan Premium y el Plan Pro? <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer" data-accordion="content">
-                        <p>El Plan Premium incluye implementación estratégica, optimización SEO básica, gestión de redes sociales, soporte prioritario y sin permanencia. El precio es de 79€/mes.</p>
+                        <p>La principal diferencia es la intensidad del servicio. El Plan Premium (299€/mes) incluye 3 publicaciones semanales y 6 meses de soporte continuo, mientras que el Plan Pro (599€/mes) ofrece 5 publicaciones semanales y 12 meses de soporte continuo. Ambos incluyen desarrollo web, SEO básico y análisis de mercado.</p>
                     </div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question" data-accordion="header">
-                        ¿Qué ventajas tiene el Plan Vitalicio? <i class="fas fa-chevron-down"></i>
+                        ¿Qué incluye el Plan Business? <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer" data-accordion="content">
-                        <p>El Plan Vitalicio ofrece todas las ventajas del Plan Premium con un pago único de 189€ (en lugar de 329€). Incluye soporte garantizado por 12 años, acceso a todas las actualizaciones y prioridad máxima en la atención.</p>
+                        <p>El Plan Business es nuestra solución más completa y personalizada para empresas que buscan maximizar su presencia digital. Incluye todo lo de los planes anteriores más publicaciones diarias, campañas publicitarias personalizadas, desarrollo web completo y soporte prioritario 24/7. El precio se establece según las necesidades específicas de tu negocio.</p>
                     </div>
                 </div>
                 <div class="faq-item">
@@ -475,7 +544,15 @@
                         ¿Para qué tipo de negocios son adecuados estos planes? <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer" data-accordion="content">
-                        <p>Nuestros planes están diseñados principalmente para pequeñas y medianas empresas, emprendedores y profesionales independientes que buscan mejorar su presencia digital y aumentar sus ventas.</p>
+                        <p>Nuestros planes están diseñados para todo tipo de negocios. El Plan Premium es ideal para emprendedores y pequeñas empresas que inician su estrategia digital. El Plan Pro es perfecto para negocios en crecimiento que necesitan mayor presencia online. El Plan Business está orientado a empresas consolidadas que buscan una estrategia integral y resultados a gran escala.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" data-accordion="header">
+                        ¿Cómo medís los resultados de vuestras estrategias? <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer" data-accordion="content">
+                        <p>Proporcionamos informes detallados semanales donde puedes ver métricas clave como tráfico web, conversiones, engagement en redes sociales, posicionamiento SEO y ROI de campañas. Utilizamos herramientas profesionales de análisis y te explicamos los resultados de forma clara para que entiendas el valor de tu inversión.</p>
                     </div>
                 </div>
             </div>
@@ -531,14 +608,102 @@
 
     <script src="script.js"></script>
     <script>
-        // FAQs Accordion
-        document.querySelectorAll('[data-accordion="header"]').forEach(header => {
-            header.addEventListener('click', function() {
-                const content = this.nextElementSibling;
-                this.classList.toggle('active');
-                content.classList.toggle('active');
+        // Inicializar contador regresivo
+        document.addEventListener('DOMContentLoaded', function() {
+            // Iniciar el contador regresivo
+            setupCountdown();
+            
+            // FAQs Accordion
+            document.querySelectorAll('[data-accordion="header"]').forEach(header => {
+                header.addEventListener('click', function() {
+                    const content = this.nextElementSibling;
+                    this.classList.toggle('active');
+                    content.classList.toggle('active');
+                });
             });
         });
+
+        function setupCountdown() {
+            const countdownElement = document.getElementById('countdown');
+            const minutesElement = document.getElementById('minutos');
+            const secondsElement = document.getElementById('segundos');
+            
+            // Valores iniciales
+            const initialMinutes = 25;
+            const initialSeconds = 0;
+            const expirationDays = 5; // Días hasta reiniciar el contador
+            
+            // Comprobar si existe un contador guardado y si no ha expirado
+            let countdownData = null;
+            try {
+                countdownData = JSON.parse(localStorage.getItem('spmarketing_countdown'));
+            } catch (e) {
+                countdownData = null;
+            }
+            
+            let minutes = initialMinutes;
+            let seconds = initialSeconds;
+            let expired = false;
+            
+            // Si hay datos guardados y no han pasado los días de expiración
+            if (countdownData && countdownData.expiration > Date.now()) {
+                // Calcular tiempo restante
+                const currentTime = Date.now();
+                const elapsedSeconds = Math.floor((currentTime - countdownData.timestamp) / 1000);
+                const totalInitialSeconds = initialMinutes * 60 + initialSeconds;
+                const remainingSeconds = totalInitialSeconds - elapsedSeconds;
+                
+                if (remainingSeconds > 0) {
+                    minutes = Math.floor(remainingSeconds / 60);
+                    seconds = remainingSeconds % 60;
+                } else {
+                    expired = true;
+                    minutes = 0;
+                    seconds = 0;
+                    countdownElement.classList.add('expired');
+                }
+            } else {
+                // Guardar nuevo contador
+                const expiration = Date.now() + (expirationDays * 24 * 60 * 60 * 1000);
+                localStorage.setItem('spmarketing_countdown', JSON.stringify({
+                    timestamp: Date.now(),
+                    expiration: expiration
+                }));
+            }
+            
+            // Actualizar elementos visuales
+            updateCountdownDisplay(minutes, seconds);
+            
+            // Si no ha expirado, iniciar el contador
+            if (!expired) {
+                startCountdown(minutes, seconds);
+            }
+            
+            function startCountdown(mins, secs) {
+                let totalSeconds = mins * 60 + secs;
+                
+                const interval = setInterval(() => {
+                    totalSeconds--;
+                    
+                    if (totalSeconds <= 0) {
+                        clearInterval(interval);
+                        countdownElement.classList.add('expired');
+                        updateCountdownDisplay(0, 0);
+                        return;
+                    }
+                    
+                    const m = Math.floor(totalSeconds / 60);
+                    const s = totalSeconds % 60;
+                    
+                    updateCountdownDisplay(m, s);
+                }, 1000);
+            }
+            
+            function updateCountdownDisplay(mins, secs) {
+                minutesElement.textContent = mins.toString().padStart(2, '0');
+                secondsElement.textContent = secs.toString().padStart(2, '0');
+            }
+        }
     </script>
 </body>
 </html> 

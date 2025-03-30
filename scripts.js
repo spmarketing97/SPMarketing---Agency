@@ -501,9 +501,9 @@ function initTestimonialSlider() {
         // Reiniciar la animación de fade
         testimonials[currentIndex].style.animation = 'none';
         testimonials[currentIndex].offsetHeight; // Trigger reflow
-        testimonials[currentIndex].style.animation = 'fadeInOut 5s forwards';
+        testimonials[currentIndex].style.animation = 'fadeInOut 7s forwards';
     }
     
-    // Cambiar testimonios cada 5 segundos
-    setInterval(showNextTestimonial, 5000);
+    // Cambiar testimonios cada 7 segundos
+    setInterval(showNextTestimonial, 7000);
 }
