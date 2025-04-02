@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <!-- Fondo con gradiente azul corporativo -->
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#003366;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0066cc;stop-opacity:1" />
+    </linearGradient>
+    <filter id="noise" x="0%" y="0%" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.01" numOctaves="3" result="noise" />
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="5" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+  </defs>
+  
+  <!-- Fondo principal -->
+  <rect width="100%" height="100%" fill="url(#grad1)" />
+  
+  <!-- Elementos gráficos de marketing digital -->
+  <!-- Gráfico de barras estilizado -->
+  <g transform="translate(200,500)" opacity="0.2">
+    <rect x="0" y="0" width="60" height="200" rx="5" fill="#ffffff" />
+    <rect x="100" y="50" width="60" height="150" rx="5" fill="#ffffff" />
+    <rect x="200" y="-50" width="60" height="250" rx="5" fill="#ffffff" />
+    <rect x="300" y="20" width="60" height="180" rx="5" fill="#ffffff" />
+    <rect x="400" y="-100" width="60" height="300" rx="5" fill="#ffffff" />
+  </g>
+  
+  <!-- Iconos de marketing digital -->
+  <g transform="translate(1200,400)" opacity="0.15">
+    <!-- Icono de gráfico circular -->
+    <circle cx="0" cy="0" r="120" fill="none" stroke="#ffffff" stroke-width="20" />
+    <path d="M0,0 L0,-120 A120,120 0 0,1 104,60 z" fill="#ffffff" />
+    
+    <!-- Icono de dispositivos -->
+    <g transform="translate(300,50)">
+      <rect x="-80" y="-60" width="160" height="120" rx="10" fill="none" stroke="#ffffff" stroke-width="10" />
+      <rect x="-40" y="80" width="80" height="120" rx="10" fill="none" stroke="#ffffff" stroke-width="8" />
+      <line x1="0" y1="80" x2="0" y2="60" stroke="#ffffff" stroke-width="8" />
+    </g>
+  </g>
+  
+  <!-- Patrón de puntos -->
+  <g opacity="0.1">
+    <circle cx="100" cy="100" r="5" fill="#ffffff" />
+    <circle cx="200" cy="100" r="5" fill="#ffffff" />
+    <circle cx="300" cy="100" r="5" fill="#ffffff" />
+    <circle cx="400" cy="100" r="5" fill="#ffffff" />
+    <circle cx="500" cy="100" r="5" fill="#ffffff" />
+    
+    <circle cx="100" cy="200" r="5" fill="#ffffff" />
+    <circle cx="200" cy="200" r="5" fill="#ffffff" />
+    <circle cx="300" cy="200" r="5" fill="#ffffff" />
+    <circle cx="400" cy="200" r="5" fill="#ffffff" />
+    <circle cx="500" cy="200" r="5" fill="#ffffff" />
+    
+    <circle cx="100" cy="300" r="5" fill="#ffffff" />
+    <circle cx="200" cy="300" r="5" fill="#ffffff" />
+    <circle cx="300" cy="300" r="5" fill="#ffffff" />
+    <circle cx="400" cy="300" r="5" fill="#ffffff" />
+    <circle cx="500" cy="300" r="5" fill="#ffffff" />
+  </g>
+  
+  <!-- Líneas de conexión -->
+  <g opacity="0.1" stroke="#ffffff" stroke-width="3">
+    <line x1="100" y1="800" x2="500" y2="600" />
+    <line x1="500" y1="600" x2="900" y2="700" />
+    <line x1="900" y1="700" x2="1300" y2="500" />
+    <line x1="1300" y1="500" x2="1700" y2="600" />
+    
+    <circle cx="100" cy="800" r="10" fill="#ffffff" />
+    <circle cx="500" cy="600" r="10" fill="#ffffff" />
+    <circle cx="900" cy="700" r="10" fill="#ffffff" />
+    <circle cx="1300" cy="500" r="10" fill="#ffffff" />
+    <circle cx="1700" cy="600" r="10" fill="#ffffff" />
+  </g>
+  
+  <!-- Elementos de redes sociales -->
+  <g transform="translate(1600,800)" opacity="0.15">
+    <circle cx="0" cy="0" r="50" fill="none" stroke="#ffffff" stroke-width="10" />
+    <text x="0" y="15" font-family="Arial" font-size="60" fill="#ffffff" text-anchor="middle">f</text>
+    
+    <circle cx="150" cy="0" r="50" fill="none" stroke="#ffffff" stroke-width="10" />
+    <text x="150" y="15" font-family="Arial" font-size="60" fill="#ffffff" text-anchor="middle">in</text>
+  </g>
+  
+  <!-- Efecto de textura -->
+  <rect width="100%" height="100%" fill="url(#grad1)" opacity="0.1" filter="url(#noise)" />
+</svg>

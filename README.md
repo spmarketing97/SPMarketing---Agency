@@ -1,35 +1,48 @@
 # SPMarketing - Agency
 
-Sitio web de agencia de marketing digital especializada en estrategias personalizadas para impulsar negocios y emprendedores.
+Sitio web de agencia de marketing digital especializada en estrategias personalizadas para impulsar negocios y emprendedores, con chatbot integrado e informes automáticos.
 
 ## Descripción
 
-SPMarketing Agency es una agencia de marketing digital que ofrece soluciones personalizadas para negocios y emprendedores. El sitio web está diseñado para mostrar los servicios, beneficios y planes de la agencia, así como para proporcionar un medio de contacto directo con potenciales clientes.
+SPMarketing Agency es una agencia de marketing digital que ofrece soluciones personalizadas para negocios y emprendedores. El sitio web está diseñado para mostrar los servicios, beneficios y planes de la agencia, así como para proporcionar un medio de contacto directo con potenciales clientes. Incluye un chatbot interactivo y sistema de informes automáticos.
 
 ## Estructura del Proyecto
 
 ```
 SPMarketing - AGENCY/
 │
-├── IMG/                    # Imágenes del sitio
-│   ├── LOGO PRINCIPAL.jpg  # Logo principal
-│   ├── SOBRE NOSOTROS.png  # Imagen de "Sobre Nosotros"
-│   ├── Testimonio1.jpg     # Imágenes de testimonios
-│   ├── Testimonio2.jpg
-│   └── Testimonio3.jpg
+├── assets/                 # Recursos estáticos
+│   ├── css/                # Archivos CSS
+│   │   ├── animation.css   # Estilos para animaciones
+│   │   └── styles.css      # Estilos principales
+│   ├── img/                # Imágenes del sitio
+│   │   ├── LOGO PRINCIPAL.jpg
+│   │   └── ...
+│   └── js/                 # Scripts JavaScript
+│       ├── chatbot-loader.js # Cargador del chatbot
+│       └── main.js         # Funcionalidades principales
+│
+├── Python/                 # Scripts y servicios de Python
+│   ├── chatbot.py          # Servicio de chatbot
+│   ├── chat_logs/          # Logs de conversaciones del chatbot
+│   ├── templates/          # Plantillas HTML para el chatbot
+│   ├── weekly_report.py    # Generador de informes semanales
+│   └── start_chatbot.bat   # Script para iniciar el chatbot
+│
+├── LEGAL/                  # Documentos legales
+│   ├── cookies-policy.html
+│   ├── privacy-policy.html
+│   └── terms-of-use.html
+│
+├── Cuestionario/           # Sistema de cuestionarios para clientes
 │
 ├── index.html              # Página principal
 ├── precios.html            # Página de planes y precios
-├── cuestionario.html       # Formulario para conocer el negocio del cliente
 ├── thank-you.html          # Página de agradecimiento post-contacto
-├── privacy-policy.html     # Política de privacidad
-├── terms-of-use.html       # Términos de uso
-│
-├── styles.css              # Estilos principales
-├── animation.css           # Estilos para animaciones
-├── scripts.js              # Funcionalidades de JavaScript
-│
-├── informe_landing_page.py # Script para generar informes
+├── iniciar_servicios.bat   # Script para iniciar todos los servicios automáticamente
+├── iniciar_informe.bat     # Script para iniciar el servicio de informes
+├── iniciar_informe.ps1     # Script PowerShell para informes en segundo plano
+├── .gitignore              # Configuración para excluir archivos en Git
 ├── .gitattributes          # Configuración para Git
 └── README.md               # Este archivo
 ```
@@ -39,8 +52,9 @@ SPMarketing - AGENCY/
 - HTML5
 - CSS3
 - JavaScript (ES6+)
-- Python (para informes)
-- Librerías: Font Awesome 6.4.0
+- Python (para informes y chatbot)
+- Flask (para el servidor del chatbot)
+- Librerías: Font Awesome 6.4.0, BeautifulSoup4
 
 ## Características
 
@@ -48,6 +62,21 @@ SPMarketing - AGENCY/
 - **Interfaz Moderna**: Diseño atractivo con animaciones y efectos visuales
 - **Formulario de Contacto**: Integrado con formsubmit.co para recibir consultas
 - **Calendario Interactivo**: Permite a los clientes seleccionar fecha y hora para consultas
+- **Chatbot Integrado**: Asistente virtual para atención al cliente
+- **Informes Automáticos**: Generación de informes semanales sobre el rendimiento
+
+## Inicio Automático de Servicios
+
+Para iniciar todos los servicios automáticamente (chatbot e informes):
+
+1. Ejecuta el archivo `iniciar_servicios.bat` en la raíz del proyecto.
+
+Este script creará accesos directos en el inicio de Windows para que los servicios se inicien automáticamente al arrancar el sistema.
+
+Alternativamente, puedes iniciar los servicios por separado:
+
+- Para iniciar solo el chatbot: `Python\start_chatbot.bat`
+- Para iniciar solo los informes: `iniciar_informe.bat`
 - **Sistema de Informes**: Envío automático de informes semanales y mensuales
 - **Testimonios**: Sección de testimonios de clientes con carrusel automático
 - **Planes y Precios**: Presentación clara de los diferentes paquetes ofrecidos
@@ -82,4 +111,4 @@ El sistema de informes está desarrollado en Python y permite:
 
 ## Licencia
 
-© 2025 SPMarketing - Agency. Todos los derechos reservados. 
+© 2025 SPMarketing - Agency. Todos los derechos reservados.

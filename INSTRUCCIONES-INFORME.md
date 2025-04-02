@@ -24,7 +24,7 @@ Para que los informes se puedan enviar automáticamente a tu correo `hristiankra
 1. Abre PowerShell (puedes buscarlo en el menú de inicio)
 2. Navega hasta la carpeta del proyecto con el comando:
    ```
-   cd "D:\PROYECTOS\SPMarketing\SPMarketing - AGENCY"
+  D:\PROYECTOS\SPMarketing\SPMarketing - AGENCY
    ```
 3. Ejecuta el siguiente comando para enviar un correo de prueba:
    ```

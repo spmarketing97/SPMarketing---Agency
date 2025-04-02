@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPMarketing Chatbot</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #003366;
+            --accent-color: #ff4500;
+            --light-color: #ffffff;
+            --gray-color: #f5f5f5;
+            --text-color: #333333;
+            --chat-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            --transition: all 0.3s ease;
+        }
+
+        .chat-widget {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 350px;
+            height: 500px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+            display: none;
+            flex-direction: column;
+            z-index: 1000;
+            overflow: hidden;
+        }
+
+        .chat-widget.open {
+            display: flex;
+        }
+
+        .chat-header {
+            background: var(--primary-color);
+            color: white;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .chat-header h3 {
+            margin: 0;
+            font-size: 1.1rem;
+        }
+
+        .chat-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .chat-messages {
+            flex-grow: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 15px;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .user-message {
+            background-color: var(--accent-color);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+
+        .bot-message {
+            background-color: #f0f0f0;
+            color: #333;
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+        }
+
+        .chat-input {
+            padding: 15px;
+            border-top: 1px solid #eee;
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input input {
+            flex-grow: 1;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            padding: 8px 15px;
+            font-size: 14px;
+        }
+
+        .chat-input button {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .chat-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        .chat-button i {
+            font-size: 24px;
+        }
+
+        /* Estilos para la página de demostración */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--gray-color);
+            color: var(--text-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        main {
+            padding: 2rem 0;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+
+        .instructions {
+            line-height: 1.6;
+        }
+
+        .instructions code {
+            background-color: #f0f0f0;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+
+        .button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 1rem;
+            transition: var(--transition);
+        }
+
+        .button:hover {
+            background-color: #e63900;
+            transform: translateY(-3px);
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>SPMarketing Chatbot</h1>
+    </header>
+
+    <main class="container">
+        <div class="card">
+            <h2>Bienvenido al Chatbot de SPMarketing</h2>
+            <p class="instructions">
+                Este es un entorno de prueba para el chatbot de SPMarketing. Puedes interactuar con él haciendo clic en el botón de chat en la esquina inferior derecha.
+            </p>
+            <p class="instructions">
+                El chatbot está diseñado para responder preguntas sobre nuestros servicios, precios, y proporcionar información general sobre marketing digital.
+            </p>
+            <p class="instructions">
+                <strong>Prueba estas preguntas:</strong>
+                <ul>
+                    <li>¿Qué servicios ofrecen?</li>
+                    <li>¿Cuáles son sus precios?</li>
+                    <li>¿Cómo puedo contactarlos?</li>
+                    <li>¿Ofrecen consultas gratuitas?</li>
+                </ul>
+            </p>
+            <a href="../index.html" class="button">Volver al sitio principal</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 SPMarketing. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Chat Widget -->
+    <div class="chat-button" id="chat-button" onclick="toggleChat()">
+        <i class="fas fa-comments"></i>
+    </div>
+
+    <div class="chat-widget" id="chat-widget">
+        <div class="chat-header">
+            <h3>SPMarketing Assistant</h3>
+            <button class="chat-close" onclick="toggleChat()">×</button>
+        </div>
+        <div class="chat-messages" id="chat-messages">
+            <!-- Los mensajes se añadirán aquí dinámicamente -->
+        </div>
+        <div class="chat-input">
+            <input type="text" id="user-message" placeholder="Escribe tu mensaje..." onkeypress="handleKeyPress(event)">
+            <button onclick="sendMessage()">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let conversationId = 'conv_' + Date.now();
+
+        function toggleChat() {
+            const chatWidget = document.getElementById('chat-widget');
+            const chatButton = document.getElementById('chat-button');
+            
+            if (chatWidget.classList.contains('open')) {
+                chatWidget.classList.remove('open');
+                chatButton.style.display = 'flex';
+            } else {
+                chatWidget.classList.add('open');
+                chatButton.style.display = 'none';
+                
+                // Si no hay mensajes, añadir mensaje de bienvenida
+                if (document.getElementById('chat-messages').children.length === 0) {
+                    addMessage("¡Hola! Soy el asistente virtual de SPMarketing. ¿En qué puedo ayudarte hoy?", 'bot');
+                }
+            }
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function addMessage(text, sender) {
+            const messages = document.getElementById('chat-messages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}-message`;
+            messageDiv.textContent = text;
+            messages.appendChild(messageDiv);
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        async function sendMessage() {
+            const input = document.getElementById('user-message');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            addMessage(message, 'user');
+            input.value = '';
+            
+            try {
+                const response = await fetch('http://127.0.0.1:5000/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        message: message,
+                        conversation_id: conversationId
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Error en la conexión');
+                }
+                
+                const data = await response.json();
+                addMessage(data.response, 'bot');
+            } catch (error) {
+                console.error('Error:', error);
+                addMessage("Lo siento, parece que hay un problema de conexión. Por favor, intenta más tarde o contáctanos directamente.", 'bot');
+            }
+        }
+    </script>
+</body>
+</html>

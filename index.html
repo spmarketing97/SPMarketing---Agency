@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SPMarketing - Agency</title>
-    <link rel="icon" href="./IMG/LOGO PRINCIPAL.jpg" type="image/jpeg">
+    <link rel="icon" href="assets/img/LOGO PRINCIPAL.jpg" type="image/jpeg">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="animation.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/animation.css">
     <meta name="description" content="Agencia de marketing digital especializada en estrategias personalizadas para impulsar tu negocio.">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-N8Z75S5TWD"></script>
@@ -201,9 +201,139 @@
             font-weight: 600;
             color: var(--primary-color);
         }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .popup-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 500px;
+            margin: 20px;
+        }
+
+        .popup.show {
+            display: flex;
+        }
+
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #f9f9f9;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+            z-index: 1000;
+        }
+
+        .cookie-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .cookie-content p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #333;
+        }
+
+        .cookie-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .cookie-accept, .cookie-reject {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .cookie-accept {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .cookie-reject {
+            background-color: #ccc;
+            color: #333;
+        }
+
+        /* Banner profesional de marketing digital y AI */
+        header {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                url('assets/img/digital-marketing-ai.jpg') 
+                no-repeat center center/cover;
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background-attachment: fixed;
+        }
+        
+        /* Overlay con efecto de partículas para dar un aspecto tecnológico */
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjMDAwIj48L3JlY3Q+CjxwYXRoIGQ9Ik0wIDVMNSAwWk02IDRMNCA2Wk0tMSAxTDEgLTFaIiBzdHJva2U9IiMyMjIiIHN0cm9rZS13aWR0aD0iMSI+PC9wYXRoPgo8L3N2Zz4=');
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        #navbar {
+            background-color: transparent;
+            transition: all 0.3s ease;
+            padding: 1rem 0;
+        }
+
+        #navbar.scrolled {
+            background-color: var(--primary-color);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #navbar .menu ul li a {
+            color: var(--light-color);
+            font-weight: 500;
+        }
+
+        #navbar .menu ul li a:hover {
+            color: var(--accent-color);
+        }
     </style>
 </head>
 <body>
+    <!-- Cookie Consent Banner -->
+    <div id="cookieConsent" class="cookie-banner">
+        <div class="cookie-content">
+            <p>Utilizamos cookies para mejorar tu experiencia. Al continuar navegando, aceptas nuestra <a href="LEGAL/cookies-policy.html">política de cookies</a>.</p>
+            <div class="cookie-buttons">
+                <button onclick="acceptCookies()" class="cookie-accept">Aceptar</button>
+                <button onclick="rejectCookies()" class="cookie-reject">Rechazar</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Header -->
     <header id="inicio">
         <div class="contador-flotante" id="countdown">
@@ -216,7 +346,7 @@
         <div class="container">
             <nav id="navbar">
                 <div class="logo">
-                    <a href="#inicio"><img src="./IMG/LOGO PRINCIPAL.jpg" alt="SPMarketing Logo"></a>
+                    <a href="#inicio"><img src="assets/img/LOGO PRINCIPAL.jpg" alt="SPMarketing Logo"></a>
                 </div>
                 <div class="menu" id="menu">
                     <ul>
@@ -241,9 +371,9 @@
                     <span>+6.849 <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
                     <span>Clientes Satisfechos</span>
                 </div>
-                <h1 class="hero-title">Transformamos <span class="highlight">Negocios</span> y <span class="highlight">Emprendedores</span> con Estrategias Digitales</h1>
-                <h2 class="hero-subtitle">Aumenta tus <span class="highlight">ventas</span> y <span class="highlight">alcance</span> con soluciones digitales personalizadas</h2>
-                <a href="#contacto" class="cta-btn">Obtener Consulta Gratuita</a>
+                <h1 class="hero-title">Revoluciona tu Negocio con <span class="highlight">Marketing Digital + IA</span></h1>
+                <h2 class="hero-subtitle">Estrategias avanzadas potenciadas por Inteligencia Artificial para maximizar tus resultados</h2>
+                <button onclick="location.href='#contacto'" class="cta-btn primary-button">Obtener Consulta Gratuita</button>
             </div>
         </div>
     </header>
@@ -272,54 +402,29 @@
     <section class="services" id="servicios">
         <div class="container">
             <h2 class="section-title">Nuestros Servicios</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-laptop-code"></i>
+            <div class="benefits-container">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-bullseye"></i>
                     </div>
-                    <h3>Desarrollo Web</h3>
-                    <p>💻 Creamos sitios web atractivos, funcionales y optimizados para dispositivos móviles que convierten visitantes en clientes.</p>
-                    <a href="#contacto" class="btn btn-primary">CONSULTA GRATUITA</a>
+                    <h3>Marketing Estratégico</h3>
+                    <p>Estrategias personalizadas y análisis de datos para maximizar tu ROI y alcanzar tus objetivos de negocio.</p>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-file-code"></i>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-robot"></i>
                     </div>
-                    <h3>Diseño de Landing Pages</h3>
-                    <p>🚀 Desarrollamos páginas de aterrizaje optimizadas para maximizar la conversión de tus campañas.</p>
-                    <a href="#contacto" class="btn btn-primary">CONSULTA GRATUITA</a>
+                    <h3>AI & Automatización</h3>
+                    <p>Implementamos soluciones inteligentes y automatizadas para optimizar tus procesos de marketing.</p>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-search"></i>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-chart-network"></i>
                     </div>
-                    <h3>SEO</h3>
-                    <p>🔍 Optimizamos tu presencia online para que los clientes te encuentren primero en los motores de búsqueda.</p>
-                    <a href="#contacto" class="btn btn-primary">CONSULTA GRATUITA</a>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fab fa-facebook"></i>
-                    </div>
-                    <h3>Marketing en Facebook</h3>
-                    <p>👍 Campañas publicitarias estratégicas para aumentar seguidores, interacciones y ventas en Facebook.</p>
-                    <a href="#contacto" class="btn btn-primary">CONSULTA GRATUITA</a>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fab fa-instagram"></i>
-                    </div>
-                    <h3>Marketing en Instagram</h3>
-                    <p>📸 Estrategias visuales para captar la atención de tu audiencia y convertir seguidores en clientes.</p>
-                    <a href="#contacto" class="btn btn-primary">CONSULTA GRATUITA</a>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fab fa-youtube"></i>
-                    </div>
-                    <h3>Marketing en YouTube</h3>
-                    <p>🎬 Estrategias de video marketing para posicionar tu marca y generar autoridad en tu sector.</p>
-                    <a href="#contacto" class="btn btn-primary">CONSULTA GRATUITA</a>
+                    <h3>Marketing Digital 360°</h3>
+                    <p>Gestión integral de tu presencia online: redes sociales, SEO, publicidad y contenido.</p>
                 </div>
             </div>
         </div>
@@ -368,7 +473,7 @@
             <h2 class="section-title">Sobre Nosotros</h2>
             <div class="about-content">
                 <div class="about-image">
-                    <img src="./IMG/SOBRE NOSOTROS.png" alt="Equipo SPMarketing">
+                    <img src="assets/img/SOBRE NOSOTROS.png" alt="Equipo SPMarketing">
                 </div>
                 <div class="about-text">
                     <div class="about-card">
@@ -415,7 +520,7 @@
     <!-- Planes de Precios -->
     <section class="pricing" id="precios">
         <div class="container">
-            <h2 class="section-title">Nuestros Planes</h2>
+            <h2 class="section-title">Potencia tu Negocio con Nuestros Planes</h2>
             <div class="pricing-container">
                 <div class="pricing-card free">
                     <div class="pricing-header">
@@ -430,83 +535,11 @@
                             <li><i class="fas fa-check"></i> Análisis de mercado y competencia</li>
                             <li><i class="fas fa-check"></i> Propuesta de estrategia</li>
                             <li><i class="fas fa-check"></i> Diseño e Identificación de Mejoras</li>
-                            <li><i class="fas fa-times"></i> Sin permanencia</li>
-                            <li><i class="fas fa-times"></i> Sin soporte</li>
+                            <li><i class="fas fa-check"></i> Sin permanencia</li>
+                            <li><i class="fas fa-check"></i> Sin compromiso</li>
                         </ul>
                     </div>
-                    <a href="#contacto" class="pricing-btn">CONSULTA GRATIS</a>
-                </div>
-                <div class="pricing-card premium">
-                    <div class="pricing-header">
-                        <h3>Plan Premium</h3>
-                        <div class="price">
-                            <span class="price-original">399€</span>
-                            <span class="price-value">299€/mes</span>
-                        </div>
-                    </div>
-                    <div class="pricing-features">
-                        <ul>
-                            <li><i class="fas fa-check"></i> Desarrollo de Landing Page o Sitio Web</li>
-                            <li><i class="fas fa-check"></i> Optimización SEO básica</li>
-                            <li><i class="fas fa-check"></i> Gestión de redes sociales</li>
-                            <li><i class="fas fa-check"></i> 3 Publicaciones semanales (Creación de contenido)</li>
-                            <li><i class="fas fa-check"></i> Análisis de mercado y competencia</li>
-                            <li><i class="fas fa-check"></i> Propuesta de mejoras</li>
-                            <li><i class="fas fa-check"></i> Estrategias personalizadas adaptadas al mercado</li>
-                            <li><i class="fas fa-check"></i> Presentación de estrategias y proyecto</li>
-                            <li><i class="fas fa-check"></i> Informe detallado semanal</li>
-                            <li><i class="fas fa-check"></i> Soporte continuo hasta la cancelación del plan</li>
-                            <li><i class="fas fa-check"></i> Sin permanencia alguna</li>
-                            <li><i class="fas fa-check"></i> Prioridad máxima</li>
-                        </ul>
-                    </div>
-                    <a href="#contacto" class="pricing-btn">Agendar Llamada</a>
-                </div>
-                <div class="pricing-card pro">
-                    <div class="pricing-header">
-                        <h3>Plan Pro</h3>
-                        <div class="price">
-                            <span class="price-original">799€</span>
-                            <span class="price-value">599€/mes</span>
-                        </div>
-                    </div>
-                    <div class="pricing-features">
-                        <ul>
-                            <li><i class="fas fa-check"></i> Desarrollo de Landing Page o Sitio Web</li>
-                            <li><i class="fas fa-check"></i> Optimización SEO básica</li>
-                            <li><i class="fas fa-check"></i> Gestión de redes sociales</li>
-                            <li><i class="fas fa-check"></i> 5 Publicaciones semanales (Creación de contenido)</li>
-                            <li><i class="fas fa-check"></i> Análisis de mercado y competencia</li>
-                            <li><i class="fas fa-check"></i> Propuesta de mejoras</li>
-                            <li><i class="fas fa-check"></i> Estrategias personalizadas adaptadas al mercado</li>
-                            <li><i class="fas fa-check"></i> Presentación de estrategias y proyecto</li>
-                            <li><i class="fas fa-check"></i> Informe detallado semanal</li>
-                            <li><i class="fas fa-check"></i> Soporte continuo hasta la cancelación del plan</li>
-                            <li><i class="fas fa-check"></i> Sin permanencia alguna</li>
-                            <li><i class="fas fa-check"></i> Prioridad máxima</li>
-                        </ul>
-                    </div>
-                    <a href="#contacto" class="pricing-btn">Agendar Llamada</a>
-                </div>
-                <div class="pricing-card business">
-                    <div class="pricing-header">
-                        <h3>Plan Business</h3>
-                        <div class="price">
-                            <span class="price-value">A convenir</span>
-                        </div>
-                    </div>
-                    <div class="pricing-features">
-                        <ul>
-                            <li><i class="fas fa-check"></i> Todo incluido en un plan personalizado</li>
-                            <li><i class="fas fa-check"></i> Estrategia de marketing a medida</li>
-                            <li><i class="fas fa-check"></i> Presencia digital completa</li>
-                            <li><i class="fas fa-check"></i> Desarrollo web completo</li>
-                            <li><i class="fas fa-check"></i> Publicaciones diarias en redes sociales</li>
-                            <li><i class="fas fa-check"></i> Campañas publicitarias personalizadas</li>
-                            <li><i class="fas fa-check"></i> Soporte prioritario 24/7</li>
-                        </ul>
-                    </div>
-                    <a href="#contacto" class="pricing-btn">Contactar</a>
+                    <button onclick="location.href='#contacto'" class="cta-btn primary-button destacado-btn">CONSULTA GRATIS</button>
                 </div>
             </div>
         </div>
@@ -523,7 +556,7 @@
                     </div>
                     <div class="testimonial-info">
                         <div class="testimonial-image">
-                            <img src="./IMG/Testimonio1.jpg" alt="María Rodríguez">
+                            <img src="assets/img/Testimonio1.jpg" alt="María Rodríguez">
                         </div>
                         <h3>María Rodríguez</h3>
                         <p class="testimonial-business">Boutique Online</p>
@@ -543,7 +576,7 @@
                     </div>
                     <div class="testimonial-info">
                         <div class="testimonial-image">
-                            <img src="./IMG/Testimonio2.jpg" alt="Carlos Méndez">
+                            <img src="assets/img/Testimonio2.jpg" alt="Carlos Méndez">
                         </div>
                         <h3>Carlos Méndez</h3>
                         <p class="testimonial-business">Marca de Ropa Urbana</p>
@@ -563,7 +596,7 @@
                     </div>
                     <div class="testimonial-info">
                         <div class="testimonial-image">
-                            <img src="./IMG/Testimonio3.jpg" alt="Laura Sánchez">
+                            <img src="assets/img/Testimonio3.jpg" alt="Laura Sánchez">
                         </div>
                         <h3>Laura Sánchez</h3>
                         <p class="testimonial-business">Agencia de Viajes</p>
@@ -618,6 +651,22 @@
                             <input type="tel" id="phone" name="phone" placeholder="Tu número de teléfono">
                         </div>
                         <div class="form-group">
+                            <label for="service">Servicio de interés <span class="required">*</span></label>
+                            <select id="service" name="service" required>
+                                <option value="">Selecciona un servicio</option>
+                                <option value="desarrollo_web">Desarrollo Web</option>
+                                <option value="landing_page">Diseño de Landing Pages</option>
+                                <option value="seo">SEO</option>
+                                <option value="facebook">Marketing en Facebook</option>
+                                <option value="instagram">Marketing en Instagram</option>
+                                <option value="youtube">Marketing en YouTube</option>
+                                <option value="tiktok">Marketing en TikTok</option>
+                                <option value="plan_premium">Plan Premium</option>
+                                <option value="plan_pro">Plan Pro</option>
+                                <option value="plan_business">Plan Business</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label for="message">Consulta <span class="required">*</span></label>
                             <textarea id="message" name="message" rows="5" placeholder="Explícanos en qué podemos ayudarte" required></textarea>
                         </div>
@@ -625,29 +674,89 @@
                         <div class="form-group privacy-checkbox">
                             <label>
                                 <input type="checkbox" name="acepto_politica" required>
-                                ACEPTO la <a href="privacy-policy.html" target="_blank" class="privacy-link">política de privacidad</a> y el tratamiento de mis datos.
+                                ACEPTO la <a href="LEGAL/privacy-policy.html" target="_blank" class="privacy-link">política de privacidad</a> y el tratamiento de mis datos.
                             </label>
                         </div>
                         
                         <div class="form-submit">
                             <button type="submit" class="btn btn-primary">Enviar consulta</button>
                         </div>
-                        
-                        <script>
-                            // Redirección forzada después del envío del formulario
-                            document.getElementById('contactForm').addEventListener('submit', function(e) {
-                                // Permitir el envío normal del formulario
-                                // Guardamos un indicador para verificar si ya se envió
-                                sessionStorage.setItem('formWasSubmitted', 'true');
-                            });
-                            
-                            // Si volvemos a esta página después de enviar el formulario, redirigir inmediatamente
-                            if (sessionStorage.getItem('formWasSubmitted') === 'true') {
-                                sessionStorage.removeItem('formWasSubmitted');
-                                window.location.href = 'https://spmarketing97.github.io/SPMarketing-Agency/thank-you.html';
-                            }
-                        </script>
                     </form>
+
+                    <!-- Popup de confirmación -->
+                    <div id="successPopup" class="popup">
+                        <div class="popup-content">
+                            <h3>¡Gracias por tu interés y confianza!</h3>
+                            <p>En breve uno de nuestros expertos se pondrá en contacto contigo para discutir tu proyecto.</p>
+                            <button onclick="closePopup()" class="btn btn-primary">Cerrar</button>
+                        </div>
+                    </div>
+
+                    <script>
+                        document.getElementById('contactForm').addEventListener('submit', function(e) {
+                            // Store form data before submission
+                            const formData = {
+                                name: document.getElementById('name').value,
+                                email: document.getElementById('email').value,
+                                phone: document.getElementById('phone').value,
+                                service: document.getElementById('service').value,
+                                message: document.getElementById('message').value,
+                                date: new Date().toISOString()
+                            };
+
+                            // Save to localStorage with expiration
+                            const storageKey = 'contact_' + Date.now();
+                            const expirationDate = new Date();
+                            expirationDate.setMonth(expirationDate.getMonth() + 12);
+                            
+                            const dataToStore = {
+                                data: formData,
+                                expiration: expirationDate.getTime()
+                            };
+                            
+                            localStorage.setItem(storageKey, JSON.stringify(dataToStore));
+                            
+                            // Clean up expired entries
+                            for (let i = 0; i < localStorage.length; i++) {
+                                const key = localStorage.key(i);
+                                if (key.startsWith('contact_')) {
+                                    try {
+                                        const item = JSON.parse(localStorage.getItem(key));
+                                        if (item.expiration < Date.now()) {
+                                            localStorage.removeItem(key);
+                                        }
+                                    } catch (error) {
+                                        console.error('Error processing stored contact:', error);
+                                    }
+                                }
+                            }
+
+                            // Show success popup after short delay
+                            setTimeout(() => {
+                                document.getElementById('successPopup').classList.add('show');
+                            }, 1000);
+                        });
+
+                        function closePopup() {
+                            document.getElementById('successPopup').classList.remove('show');
+                        }
+
+                        function acceptCookies() {
+                            document.getElementById('cookieConsent').style.display = 'none';
+                            localStorage.setItem('cookiesAccepted', 'true');
+                        }
+
+                        function rejectCookies() {
+                            document.getElementById('cookieConsent').style.display = 'none';
+                            localStorage.setItem('cookiesAccepted', 'false');
+                        }
+
+                        window.onload = function() {
+                            if (!localStorage.getItem('cookiesAccepted')) {
+                                document.getElementById('cookieConsent').style.display = 'block';
+                            }
+                        };
+                    </script>
                 </div>
                 
                 <!-- Calendario para agendar cita -->
@@ -711,6 +820,7 @@
                     <ul>
                         <li><a href="https://wa.link/uxacg0" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
                         <li><a href="mailto:solucionesworld2016@gmail.com?subject=SPMarketing%20-%20Agency"><i class="far fa-envelope"></i> Email</a></li>
+                        <li><a href="https://t.me/SPMarketing_KR" target="_blank"><i class="fab fa-telegram"></i> Telegram</a></li>
                     </ul>
                 </div>
                 <div class="footer-social">
@@ -718,23 +828,23 @@
                     <ul>
                         <li><a href="https://www.facebook.com/SPMarketingKR/" target="_blank"><i class="fab fa-facebook"></i> Facebook</a></li>
                         <li><a href="https://www.instagram.com/spmarketing_agency?igsh=MWM2YTZnd25nbDcwZg=" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
-                        <li><a href="https://t.me/SPMarketing_KR" target="_blank"><i class="fab fa-telegram"></i> Telegram</a></li>
                         <li><a href="https://www.youtube.com/@SPM3103" target="_blank"><i class="fab fa-youtube"></i> YouTube</a></li>
                     </ul>
                 </div>
                 <div class="footer-links">
                     <h3>Enlaces Rápidos</h3>
                     <ul>
-                        <li><a href="privacy-policy.html" target="_blank">Política de Privacidad</a></li>
-                        <li><a href="terms-of-use.html" target="_blank">Términos de Uso</a></li>
+                        <li><a href="LEGAL/privacy-policy.html" target="_blank">Política de Privacidad</a></li>
+                        <li><a href="LEGAL/terms-of-use.html" target="_blank">Términos de Uso</a></li>
+                        <li><a href="LEGAL/cookies-policy.html" target="_blank">Política de Cookies</a></li>
                     </ul>
                 </div>
                 <div class="footer-logo">
-                    <img src="./IMG/LOGO PRINCIPAL.jpg" alt="SPMarketing Logo">
+                    <img src="assets/img/LOGO PRINCIPAL.jpg" alt="SPMarketing Logo">
                 </div>
             </div>
             <div class="footer-copyright">
-                <p>&copy; 2025 SPMarketing - Agency. Todos los derechos reservados.</p>
+                <p>&copy; 2025 SPMarketing - Agency Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
@@ -745,6 +855,8 @@
         <span></span>
     </div>
 
-    <script src="scripts.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/scroll-top.js"></script>
+    <script src="assets/js/chatbot-loader.js"></script>
 </body>
-</html> 
+</html>

@@ -4,20 +4,76 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Precios - SPMarketing - Agency</title>
-    <link rel="icon" href="IMG/LOGO PRINCIPAL.jpg" type="image/jpeg">
+    <link rel="icon" href="assets/img/LOGO PRINCIPAL.jpg" type="image/jpeg">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
     <style>
         .pricing-hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('IMG/pricing-background.jpg') no-repeat center center/cover;
-            min-height: 50vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                url('assets/img/digital-marketing-ai.jpg') 
+                no-repeat center center/cover;
+            min-height: 70vh;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--light-color);
             padding: 8rem 0 4rem;
             text-align: center;
+            position: relative;
+            background-attachment: fixed;
+        }
+        
+        /* Overlay con efecto de partículas para dar un aspecto tecnológico */
+        .pricing-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjMDAwIj48L3JlY3Q+CjxwYXRoIGQ9Ik0wIDVMNSAwWk02IDRMNCA2Wk0tMSAxTDEgLTFaIiBzdHJva2U9IiMyMjIiIHN0cm9rZS13aWR0aD0iMSI+PC9wYXRoPgo8L3N2Zz4=');
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        .pricing-hero .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .hero-content-wrapper {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-cta {
+            margin-top: 2rem;
+            text-align: center;
+        }
+        
+        .hero-cta .cta-btn {
+            font-size: 1.2rem;
+            padding: 1rem 2rem;
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .hero-cta .cta-btn:hover {
+            background-color: #e63900;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 69, 0, 0.3);
         }
         
         /* Estilos del contador flotante */
@@ -325,9 +381,112 @@
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
         }
+
+        /* Estilos del banner de cookies */
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            color: white;
+            padding: 15px 20px;
+            z-index: 9999;
+            font-family: 'Montserrat', sans-serif;
+            text-align: center;
+            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.3);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .cookie-content p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .cookie-content a {
+            color: var(--accent-color);
+            text-decoration: underline;
+        }
+
+        .cookie-buttons {
+            margin-top: 10px;
+        }
+
+        .cookie-accept, .cookie-reject {
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            border: none;
+            margin: 0 5px;
+        }
+
+        .cookie-accept {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .cookie-reject {
+            background-color: transparent;
+            color: white;
+            border: 1px solid white;
+        }
+
+        .cookie-accept:hover {
+            background-color: #e63900;
+        }
+
+        .cookie-reject:hover {
+            background-color: white;
+            color: var(--dark-color);
+        }
+
+        /* Navigation z-index fix */
+        #navbar {
+            position: fixed;
+            z-index: 10000;
+            background-color: transparent;
+            transition: all 0.3s ease;
+            padding: 1rem 0;
+        }
+
+        #navbar.scrolled {
+            background-color: var(--primary-color);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #navbar .menu ul li a {
+            color: var(--light-color);
+            font-weight: 500;
+        }
+
+        #navbar .menu ul li a:hover {
+            color: var(--accent-color);
+        }
+        
+        .pricing-container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .pricing-card {
+            position: relative;
+            z-index: 1;
+        }
     </style>
 </head>
 <body>
+    <!-- Cookie Consent Banner -->
+    <div id="cookieConsent" class="cookie-banner">
+        <div class="cookie-content">
+            <p>Utilizamos cookies para mejorar tu experiencia. Al continuar navegando, aceptas nuestra <a href="LEGAL/cookies-policy.html">política de cookies</a>.</p>
+            <div class="cookie-buttons">
+                <button onclick="acceptCookies()" class="cookie-accept">Aceptar</button>
+                <button onclick="rejectCookies()" class="cookie-reject">Rechazar</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Contador regresivo flotante -->
     <div id="countdown" class="contador-flotante">
         <div class="contador-titulo">Oferta Especial</div>
@@ -336,10 +495,11 @@
     
     <!-- Header -->
     <header class="pricing-hero">
+        <div class="overlay"></div>
         <div class="container">
             <nav id="navbar">
                 <div class="logo">
-                    <a href="index.html"><img src="./IMG/LOGO PRINCIPAL.jpg" alt="SPMarketing Logo"></a>
+                    <a href="#inicio"><img src="assets/img/LOGO PRINCIPAL.jpg" alt="SPMarketing Logo"></a>
                 </div>
                 <div class="menu" id="menu">
                     <ul>
@@ -348,7 +508,6 @@
                         <li><a href="index.html#beneficios">Beneficios</a></li>
                         <li><a href="index.html#testimonios">Testimonios</a></li>
                         <li><a href="index.html#sobre-nosotros">Sobre Nosotros</a></li>
-                        <li><a href="precios.html">Precios</a></li>
                         <li><a href="index.html#contacto" class="cta-btn">CONSULTA GRATUITA</a></li>
                     </ul>
                 </div>
@@ -359,8 +518,13 @@
                 </div>
             </nav>
 
-            <h1 class="hero-title-pricing">Planes y Precios</h1>
-            <p class="hero-subtitle-pricing">Elige el plan que mejor se adapte a las necesidades de tu negocio y comienza a crecer en el mundo digital</p>
+            <div class="hero-content-wrapper">
+                <h1 class="hero-title-pricing">Planes de <span class="highlight">Marketing Digital + IA</span></h1>
+                <p class="hero-subtitle-pricing">Impulsa tu Presencia Digital con Nuestras Soluciones de Marketing Personalizadas</p>
+                <div class="hero-cta">
+                    <a href="index.html#contacto" class="cta-btn primary-button">CONSULTA GRATUITA</a>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -401,13 +565,13 @@
                             <li><i class="fas fa-check"></i> Desarrollo de Landing Page o Sitio Web</li>
                             <li><i class="fas fa-check"></i> Optimización SEO básica</li>
                             <li><i class="fas fa-check"></i> Gestión de redes sociales</li>
-                            <li><i class="fas fa-check"></i> 3 Publicaciones semanales (Creación de contenido)</li>
+                            <li><i class="fas fa-check"></i> 5 Publicaciones Semanales Optimizados con AI</li>
                             <li><i class="fas fa-check"></i> Análisis de mercado y competencia</li>
-                            <li><i class="fas fa-check"></i> Propuesta de mejoras</li>
+                            <li><i class="fas fa-check"></i> Propuesta de mejoras e Informe completo</li>
                             <li><i class="fas fa-check"></i> Estrategias personalizadas adaptadas al mercado</li>
                             <li><i class="fas fa-check"></i> Presentación de estrategias y proyecto</li>
-                            <li><i class="fas fa-check"></i> Informe detallado semanal</li>
-                            <li><i class="fas fa-check"></i> Soporte durante 6 meses continuos</li>
+                            <li><i class="fas fa-check"></i> Información detallado semanalmente de tu Landing page o Web</li>
+                            <li><i class="fas fa-check"></i> Soporte continuo hasta la cancelación o liquidación del contrato</li>
                             <li><i class="fas fa-check"></i> Sin permanencia alguna</li>
                             <li><i class="fas fa-check"></i> Prioridad máxima</li>
                         </ul>
@@ -424,16 +588,16 @@
                     </div>
                     <div class="pricing-features">
                         <ul>
-                            <li><i class="fas fa-check"></i> Desarrollo de Landing Page o Sitio Web</li>
-                            <li><i class="fas fa-check"></i> Optimización SEO básica</li>
-                            <li><i class="fas fa-check"></i> Gestión de redes sociales</li>
-                            <li><i class="fas fa-check"></i> 5 Publicaciones semanales (Creación de contenido)</li>
-                            <li><i class="fas fa-check"></i> Análisis de mercado y competencia</li>
-                            <li><i class="fas fa-check"></i> Propuesta de mejoras</li>
+                            <li><i class="fas fa-check"></i> Desarrollo web, landing page o Ecommerce</li>
+                            <li><i class="fas fa-check"></i> Optimización SEO Profesional</li>
+                            <li><i class="fas fa-check"></i> Gestión de redes sociales y Contenido Automatizado con AI</li>
+                            <li><i class="fas fa-check"></i> 7 Publicaciones Semanales optimizadas con AI</li>
+                            <li><i class="fas fa-check"></i> Análisis de Mercado y Competencia optimizado con AI</li>
+                            <li><i class="fas fa-check"></i> Propuesta de mejoras e Informes completos del mercado</li>
                             <li><i class="fas fa-check"></i> Estrategias personalizadas adaptadas al mercado</li>
                             <li><i class="fas fa-check"></i> Presentación de estrategias y proyecto</li>
-                            <li><i class="fas fa-check"></i> Informe detallado semanal</li>
-                            <li><i class="fas fa-check"></i> Soporte durante 12 meses continuos</li>
+                            <li><i class="fas fa-check"></i> Informe detallado semanalmente de tu proyecto</li>
+                            <li><i class="fas fa-check"></i> Soporte continuo hasta la cancelación o liquidación del contrato</li>
                             <li><i class="fas fa-check"></i> Sin permanencia alguna</li>
                             <li><i class="fas fa-check"></i> Prioridad máxima</li>
                         </ul>
@@ -450,12 +614,12 @@
                     </div>
                     <div class="pricing-features">
                         <ul>
-                            <li><i class="fas fa-check"></i> Todo incluido en un plan personalizado</li>
-                            <li><i class="fas fa-check"></i> Estrategia de marketing a medida</li>
-                            <li><i class="fas fa-check"></i> Presencia digital completa</li>
-                            <li><i class="fas fa-check"></i> Desarrollo web completo</li>
-                            <li><i class="fas fa-check"></i> Publicaciones diarias en redes sociales</li>
-                            <li><i class="fas fa-check"></i> Campañas publicitarias personalizadas</li>
+                            <li><i class="fas fa-check"></i> Todo incluido del Plan, premium e pro una estrategia avanzada y personalizada</li>
+                            <li><i class="fas fa-check"></i> Estrategia personalizada y automatizada con AI</li>
+                            <li><i class="fas fa-check"></i> Presencia digital completa automatizada y actualizada con AI</li>
+                            <li><i class="fas fa-check"></i> Desarrollo y diseño de su Proyecto personalizado y con AI</li>
+                            <li><i class="fas fa-check"></i> Gestión de redes sociales avanzada con AI</li>
+                            <li><i class="fas fa-check"></i> Campañas publicitarias Optimizadas con SEO Y AI</li>
                             <li><i class="fas fa-check"></i> Soporte prioritario 24/7</li>
                         </ul>
                     </div>
@@ -509,50 +673,42 @@
             <div class="faq-container">
                 <div class="faq-item">
                     <div class="faq-question" data-accordion="header">
-                        ¿Cuál es la duración de los contratos? <i class="fas fa-chevron-down"></i>
+                        ¿Cuál es la duración mínima de los contratos? <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer" data-accordion="content">
-                        <p>Nuestros planes Premium y Pro son mensuales, sin compromiso de permanencia. Puedes cancelar en cualquier momento con un preaviso de 15 días. El Plan Business se adapta a tus necesidades con condiciones personalizadas.</p>
+                        <p>No hay duración mínima en ninguno de nuestros planes. Tanto el Plan Premium como el Pro son flexibles y sin permanencia. El soporte se mantiene activo hasta la cancelación o liquidación del contrato. Solo necesitamos un preaviso de 15 días para gestionar la cancelación.</p>
                     </div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question" data-accordion="header">
-                        ¿Cómo se realiza la consulta gratuita? <i class="fas fa-chevron-down"></i>
+                        ¿Qué incluye la consulta gratuita inicial? <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer" data-accordion="content">
-                        <p>La consulta inicial gratuita se realiza a través de videollamada o llamada telefónica. Durante esta sesión, analizamos tu situación actual, estudiamos a tu competencia y te proporcionamos recomendaciones personalizadas sin ningún compromiso.</p>
+                        <p>La consulta inicial incluye un análisis completo de tu situación actual, estudio de competencia, identificación de oportunidades de mejora y una propuesta estratégica personalizada. Esta sesión es totalmente gratuita y sin compromiso, diseñada para que conozcas cómo podemos ayudarte.</p>
                     </div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question" data-accordion="header">
-                        ¿Qué diferencia hay entre el Plan Premium y el Plan Pro? <i class="fas fa-chevron-down"></i>
+                        ¿Cuáles son las principales diferencias entre los planes? <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer" data-accordion="content">
-                        <p>La principal diferencia es la intensidad del servicio. El Plan Premium (299€/mes) incluye 3 publicaciones semanales y 6 meses de soporte continuo, mientras que el Plan Pro (599€/mes) ofrece 5 publicaciones semanales y 12 meses de soporte continuo. Ambos incluyen desarrollo web, SEO básico y análisis de mercado.</p>
+                        <p>El Plan Premium (299€/mes) incluye desarrollo de landing page o sitio web, SEO básico, 5 publicaciones semanales optimizadas con AI y soporte continuo. El Plan Pro (599€/mes) ofrece desarrollo web más avanzado, SEO profesional, 7 publicaciones semanales y características adicionales de automatización con AI. Ambos planes incluyen soporte continuo hasta la finalización del contrato. El Plan Business es totalmente personalizable según las necesidades específicas de empresas más grandes.</p>
                     </div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question" data-accordion="header">
-                        ¿Qué incluye el Plan Business? <i class="fas fa-chevron-down"></i>
+                        ¿Qué tipo de soporte ofrecéis? <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer" data-accordion="content">
-                        <p>El Plan Business es nuestra solución más completa y personalizada para empresas que buscan maximizar su presencia digital. Incluye todo lo de los planes anteriores más publicaciones diarias, campañas publicitarias personalizadas, desarrollo web completo y soporte prioritario 24/7. El precio se establece según las necesidades específicas de tu negocio.</p>
+                        <p>Todos nuestros planes incluyen soporte continuo hasta la cancelación o liquidación del contrato. Esto significa acceso directo a nuestro equipo para consultas, ajustes de estrategia y resolución de dudas. El Plan Business incluye además soporte prioritario 24/7.</p>
                     </div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question" data-accordion="header">
-                        ¿Para qué tipo de negocios son adecuados estos planes? <i class="fas fa-chevron-down"></i>
+                        ¿Cómo medís y reportáis los resultados? <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer" data-accordion="content">
-                        <p>Nuestros planes están diseñados para todo tipo de negocios. El Plan Premium es ideal para emprendedores y pequeñas empresas que inician su estrategia digital. El Plan Pro es perfecto para negocios en crecimiento que necesitan mayor presencia online. El Plan Business está orientado a empresas consolidadas que buscan una estrategia integral y resultados a gran escala.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question" data-accordion="header">
-                        ¿Cómo medís los resultados de vuestras estrategias? <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer" data-accordion="content">
-                        <p>Proporcionamos informes detallados semanales donde puedes ver métricas clave como tráfico web, conversiones, engagement en redes sociales, posicionamiento SEO y ROI de campañas. Utilizamos herramientas profesionales de análisis y te explicamos los resultados de forma clara para que entiendas el valor de tu inversión.</p>
+                        <p>Proporcionamos informes semanales detallados que incluyen métricas clave como tráfico web, conversiones, engagement en redes sociales y ROI de campañas. Utilizamos herramientas avanzadas de análisis y AI para optimizar continuamente las estrategias y garantizar los mejores resultados.</p>
                     </div>
                 </div>
             </div>
@@ -566,7 +722,7 @@
             <p class="cta-text">Da el primer paso hacia el crecimiento digital de tu empresa</p>
             <div class="cta-buttons">
                 <button onclick="location.href='index.html#contacto'" class="cta-btn">Solicitar Consulta Gratuita</button>
-                <button onclick="location.href='index.html#sobre-nosotros'" class="secondary-btn">Conocer Más</button>
+                <button onclick="location.href='index.html#servicios'" class="secondary-btn">Conocer Más</button>
             </div>
         </div>
     </section>
@@ -576,7 +732,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <img src="./IMG/LOGO PRINCIPAL.jpg" alt="SPMarketing Logo">
+                    <img src="assets/img/LOGO PRINCIPAL.jpg" alt="SPMarketing Logo">
                 </div>
                 <div class="footer-links-container">
                     <div class="footer-contact-links">
@@ -588,9 +744,11 @@
                         <a href="https://www.youtube.com/@SPM3103" target="_blank"><i class="fab fa-youtube"></i></a>
                     </div>
                     <div class="footer-legal-links">
-                        <a href="privacy-policy.html" target="_blank">Política de Privacidad</a>
+                        <a href="LEGAL/privacy-policy.html" target="_blank">Política de Privacidad</a>
                         <span class="separator">|</span>
-                        <a href="terms-of-use.html" target="_blank">Términos de Uso</a>
+                        <a href="LEGAL/terms-of-use.html" target="_blank">Términos de Uso</a>
+                        <span class="separator">|</span>
+                        <a href="LEGAL/cookies-policy.html" target="_blank">Política de Cookies</a>
                     </div>
                 </div>
             </div>
@@ -606,104 +764,7 @@
         <span></span>
     </div>
 
-    <script src="script.js"></script>
-    <script>
-        // Inicializar contador regresivo
-        document.addEventListener('DOMContentLoaded', function() {
-            // Iniciar el contador regresivo
-            setupCountdown();
-            
-            // FAQs Accordion
-            document.querySelectorAll('[data-accordion="header"]').forEach(header => {
-                header.addEventListener('click', function() {
-                    const content = this.nextElementSibling;
-                    this.classList.toggle('active');
-                    content.classList.toggle('active');
-                });
-            });
-        });
-
-        function setupCountdown() {
-            const countdownElement = document.getElementById('countdown');
-            const minutesElement = document.getElementById('minutos');
-            const secondsElement = document.getElementById('segundos');
-            
-            // Valores iniciales
-            const initialMinutes = 25;
-            const initialSeconds = 0;
-            const expirationDays = 5; // Días hasta reiniciar el contador
-            
-            // Comprobar si existe un contador guardado y si no ha expirado
-            let countdownData = null;
-            try {
-                countdownData = JSON.parse(localStorage.getItem('spmarketing_countdown'));
-            } catch (e) {
-                countdownData = null;
-            }
-            
-            let minutes = initialMinutes;
-            let seconds = initialSeconds;
-            let expired = false;
-            
-            // Si hay datos guardados y no han pasado los días de expiración
-            if (countdownData && countdownData.expiration > Date.now()) {
-                // Calcular tiempo restante
-                const currentTime = Date.now();
-                const elapsedSeconds = Math.floor((currentTime - countdownData.timestamp) / 1000);
-                const totalInitialSeconds = initialMinutes * 60 + initialSeconds;
-                const remainingSeconds = totalInitialSeconds - elapsedSeconds;
-                
-                if (remainingSeconds > 0) {
-                    minutes = Math.floor(remainingSeconds / 60);
-                    seconds = remainingSeconds % 60;
-                } else {
-                    expired = true;
-                    minutes = 0;
-                    seconds = 0;
-                    countdownElement.classList.add('expired');
-                }
-            } else {
-                // Guardar nuevo contador
-                const expiration = Date.now() + (expirationDays * 24 * 60 * 60 * 1000);
-                localStorage.setItem('spmarketing_countdown', JSON.stringify({
-                    timestamp: Date.now(),
-                    expiration: expiration
-                }));
-            }
-            
-            // Actualizar elementos visuales
-            updateCountdownDisplay(minutes, seconds);
-            
-            // Si no ha expirado, iniciar el contador
-            if (!expired) {
-                startCountdown(minutes, seconds);
-            }
-            
-            function startCountdown(mins, secs) {
-                let totalSeconds = mins * 60 + secs;
-                
-                const interval = setInterval(() => {
-                    totalSeconds--;
-                    
-                    if (totalSeconds <= 0) {
-                        clearInterval(interval);
-                        countdownElement.classList.add('expired');
-                        updateCountdownDisplay(0, 0);
-                        return;
-                    }
-                    
-                    const m = Math.floor(totalSeconds / 60);
-                    const s = totalSeconds % 60;
-                    
-                    updateCountdownDisplay(m, s);
-                }, 1000);
-            }
-            
-            function updateCountdownDisplay(mins, secs) {
-                minutesElement.textContent = mins.toString().padStart(2, '0');
-                secondsElement.textContent = secs.toString().padStart(2, '0');
-            }
-        }
-    </script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/chatbot-loader.js"></script>
 </body>
-</html> 
+</html>
