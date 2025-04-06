@@ -3,148 +3,204 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Política de Cookies - SPMarketing - Agency</title>
+    <title>Política de Cookies - SPMarketing Agency</title>
     <link rel="icon" href="./IMG/LOGO PRINCIPAL.jpg" type="image/jpeg">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
     <style>
-        .legal-content {
+        :root {
+            --primary-color: #003366;
+            --light-color: #FFFFFF;
+            --dark-color: #000000;
+            --gray-color: #F5F5F5;
+            --text-color: #333333;
+            --border-radius: 4px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: var(--gray-color);
+        }
+        
+        .container {
             max-width: 1000px;
             margin: 0 auto;
             padding: 2rem;
+            background-color: var(--light-color);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: var(--border-radius);
         }
         
-        .legal-content h1 {
-            color: var(--primary-color);
-            margin-bottom: 2rem;
+        header {
             text-align: center;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background-color: var(--primary-color);
+            color: var(--light-color);
+            border-radius: var(--border-radius);
         }
         
-        .legal-content h2 {
+        .logo {
+            width: 120px;
+            height: auto;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+        }
+        
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 1rem;
+        }
+        
+        h2 {
+            font-family: 'Montserrat', sans-serif;
             color: var(--primary-color);
             margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary-color);
         }
         
-        .legal-content p, .legal-content ul {
+        p, ul {
             margin-bottom: 1rem;
-            line-height: 1.6;
         }
         
-        .legal-content ul {
-            list-style-type: disc;
-            margin-left: 2rem;
+        ul {
+            padding-left: 2rem;
         }
         
-        .legal-content table {
+        .back-to-home {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--primary-color);
+            color: var(--light-color);
+            text-decoration: none;
+            border-radius: var(--border-radius);
+            transition: background-color 0.3s;
+        }
+        
+        .back-to-home:hover {
+            background-color: #002244;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #ddd;
+            font-size: 0.9rem;
+        }
+
+        table {
             width: 100%;
             border-collapse: collapse;
-            margin: 1rem 0;
+            margin: 1.5rem 0;
+            background-color: var(--light-color);
         }
-        
-        .legal-content th, .legal-content td {
-            border: 1px solid #ddd;
-            padding: 0.8rem;
+
+        th, td {
+            padding: 1rem;
             text-align: left;
+            border: 1px solid #eee;
         }
-        
-        .legal-content th {
+
+        th {
             background-color: var(--primary-color);
-            color: white;
+            color: var(--light-color);
         }
-        
-        .legal-content tr:nth-child(even) {
+
+        tr:nth-child(even) {
             background-color: #f9f9f9;
         }
     </style>
 </head>
 <body>
-    <header>
-        <nav id="navbar">
-            <div class="logo">
-                <a href="index.html"><img src="assets/img/LOGO PRINCIPAL.jpg" alt="SPMarketing Logo"></a>
-            </div>
-            <div class="menu">
-                <ul>
-                    <li><a href="index.html">Volver al Inicio</a></li>
-                </ul>
-            </div>
-        </nav>
-    </header>
-
-    <main class="legal-content">
-        <h1>Política de Cookies</h1>
+    <div class="container">
+        <header>
+            <img src="./IMG/LOGO PRINCIPAL.jpg" alt="SPMarketing Logo" class="logo">
+            <h1>Política de Cookies</h1>
+            <p>Fecha de última actualización: 1 de mayo de 2025</p>
+        </header>
         
-        <p>Esta Política de Cookies explica qué son las cookies y cómo las utilizamos en SPMarketing - Agency. Debes leer esta política para entender qué tipo de cookies utilizamos, la información que recopilamos usando cookies y cómo se utiliza esa información.</p>
+        <main>
+            <p>Esta Política de Cookies explica qué son las cookies y cómo las utilizamos en SPMarketing - Agency. Debes leer esta política para entender qué tipo de cookies utilizamos, la información que recopilamos usando cookies y cómo se utiliza esa información.</p>
 
-        <h2>¿Qué son las cookies?</h2>
-        <p>Las cookies son pequeños archivos de texto que se almacenan en tu dispositivo (ordenador, teléfono móvil o tablet) cuando visitas nuestra web. Las cookies nos ayudan a proporcionar una mejor experiencia de usuario y entender cómo se utiliza nuestra web.</p>
+            <h2>¿Qué son las cookies?</h2>
+            <p>Las cookies son pequeños archivos de texto que se almacenan en tu dispositivo (ordenador, teléfono móvil o tablet) cuando visitas nuestra web. Las cookies nos ayudan a proporcionar una mejor experiencia de usuario y entender cómo se utiliza nuestra web.</p>
 
-        <h2>Tipos de cookies que utilizamos</h2>
-        <table>
-            <tr>
-                <th>Tipo de Cookie</th>
-                <th>Propósito</th>
-                <th>Duración</th>
-            </tr>
-            <tr>
-                <td>Cookies Esenciales</td>
-                <td>Necesarias para el funcionamiento básico del sitio web</td>
-                <td>Sesión</td>
-            </tr>
-            <tr>
-                <td>Cookies de Rendimiento</td>
-                <td>Ayudan a entender cómo interactúas con el sitio</td>
-                <td>2 años</td>
-            </tr>
-            <tr>
-                <td>Cookies de Funcionalidad</td>
-                <td>Recuerdan tus preferencias y elecciones</td>
-                <td>1 año</td>
-            </tr>
-            <tr>
-                <td>Cookies de Marketing</td>
-                <td>Utilizadas para publicidad personalizada</td>
-                <td>1 año</td>
-            </tr>
-        </table>
+            <h2>Tipos de cookies que utilizamos</h2>
+            <table>
+                <tr>
+                    <th>Tipo de Cookie</th>
+                    <th>Propósito</th>
+                    <th>Duración</th>
+                </tr>
+                <tr>
+                    <td>Cookies Esenciales</td>
+                    <td>Necesarias para el funcionamiento básico del sitio web</td>
+                    <td>Sesión</td>
+                </tr>
+                <tr>
+                    <td>Cookies de Rendimiento</td>
+                    <td>Ayudan a entender cómo interactúas con el sitio</td>
+                    <td>2 años</td>
+                </tr>
+                <tr>
+                    <td>Cookies de Funcionalidad</td>
+                    <td>Recuerdan tus preferencias y elecciones</td>
+                    <td>1 año</td>
+                </tr>
+                <tr>
+                    <td>Cookies de Marketing</td>
+                    <td>Utilizadas para publicidad personalizada</td>
+                    <td>1 año</td>
+                </tr>
+            </table>
 
-        <h2>Cookies esenciales</h2>
-        <p>Algunas cookies son esenciales para el funcionamiento de nuestro sitio web. Por ejemplo, para:</p>
-        <ul>
-            <li>Recordar los productos en tu carrito de compras</li>
-            <li>Mantener tu sesión iniciada</li>
-            <li>Proteger la seguridad de tu cuenta</li>
-        </ul>
+            <h2>Cookies esenciales</h2>
+            <p>Algunas cookies son esenciales para el funcionamiento de nuestro sitio web. Por ejemplo, para:</p>
+            <ul>
+                <li>Recordar los productos en tu carrito de compras</li>
+                <li>Mantener tu sesión iniciada</li>
+                <li>Proteger la seguridad de tu cuenta</li>
+            </ul>
 
-        <h2>Cookies de rendimiento y análisis</h2>
-        <p>Utilizamos cookies de análisis para mejorar el rendimiento de nuestro sitio web. Estas cookies nos ayudan a:</p>
-        <ul>
-            <li>Entender cómo los usuarios interactúan con nuestro sitio</li>
-            <li>Identificar y resolver problemas técnicos</li>
-            <li>Medir la efectividad de nuestra publicidad</li>
-        </ul>
+            <h2>Cookies de rendimiento y análisis</h2>
+            <p>Utilizamos cookies de análisis para mejorar el rendimiento de nuestro sitio web. Estas cookies nos ayudan a:</p>
+            <ul>
+                <li>Entender cómo los usuarios interactúan con nuestro sitio</li>
+                <li>Identificar y resolver problemas técnicos</li>
+                <li>Medir la efectividad de nuestra publicidad</li>
+            </ul>
 
-        <h2>Control de cookies</h2>
-        <p>Puedes controlar y/o eliminar las cookies como desees. Puedes eliminar todas las cookies que ya están en tu ordenador y puedes configurar la mayoría de los navegadores para que no las acepten. Sin embargo, si haces esto, es posible que tengas que ajustar manualmente algunas preferencias cada vez que visites un sitio y que algunos servicios y funcionalidades no funcionen.</p>
+            <h2>Control de cookies</h2>
+            <p>Puedes controlar y/o eliminar las cookies como desees. Puedes eliminar todas las cookies que ya están en tu ordenador y puedes configurar la mayoría de los navegadores para que no las acepten. Sin embargo, si haces esto, es posible que tengas que ajustar manualmente algunas preferencias cada vez que visites un sitio y que algunos servicios y funcionalidades no funcionen.</p>
 
-        <h2>Cambios en nuestra política de cookies</h2>
-        <p>Podemos actualizar nuestra Política de Cookies ocasionalmente. Te notificaremos cualquier cambio publicando la nueva Política de Cookies en esta página. Te recomendamos que consultes periódicamente esta política para estar informado de cómo protegemos tu información.</p>
+            <h2>Cambios en nuestra política de cookies</h2>
+            <p>Podemos actualizar nuestra Política de Cookies ocasionalmente. Te notificaremos cualquier cambio publicando la nueva Política de Cookies en esta página. Te recomendamos que consultes periódicamente esta política para estar informado de cómo protegemos tu información.</p>
 
-        <h2>Contacto</h2>
-        <p>Si tienes preguntas sobre esta Política de Cookies, puedes contactarnos:</p>
-        <ul>
-            <li>Por email: solucionesworld2016@gmail.com</li>
-            <li>A través de nuestro formulario de contacto en la página principal</li>
-        </ul>
-    </main>
+            <h2>Contacto</h2>
+            <p>Si tienes preguntas sobre esta Política de Cookies, puedes contactarnos:</p>
+            <ul>
+                <li>Por email: solucionesworld2016@gmail.com</li>
+                <li>A través de nuestro formulario de contacto en la página principal</li>
+            </ul>
 
-    <footer>
-        <div class="container">
-            <div class="footer-copyright">
-                <p>&copy; 2025 SPMarketing - Agency. Todos los derechos reservados.</p>
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="index.html" class="back-to-home">Volver al Inicio</a>
             </div>
-        </div>
-    </footer>
+        </main>
+        
+        <footer>
+            <p>&copy; 2025 SPMarketing - Agency. Todos los derechos reservados.</p>
+        </footer>
+    </div>
 </body>
 </html>
