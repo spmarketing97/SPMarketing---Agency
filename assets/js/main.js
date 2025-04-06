@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
     setupCalendar();
     setupContactForm();
     setupSmoothScroll();
-    setupScrollTopButton();
     initCalendar();
     checkCookieConsent();
     
@@ -245,51 +244,6 @@ function setupSmoothScroll() {
             }
         });
     });
-}
-
-// Scroll to Top Button
-function setupScrollTopButton() {
-    let scrollTopBtn = document.getElementById('scrollTopBtn');
-    
-    if (!scrollTopBtn) {
-        // Si no existe el botón, lo creamos y añadimos al DOM
-        const newScrollBtn = document.createElement('div');
-        newScrollBtn.id = 'scrollTopBtn';
-        newScrollBtn.className = 'scroll-top-btn';
-        newScrollBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
-        document.body.appendChild(newScrollBtn);
-        
-        // Asignamos el botón creado
-        scrollTopBtn = newScrollBtn;
-    }
-    
-    // Mostrar/ocultar botón según la posición de scroll
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 300) {
-            scrollTopBtn.classList.add('active'); // Cambiado de 'visible' a 'active' para coincidir con el CSS
-        } else {
-            scrollTopBtn.classList.remove('active');
-        }
-    });
-    
-    // Acción de scroll al hacer clic
-    scrollTopBtn.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
-    
-    // Inicialmente verificar si debemos mostrar el botón
-    if (window.scrollY > 300) {
-        scrollTopBtn.classList.add('active'); // Cambiado de 'visible' a 'active'
-    }
-    
-    // Ajustar posición cuando el chatbot está visible
-    const chatContainer = document.querySelector('.chat-container');
-    if (chatContainer) {
-        adjustScrollButtonPosition();
-    }
 }
 
 // Scroll Reveal Animation

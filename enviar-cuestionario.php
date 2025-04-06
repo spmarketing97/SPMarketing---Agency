@@ -70,10 +70,23 @@ $mensaje .= "</body></html>";
 $cabeceras = "MIME-Version: 1.0" . "\r\n";
 $cabeceras .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 $cabeceras .= 'From: SPMarketing <noreply@spmarketing.com>' . "\r\n";
-$cabeceras .= 'Reply-To: ' . $data['email'] . "\r\n";
+$cabeceras .= 'Reply-To: ' . ($data['email'] ?? 'hristiankrasimirov7@gmail.com') . "\r\n";
+
+// Guardar datos para notificación via Python
+file_put_contents('ultimo_cuestionario.json', $json_data);
+
+// Ejecutar script Python para la notificación avanzada (si está disponible)
+if (file_exists('informe_landing_page.py')) {
+    // Ejecutar el script en segundo plano
+    exec('python informe_landing_page.py --notificar-cuestionario > /dev/null 2>&1 &');
+}
 
 // Intentar enviar el correo
 if (mail($destinatario, $asunto, $mensaje, $cabeceras)) {
+    // Registrar el cuestionario completado para estadísticas
+    $registro = date('Y-m-d H:i:s') . " | " . ($data['nombre'] ?? 'Desconocido') . " | " . ($data['email'] ?? 'No email') . " | Cuestionario\n";
+    file_put_contents('registros_cuestionarios.log', $registro, FILE_APPEND);
+    
     http_response_code(200);
     echo json_encode(['success' => true, 'message' => 'Formulario enviado correctamente']);
 } else {

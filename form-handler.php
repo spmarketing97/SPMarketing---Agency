@@ -3,9 +3,10 @@ require 'vendor/autoload.php';
 
 use TCPDF;
 
-// Configuración de correo
-$to = 'hristiankrasimirov7@gmail.com';
-$subject = 'SPMarketing - Agency';
+// Configuración
+$destinatario = 'hristiankrasimirov7@gmail.com';
+$asunto = 'SPMarketing - Agency: Nuevo contacto';
+$redireccion = 'thank-you.html';
 
 // Recibir datos del formulario
 $name = $_POST['name'] ?? '';
@@ -13,66 +14,93 @@ $email = $_POST['email'] ?? '';
 $phone = $_POST['phone'] ?? '';
 $service = $_POST['service'] ?? '';
 $message = $_POST['message'] ?? '';
-$date = $_POST['date'] ?? 'No especificada';
-$time = $_POST['time'] ?? 'No especificada';
 
-// Crear el contenido del correo
-$email_content = "Nuevo contacto desde el formulario\n\n";
-$email_content .= "Nombre: $name\n";
-$email_content .= "Email: $email\n";
-$email_content .= "Teléfono: $phone\n";
-$email_content .= "Servicio: $service\n";
-$email_content .= "Mensaje: $message\n";
-$email_content .= "Fecha preferida: $date\n";
-$email_content .= "Hora preferida: $time\n";
-
-// Enviar correo
-$headers = 'From: ' . $email . "\r\n" .
-    'Reply-To: ' . $email . "\r\n" .
-    'X-Mailer: PHP/' . phpversion();
-
-mail($to, $subject, $email_content, $headers);
-
-// Crear directorio CITAS si no existe
-if (!file_exists('CITAS')) {
-    mkdir('CITAS', 0777, true);
+// Validar datos básicos
+if (empty($name) || empty($email)) {
+    header("Location: index.html?error=campos_requeridos");
+    exit;
 }
 
-// Crear PDF
-$pdf = new TCPDF();
-$pdf->AddPage();
-$pdf->SetFont('helvetica', '', 12);
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    header("Location: index.html?error=email_invalido");
+    exit;
+}
 
-// Agregar contenido al PDF
-$pdf_content = <<<EOD
-Datos del Cliente
+// Crear el contenido del correo
+$contenido_email = "
+<html>
+<head>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        .header { background-color: #003366; color: white; padding: 15px; text-align: center; }
+        .content { padding: 20px; }
+        .field { margin-bottom: 10px; }
+        .label { font-weight: bold; }
+        .footer { background-color: #f5f5f5; padding: 10px; text-align: center; font-size: 12px; }
+    </style>
+</head>
+<body>
+    <div class='header'>
+        <h2>Nuevo contacto desde el formulario</h2>
+    </div>
+    <div class='content'>
+        <div class='field'>
+            <span class='label'>Nombre:</span> $name
+        </div>
+        <div class='field'>
+            <span class='label'>Email:</span> $email
+        </div>
+        <div class='field'>
+            <span class='label'>Teléfono:</span> $phone
+        </div>
+        <div class='field'>
+            <span class='label'>Servicio solicitado:</span> $service
+        </div>
+        <div class='field'>
+            <span class='label'>Mensaje:</span><br>" . nl2br($message) . "
+        </div>
+        <div class='field'>
+            <span class='label'>Fecha y hora:</span> " . date('d/m/Y H:i:s') . "
+        </div>
+    </div>
+    <div class='footer'>
+        <p>Este mensaje fue generado automáticamente por SPMarketing Agency.</p>
+    </div>
+</body>
+</html>
+";
 
-Nombre: $name
-Email: $email
-Teléfono: $phone
-Servicio: $service
-Mensaje: $message
-Fecha preferida: $date
-Hora preferida: $time
-Fecha de registro: {$date('Y-m-d H:i:s')}
-EOD;
+// Cabeceras para envío de correo HTML
+$cabeceras  = "MIME-Version: 1.0\r\n";
+$cabeceras .= "Content-type: text/html; charset=UTF-8\r\n";
+$cabeceras .= "From: SPMarketing <noreply@spmarketing.com>\r\n";
+$cabeceras .= "Reply-To: $email\r\n";
 
-$pdf->writeHTML($pdf_content, true, false, true, false, '');
+// Intentar enviar el correo
+$enviado = mail($destinatario, $asunto, $contenido_email, $cabeceras);
 
-// Guardar PDF en la carpeta CITAS
-$filename = 'CITAS/' . date('Y-m-d_H-i-s') . '_' . $name . '.pdf';
-$pdf->Output($filename, 'F');
+// Guardar registro en JSON para la notificación mediante Python
+$datos_json = json_encode($_POST);
+file_put_contents('ultimo_formulario.json', $datos_json);
 
-// Programar eliminación del archivo después de 12 meses
-$deletion_date = date('Y-m-d', strtotime('+12 months'));
-file_put_contents('CITAS/.deletion_schedule', $filename . '|' . $deletion_date . "\n", FILE_APPEND);
+// Ejecutar script Python para la notificación avanzada (si está disponible)
+if (file_exists('informe_landing_page.py')) {
+    // Ejecutar el script en segundo plano
+    exec('python informe_landing_page.py --notificar-formulario > /dev/null 2>&1 &');
+}
 
-// Respuesta JSON para el frontend
-$response = [
-    'success' => true,
-    'message' => 'Gracias por tu interés y confianza. En breve uno de nuestros expertos se pondrá contigo para discutir el proyecto.'
-];
+// Redirigir según el resultado
+if ($enviado) {
+    // Éxito - redirigir a página de agradecimiento
+    header("Location: $redireccion");
+} else {
+    // Error - redirigir con mensaje de error
+    header("Location: index.html?error=envio_fallido");
+}
 
-header('Content-Type: application/json');
-echo json_encode($response);
+// Registrar el formulario en un archivo para estadísticas
+$registro = date('Y-m-d H:i:s') . " | $name | $email | $service\n";
+file_put_contents('registros_formularios.log', $registro, FILE_APPEND);
+
+exit;
 ?>

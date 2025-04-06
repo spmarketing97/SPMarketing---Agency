@@ -112,3 +112,62 @@ El sistema de informes está desarrollado en Python y permite:
 ## Licencia
 
 © 2025 SPMarketing - Agency. Todos los derechos reservados.
+
+# Bot de Telegram para SPMarketing
+
+Bot automático 24/7 para atención al cliente con información basada en la página web.
+
+## Características
+
+- 🤖 Atención automática 24/7
+- 📊 Información detallada de servicios
+- 💎 Precios y beneficios
+- 🔄 Respuestas automáticas inteligentes
+- 📱 Integración con WhatsApp
+
+## Configuración
+
+1. Instala las dependencias:
+```bash
+pip install -r requirements.txt
+```
+
+2. Configura el token:
+- Abre el archivo `config.py`
+- Reemplaza `TU_TOKEN_AQUI` con tu token de Telegram
+- Ajusta las URLs y otros parámetros según necesites
+
+3. Ejecuta el bot:
+```bash
+python bot.py
+```
+
+## Funcionalidades
+
+- Respuesta automática a saludos
+- Información detallada de servicios
+- Detalles de precios y beneficios
+- Integración con WhatsApp para contacto directo
+- Sistema de logging para monitoreo
+
+## Personalización
+
+Puedes personalizar:
+- Mensajes automáticos en `config.py`
+- Horarios de atención
+- URLs de contacto
+- Palabras clave para detección de intenciones
+
+## Mantenimiento
+
+El bot genera un archivo `bot.log` con información detallada de:
+- Errores
+- Interacciones de usuarios
+- Mensajes enviados/recibidos
+- Estado del sistema
+
+## Soporte
+
+Para soporte técnico, contacta a:
+- Email: solucionesworld2016@gmail.com
+- WhatsApp: https://wa.link/uxacg0

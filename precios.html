@@ -79,7 +79,7 @@
         /* Estilos del contador flotante */
         .contador-flotante {
             position: fixed;
-            top: 100px;
+            top: 150px;
             right: 20px;
             background-color: rgba(0, 0, 0, 0.85);
             color: white;
@@ -156,8 +156,42 @@
         }
         
         .features-list {
-            padding: 3rem 0;
-            background-color: var(--gray-color);
+            padding: 5rem 0;
+            background-color: #f9f9f9;
+            position: relative;
+        }
+        
+        .features-list::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjZmZmZmZmIj48L3JlY3Q+CjxwYXRoIGQ9Ik0wIDVMNSAwWk02IDRMNCA2Wk0tMSAxTDEgLTFaIiBzdHJva2U9IiNmMGYwZjAiIHN0cm9rZS13aWR0aD0iMSI+PC9wYXRoPgo8L3N2Zz4=');
+            opacity: 0.4;
+            z-index: 0;
+        }
+        
+        .features-list .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .features-list .section-title {
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .features-list .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+            margin: 15px auto 0;
+            border-radius: 2px;
         }
         
         .features-container {
@@ -204,7 +238,8 @@
         
         .faq-section {
             padding: 5rem 0;
-            background-color: var(--light-color);
+            background-color: white;
+            position: relative;
         }
         
         .faq-container {
@@ -212,29 +247,66 @@
             margin: 0 auto;
         }
         
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            margin-top: -1rem;
+        }
+        
+        .faq-section .section-title {
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .faq-section .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+        
         .faq-item {
             margin-bottom: 1.5rem;
-            border: 1px solid #eee;
-            border-radius: 8px;
+            border: 1px solid #f0f0f0;
+            border-radius: 10px;
             overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
+            transition: all 0.3s ease;
+        }
+        
+        .faq-item:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
         }
         
         .faq-question {
             padding: 1.5rem;
-            background-color: var(--gray-color);
+            background-color: white;
             cursor: pointer;
             font-weight: 600;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 1px solid transparent;
+            transition: all 0.3s ease;
         }
         
         .faq-question:hover {
-            background-color: #e9e9e9;
+            background-color: #f9f9f9;
+        }
+        
+        .faq-question.active {
+            border-bottom: 1px solid #f0f0f0;
+            background-color: #f9f9f9;
         }
         
         .faq-question i {
             transition: transform 0.3s ease;
+            color: var(--accent-color);
         }
         
         .faq-question.active i {
@@ -246,12 +318,18 @@
             max-height: 0;
             overflow: hidden;
             transition: all 0.3s ease;
-            background-color: var(--light-color);
+            background-color: white;
         }
         
         .faq-answer.active {
             padding: 1.5rem;
             max-height: 500px;
+        }
+        
+        .faq-answer p {
+            margin: 0;
+            line-height: 1.6;
+            color: #555;
         }
         
         .hero-title-pricing {
@@ -473,6 +551,167 @@
             position: relative;
             z-index: 1;
         }
+
+        /* Estilos del chatbot */
+        .chatbot-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: #0084ff;
+            color: white;
+            border-radius: 50%;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+            font-size: 24px;
+            transition: all 0.3s ease;
+        }
+        
+        .chatbot-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+        }
+        
+        .chatbot-container {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 320px;
+            max-height: 450px;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            display: none;
+            flex-direction: column;
+            background-color: #fff;
+            z-index: 1010;
+            transition: all 0.3s ease;
+        }
+        
+        .chatbot-message {
+            border-radius: 18px;
+            padding: 10px 14px;
+            margin-bottom: 10px;
+            max-width: 80%;
+            word-wrap: break-word;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .chatbot-message.bot {
+            background-color: #f0f0f0;
+            color: #333;
+            align-self: flex-start;
+            margin-right: auto;
+            border-bottom-left-radius: 4px;
+        }
+        
+        .chatbot-message.user {
+            background-color: #0084ff;
+            color: white;
+            align-self: flex-end;
+            margin-left: auto;
+            border-bottom-right-radius: 4px;
+        }
+        
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            background-color: #f0f0f0;
+            border-radius: 18px;
+            padding: 8px 12px;
+            max-width: 100px;
+            margin-bottom: 10px;
+        }
+        
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #999;
+            border-radius: 50%;
+            margin: 0 2px;
+            animation: typing-animation 1.4s infinite;
+            opacity: 0.6;
+        }
+        
+        @keyframes typing-animation {
+            0%, 60%, 100% {
+                transform: translateY(0);
+            }
+            30% {
+                transform: translateY(-5px);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        #chatbot-messages {
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        .benefits-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .benefit-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 1px solid #f5f5f5;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-bottom: 3px solid var(--accent-color);
+        }
+        
+        .benefit-icon {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: var(--light-color);
+            font-size: 1.6rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .benefit-card h3 {
+            margin-bottom: 0.8rem;
+            color: var(--primary-color);
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+        
+        .benefit-card p {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #666;
+            margin: 0;
+        }
     </style>
 </head>
 <body>
@@ -522,14 +761,14 @@
                 <h1 class="hero-title-pricing">Planes de <span class="highlight">Marketing Digital + IA</span></h1>
                 <p class="hero-subtitle-pricing">Impulsa tu Presencia Digital con Nuestras Soluciones de Marketing Personalizadas</p>
                 <div class="hero-cta">
-                    <a href="index.html#contacto" class="cta-btn primary-button">CONSULTA GRATUITA</a>
+                    <a href="#pricing-section" class="cta-btn primary-button" id="scroll-to-services"><i class="fas fa-arrow-down"></i> VER SERVICIOS</a>
                 </div>
             </div>
         </div>
     </header>
 
     <!-- Planes de Precios -->
-    <section class="pricing-section">
+    <section class="pricing-section" id="pricing-section">
         <div class="container">
             <h2 class="section-title">Nuestros Planes</h2>
             <div class="pricing-container">
@@ -633,34 +872,34 @@
     <section class="features-list">
         <div class="container">
             <h2 class="section-title">¿Por qué elegir SPMarketing?</h2>
-            <div class="benefits-container">
+            <div id="benefits-container" class="benefits-container">
                 <div class="benefit-card">
                     <div class="benefit-icon">
                         <i class="fas fa-brain"></i>
                     </div>
                     <h3>Experiencia</h3>
-                    <p>Expertos en marketing digital con más de 5 años en el sector.</p>
+                    <p>Equipo con más de 5 años de experiencia en marketing digital optimizado con IA.</p>
                 </div>
                 <div class="benefit-card">
                     <div class="benefit-icon">
                         <i class="fas fa-chart-line"></i>
                     </div>
                     <h3>Resultados</h3>
-                    <p>Estrategias orientadas a resultados medibles y crecimiento real.</p>
+                    <p>Estrategias orientadas a KPIs medibles y crecimiento real para tu negocio.</p>
                 </div>
                 <div class="benefit-card">
                     <div class="benefit-icon">
-                        <i class="fas fa-cogs"></i>
+                        <i class="fas fa-tools"></i>
                     </div>
                     <h3>Personalización</h3>
-                    <p>Soluciones a medida según tus objetivos específicos.</p>
+                    <p>Soluciones completamente adaptadas a los objetivos específicos de tu empresa.</p>
                 </div>
                 <div class="benefit-card">
                     <div class="benefit-icon">
                         <i class="fas fa-robot"></i>
                     </div>
                     <h3>Tecnología IA</h3>
-                    <p>Optimización avanzada con inteligencia artificial.</p>
+                    <p>Optimización avanzada con IA para maximizar la eficiencia de tus campañas.</p>
                 </div>
             </div>
         </div>
@@ -670,6 +909,7 @@
     <section class="faq-section">
         <div class="container">
             <h2 class="section-title">Preguntas Frecuentes</h2>
+            <p class="section-subtitle">Todo lo que necesitas saber sobre nuestros servicios</p>
             <div class="faq-container">
                 <div class="faq-item">
                     <div class="faq-question" data-accordion="header">
@@ -758,13 +998,105 @@
         </div>
     </footer>
 
-    <!-- Botón Volver Arriba -->
-    <div class="scroll-top-btn" id="scrollTopBtn">
-        <i class="fas fa-arrow-up"></i>
-        <span></span>
+    <!-- Chatbot Container -->
+    <div id="chatbot-container" class="chatbot-container" style="display: none; position: fixed; bottom: 100px; right: 30px; width: 350px; min-height: 450px; background-color: white; border-radius: 15px; box-shadow: 0 5px 25px rgba(0,0,0,0.2); z-index: 9999; flex-direction: column; opacity: 0; transform: translateY(20px); transition: all 0.3s ease;">
+        <div class="chatbot-header" style="padding: 15px; background: linear-gradient(135deg, #003366, #0066cc); color: white; border-top-left-radius: 15px; border-top-right-radius: 15px; display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; align-items: center;">
+                <img src="assets/img/LOGO PRINCIPAL.jpg" alt="SPMarketing Logo" style="height: 30px; width: 30px; border-radius: 50%; margin-right: 10px; object-fit: cover;">
+                <h3 style="margin: 0; font-size: 16px; font-weight: 600;">Chat de SPMarketing</h3>
+            </div>
+            <button id="chatbot-close" style="background: none; border: none; color: white; cursor: pointer; font-size: 20px; padding: 0; display: flex; align-items: center; justify-content: center;">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div id="chatbot-messages" style="padding: 15px; flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 10px;"></div>
+        <div class="chatbot-input-container" style="padding: 15px; border-top: 1px solid #e9ecef; display: flex;">
+            <input type="text" id="chatbot-input" placeholder="Escribe tu mensaje..." style="flex: 1; padding: 12px 15px; border: 1px solid #e9ecef; border-radius: 25px; outline: none;">
+            <button id="chatbot-send" style="background: linear-gradient(135deg, #003366, #0066cc); color: white; border: none; border-radius: 50%; width: 45px; height: 45px; margin-left: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+    
+    <!-- Chat Toggle Button -->
+    <div id="chatbot-toggle" style="position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background: linear-gradient(135deg, #003366, #0066cc); border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; z-index: 9999; transition: all 0.3s ease;">
+        <i class="fas fa-comment-dots" style="color: white; font-size: 24px;"></i>
     </div>
 
+    <!-- ========================= scroll-top ========================= -->
+    <!-- Eliminado el botón de scroll-top que ya no se usa -->
+
+    <!-- ========================= JS here ========================= -->
+    <script src="assets/js/bootstrap.bundle-5.0.0.alpha-min.js"></script>
+    <script src="assets/js/wow.min.js"></script>
+    <script src="assets/js/imagesloaded.min.js"></script>
     <script src="assets/js/main.js"></script>
-    <script src="assets/js/chatbot-loader.js"></script>
+    <script src="chatbot.js"></script>
+    <script>
+      // ==== for menu scroll
+      const pageLink = document.querySelectorAll(".page-scroll");
+
+      pageLink.forEach((elem) => {
+        elem.addEventListener("click", (e) => {
+          e.preventDefault();
+          document.querySelector(elem.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+            offsetTop: 1 - 60,
+          });
+        });
+      });
+
+      // section menu active
+      function onScroll(event) {
+        const sections = document.querySelectorAll(".page-scroll");
+        const scrollPos =
+          window.pageYOffset ||
+          document.documentElement.scrollTop ||
+          document.body.scrollTop;
+
+        for (let i = 0; i < sections.length; i++) {
+          const currLink = sections[i];
+          const val = currLink.getAttribute("href");
+          const refElement = document.querySelector(val);
+          const scrollTopMinus = scrollPos + 73;
+          if (
+            refElement.offsetTop <= scrollTopMinus &&
+            refElement.offsetTop + refElement.offsetHeight > scrollTopMinus
+          ) {
+            document
+              .querySelector(".page-scroll")
+              .classList.remove("active");
+            currLink.classList.add("active");
+          } else {
+            currLink.classList.remove("active");
+          }
+        }
+      }
+
+      window.document.addEventListener("scroll", onScroll);
+      
+      // Font Awesome para los iconos del chatbot
+      var fontAwesomeScript = document.createElement('script');
+      fontAwesomeScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js';
+      document.head.appendChild(fontAwesomeScript);
+      
+      // Funcionalidad de las preguntas frecuentes
+      document.addEventListener('DOMContentLoaded', function() {
+          const accordionHeaders = document.querySelectorAll('[data-accordion="header"]');
+          
+          accordionHeaders.forEach(header => {
+              header.addEventListener('click', function() {
+                  // Toggle active class en el header
+                  this.classList.toggle('active');
+                  
+                  // Obtener el contenido asociado
+                  const content = this.nextElementSibling;
+                  
+                  // Toggle active class en el contenido
+                  content.classList.toggle('active');
+              });
+          });
+      });
+    </script>
 </body>
 </html>

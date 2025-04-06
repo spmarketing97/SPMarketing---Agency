@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/animation.css">
+    <link rel="stylesheet" href="assets/css/chat-widget.css">
     <meta name="description" content="Agencia de marketing digital especializada en estrategias personalizadas para impulsar tu negocio.">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-N8Z75S5TWD"></script>
@@ -18,6 +19,8 @@
         gtag('js', new Date());
         gtag('config', 'G-N8Z75S5TWD');
     </script>
+    <!-- Script de reparación del chatbot -->
+    <script src="chatbot-fix.js" defer></script>
     <style>
         .nav-cta-btn {
             display: inline-block;
@@ -320,9 +323,594 @@
         #navbar .menu ul li a:hover {
             color: var(--accent-color);
         }
+
+        /* Estilos para widgets minimalistas */
+        .widget-section {
+            padding: 3rem 0;
+            background: #f8f9fa;
+        }
+
+        .widget-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .widget-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid #eee;
+        }
+
+        .widget-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .widget-card i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .widget-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .widget-card p {
+            color: #666;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .widget-link {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .widget-link:hover {
+            color: var(--primary-color);
+        }
+
+        .widget-card.highlight {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .widget-card.highlight i,
+        .widget-card.highlight h3,
+        .widget-card.highlight p {
+            color: white;
+        }
+
+        .widget-card.large {
+            grid-column: 1 / -1;
+            padding: 2rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .stat-widget {
+            text-align: center;
+        }
+
+        .stat-widget .number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: block;
+        }
+
+        .stat-widget .label {
+            font-size: 1rem;
+            color: #666;
+            margin-top: 0.5rem;
+            display: block;
+        }
+
+        .widget-cta {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        /* Estilos mejorados para el CTA del banner */
+        #bannerCTA {
+            display: inline-block;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            margin-top: 2rem;
+            box-shadow: 0 4px 15px rgba(255, 69, 0, 0.3);
+        }
+
+        #bannerCTA:hover {
+            background: #e63900;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 69, 0, 0.4);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .widget-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .widget-card {
+                padding: 1.2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        .highlighted-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #fff;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            letter-spacing: 1px;
+            background: rgba(255, 69, 0, 0.7);
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            border-radius: 5px;
+            transform: translateY(-5px);
+            transition: all 0.3s ease;
+        }
+
+        .highlighted-subtitle {
+            font-size: 2rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            color: #fff;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+            background: rgba(0, 51, 102, 0.7);
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            margin-bottom: 2rem;
+        }
+        
+        .minimalista-title {
+            font-size: 3.5rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            color: #fff;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+            padding-bottom: 0.8rem;
+            display: inline-block;
+        }
+        
+        .minimalista-subtitle {
+            font-size: 1.8rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.9);
+            letter-spacing: 1px;
+            font-style: italic;
+        }
+        
+        /* Estilos para tarjetas minimalistas */
+        .minimalista-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            justify-content: center;
+        }
+        
+        .minimalista-card {
+            flex: 1 1 300px;
+            max-width: 300px;
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid #eee;
+        }
+        
+        .minimalista-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .minimalista-card .service-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+        
+        .minimalista-card .service-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: var(--primary-color);
+        }
+        
+        .minimalista-card .service-description {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 0;
+            line-height: 1.5;
+        }
+        
+        /* Estilos para estadísticas minimalistas */
+        .stats-minimalista {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 3rem 0;
+            margin: 0 auto;
+            max-width: 1000px;
+        }
+        
+        .stat-item {
+            flex: 1 1 200px;
+            text-align: center;
+            margin: 1.5rem;
+            position: relative;
+            padding-bottom: 1.5rem;
+        }
+        
+        .stat-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+        
+        .stat-item .count {
+            font-size: 3.5rem;
+            font-weight: 300;
+            color: var(--primary-color);
+            display: inline-block;
+            line-height: 1;
+        }
+        
+        .stat-item .percentage {
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: var(--primary-color);
+        }
+        
+        .stat-item .stat-label {
+            display: block;
+            margin-top: 0.8rem;
+            font-size: 1.2rem;
+            color: #777;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        @media (max-width: 768px) {
+            .stats-minimalista {
+                padding: 2rem 0;
+            }
+            
+            .stat-item {
+                margin: 1rem;
+                flex: 1 1 150px;
+            }
+            
+            .stat-item .count {
+                font-size: 2.5rem;
+            }
+            
+            .stat-item .percentage {
+                font-size: 1.8rem;
+            }
+            
+            .stat-item .stat-label {
+                font-size: 1rem;
+            }
+        }
+
+        /* Animación de typing para el chat */
+        .typing {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 30px;
+        }
+        
+        .typing .dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: #fff;
+            border-radius: 50%;
+            margin-right: 5px;
+            animation: typing-dot 1.4s infinite ease-in-out both;
+        }
+        
+        .typing .dot:nth-child(1) {
+            animation-delay: 0s;
+        }
+        
+        .typing .dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .typing .dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        @keyframes typing-dot {
+            0%, 80%, 100% { transform: scale(0.8); opacity: 0.5; }
+            40% { transform: scale(1.2); opacity: 1; }
+        }
+
+        /* Contador Regresivo Flotante */
+        .contador-flotante {
+            position: fixed;
+            right: 20px;
+            top: 30%;
+            transform: translateY(-50%);
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+            z-index: 99;
+            text-align: center;
+            width: 140px;
+            font-family: 'Montserrat', sans-serif;
+            transition: background-color 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+        
+        .contador-titulo {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .contador-tiempo {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+        
+        .contador-flotante.expired {
+            background-color: #e74c3c;
+            animation: shake 0.5s;
+        }
+        
+        .contador-flotante.expiring {
+            background-color: #e67e22;
+        }
+        
+        @keyframes pulse {
+            0% { transform: translateY(-50%) scale(1); }
+            50% { transform: translateY(-50%) scale(1.05); }
+            100% { transform: translateY(-50%) scale(1); }
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateY(-50%) translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateY(-50%) translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateY(-50%) translateX(5px); }
+        }
+        
+        @media (max-width: 768px) {
+            .contador-flotante {
+                right: 10px;
+                width: 120px;
+                padding: 10px;
+            }
+            
+            .contador-titulo {
+                font-size: 12px;
+            }
+            
+            .contador-tiempo {
+                font-size: 20px;
+            }
+        }
+        
+        /* Estilos para el chatbot */
+        .chatbot-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: #0084ff;
+            color: white;
+            border-radius: 50%;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+            font-size: 24px;
+            transition: all 0.3s ease;
+        }
+        
+        .chatbot-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+        }
+        
+        .chatbot-container {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 320px;
+            max-height: 450px;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            display: none;
+            flex-direction: column;
+            background-color: #fff;
+            z-index: 1010;
+            transition: all 0.3s ease;
+        }
+        
+        .chatbot-message {
+            border-radius: 18px;
+            padding: 10px 14px;
+            margin-bottom: 10px;
+            max-width: 80%;
+            word-wrap: break-word;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .chatbot-message.bot {
+            background-color: #f0f0f0;
+            color: #333;
+            align-self: flex-start;
+            margin-right: auto;
+            border-bottom-left-radius: 4px;
+        }
+        
+        .chatbot-message.user {
+            background-color: #0084ff;
+            color: white;
+            align-self: flex-end;
+            margin-left: auto;
+            border-bottom-right-radius: 4px;
+        }
+        
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            background-color: #f0f0f0;
+            border-radius: 18px;
+            padding: 8px 12px;
+            max-width: 100px;
+            margin-bottom: 10px;
+        }
+        
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #999;
+            border-radius: 50%;
+            margin: 0 2px;
+            animation: typing-animation 1.4s infinite;
+            opacity: 0.6;
+        }
+        
+        @keyframes typing-animation {
+            0%, 60%, 100% {
+                transform: translateY(0);
+            }
+            30% {
+                transform: translateY(-5px);
+            }
+        }
+        
+        #chatbot-messages {
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes fadeOut {
+            from { opacity: 1; transform: translateY(0); }
+            to { opacity: 0; transform: translateY(-20px); }
+        }
+
+        @media (max-width: 768px) {
+            .chatbot-container {
+                max-height: 70vh;
+                bottom: 50%;
+                transform: translateY(50%) scale(0.95);
+                width: 85%;
+                left: 0;
+                right: 0;
+                margin: 0 auto;
+            }
+            
+            .chatbot-container.open {
+                transform: translateY(50%) scale(1);
+            }
+        }
+        
+        /* Mejoras generales */
+        #chatbot-messages {
+            scrollbar-width: thin;
+            scrollbar-color: #ddd #fafafa;
+        }
+        
+        #chatbot-messages::-webkit-scrollbar {
+            width: 4px;
+        }
+        
+        #chatbot-messages::-webkit-scrollbar-track {
+            background: #fafafa;
+        }
+        
+        #chatbot-messages::-webkit-scrollbar-thumb {
+            background-color: #ddd;
+            border-radius: 4px;
+        }
     </style>
 </head>
 <body>
+    <!-- Popup de bienvenida - Comentado para eliminarlo -->
+    <!-- 
+    <div id="welcomePopup" class="popup">
+        <div class="popup-content">
+            <button class="close-popup"><i class="fas fa-times"></i></button>
+            <div class="popup-icon">
+                <i class="fas fa-rocket"></i>
+            </div>
+            <h3>¡Bienvenido a SPMarketing!</h3>
+            <p>Descubre cómo podemos <strong>impulsar tu negocio</strong> con nuestras estrategias de marketing digital potenciadas por IA.</p>
+            <div class="popup-buttons">
+                <button onclick="location.href='#beneficios'" class="popup-cta">Ver Beneficios</button>
+                <button onclick="openChatbot()" class="popup-secondary">Hablar con un Asesor</button>
+            </div>
+        </div>
+    </div>
+    -->
+
     <!-- Cookie Consent Banner -->
     <div id="cookieConsent" class="cookie-banner">
         <div class="cookie-content">
@@ -334,15 +922,8 @@
         </div>
     </div>
 
-    <!-- Header -->
+    <!-- Header con CTA mejorado -->
     <header id="inicio">
-        <div class="contador-flotante" id="countdown">
-            <div class="contador-titulo">Oferta Especial</div>
-            <div class="contador-tiempo">
-                <span id="minutos">25</span>:<span id="segundos">00</span>
-            </div>
-        </div>
-
         <div class="container">
             <nav id="navbar">
                 <div class="logo">
@@ -355,7 +936,7 @@
                         <li><a href="#beneficios">Beneficios</a></li>
                         <li><a href="#testimonios">Testimonios</a></li>
                         <li><a href="#sobre-nosotros">Sobre Nosotros</a></li>
-                        <li><a href="precios.html">Planes</a></li>
+                        <li><a href="precios.html" target="_blank">PLANES</a></li>
                         <li><button onclick="location.href='#contacto'" class="nav-cta-btn">CONSULTA GRATUITA</button></li>
                     </ul>
                 </div>
@@ -367,179 +948,112 @@
             </nav>
 
             <div class="hero-content">
-                <div class="social-proof">
-                    <span>+6.849 <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
-                    <span>Clientes Satisfechos</span>
+                <div class="widget-card">
+                    <div class="social-proof">
+                        <span>+6.849 <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                    </div>
+                    <h1 class="hero-title-pricing">Soluciones a Medida para <span class="highlight">Negocios</span></h1>
+                    <p class="hero-subtitle-pricing">Revolucionamos a Emprendedores y Negocios con el Marketing Digital y la AI</p>
+                    <div class="hero-cta">
+                        <a href="#servicios" class="cta-btn primary-button" id="scroll-to-services"><i class="fas fa-arrow-down"></i> VER SERVICIOS</a>
+                    </div>
                 </div>
-                <h1 class="hero-title">Revoluciona tu Negocio con <span class="highlight">Marketing Digital + IA</span></h1>
-                <h2 class="hero-subtitle">Estrategias avanzadas potenciadas por Inteligencia Artificial para maximizar tus resultados</h2>
-                <button onclick="location.href='#contacto'" class="cta-btn primary-button">Obtener Consulta Gratuita</button>
             </div>
         </div>
     </header>
 
-    <!-- Sección de Bienvenida -->
-    <section class="welcome" id="nuestra-vision">
+    <!-- Beneficios -->
+    <section id="beneficios" class="services">
         <div class="container">
-            <div class="vision-content text-center">
-                <h2 class="section-title"><span class="destacado">NUESTRA VISIÓN</span></h2>
-                <div class="vision-text">
-                    <p>En <span class="ia-highlight">SPMarketing <i class="fas fa-cog fa-spin"></i></span> no solo nos adaptamos al futuro del marketing digital, lo creamos.</p>
-                    <p>Nuestra misión es potenciar tu presencia online con estrategias personalizadas que generan resultados medibles y sostenibles.</p>
-                    <p>Somos expertos en transformar visitas en clientes y convertir tus clientes en embajadores de tu marca.</p>
-                    <div class="center-btn">
-                        <a href="#servicios" class="btn btn-primary">Descubre Nuestros Servicios</a>
-                    </div>
+            <h2 class="section-title">Nuestros Beneficios</h2>
+            <div class="minimalista-grid">
+                <!-- ROI -->
+                <div class="minimalista-card">
+                    <i class="fas fa-chart-line service-icon"></i>
+                    <h3 class="service-title">ROI Garantizado</h3>
+                    <p class="service-description">+150% ROI promedio con estrategias optimizadas</p>
                 </div>
-                <div class="ia-highlight">
-                    <span><i class="fas fa-robot"></i> Potenciamos tu crecimiento con tecnología AI avanzada</span>
+
+                <!-- IA -->
+                <div class="minimalista-card">
+                    <i class="fas fa-robot service-icon"></i>
+                    <h3 class="service-title">Tecnología IA</h3>
+                    <p class="service-description">Optimización automática 24/7 con inteligencia artificial</p>
+                </div>
+
+                <!-- Tiempo de Respuesta -->
+                <div class="minimalista-card">
+                    <i class="fas fa-clock service-icon"></i>
+                    <h3 class="service-title">Respuesta Rápida</h3>
+                    <p class="service-description">Atención personalizada en menos de 24 horas</p>
+                </div>
+
+                <!-- Experiencia -->
+                <div class="minimalista-card">
+                    <i class="fas fa-trophy service-icon"></i>
+                    <h3 class="service-title">Experiencia Comprobada</h3>
+                    <p class="service-description">+6.849 clientes satisfechos y resultados comprobables</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Servicios Ofrecidos -->
-    <section class="services" id="servicios">
+    <!-- Servicios -->
+    <section id="servicios" class="services">
         <div class="container">
             <h2 class="section-title">Nuestros Servicios</h2>
-            <div class="benefits-container">
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-bullseye"></i>
-                    </div>
-                    <h3>Marketing Estratégico</h3>
-                    <p>Estrategias personalizadas y análisis de datos para maximizar tu ROI y alcanzar tus objetivos de negocio.</p>
+            <div class="minimalista-grid">
+                <!-- Desarrollo Web -->
+                <div class="minimalista-card">
+                    <i class="fas fa-laptop-code service-icon"></i>
+                    <h3 class="service-title">Desarrollo Web</h3>
+                    <p class="service-description">Sitios web optimizados para conversión</p>
                 </div>
 
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <h3>AI & Automatización</h3>
-                    <p>Implementamos soluciones inteligentes y automatizadas para optimizar tus procesos de marketing.</p>
+                <!-- Landing Pages -->
+                <div class="minimalista-card">
+                    <i class="fas fa-file-code service-icon"></i>
+                    <h3 class="service-title">Landing Pages</h3>
+                    <p class="service-description">Páginas optimizadas para maximizar conversiones</p>
                 </div>
 
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-chart-network"></i>
-                    </div>
-                    <h3>Marketing Digital 360°</h3>
-                    <p>Gestión integral de tu presencia online: redes sociales, SEO, publicidad y contenido.</p>
+                <!-- Marketing Digital -->
+                <div class="minimalista-card">
+                    <i class="fas fa-chart-line service-icon"></i>
+                    <h3 class="service-title">Marketing Digital</h3>
+                    <p class="service-description">Estrategias personalizadas para aumentar ventas</p>
                 </div>
+
+                <!-- Redes Sociales -->
+                <div class="minimalista-card">
+                    <i class="fas fa-share-alt service-icon"></i>
+                    <h3 class="service-title">Gestión de Redes Sociales</h3>
+                    <p class="service-description">Potencia tu marca en las principales redes sociales</p>
+                </div>
+            </div>
+            <div class="cta-center">
+                <a href="#contacto" class="primary-button">EMPIEZA AHORA</a>
             </div>
         </div>
     </section>
 
-    <!-- Beneficios para el Cliente -->
-    <section class="benefits" id="beneficios">
+    <!-- Sobre Nosotros en modo widget -->
+    <section id="sobre-nosotros" class="about-us widget-section">
         <div class="container">
-            <h2 class="section-title">Beneficios para tu Negocio</h2>
-            <div class="benefits-container">
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-chart-line"></i>
+            <div class="widget-card large">
+                <div class="stats-grid">
+                    <div class="stat-widget">
+                        <span class="number">+6.849</span>
+                        <span class="label">Clientes</span>
                     </div>
-                    <h3>Aumento en tráfico orgánico</h3>
-                    <p>🔍 Incrementa la cantidad de visitantes que llegan naturalmente a tu sitio web desde los motores de búsqueda.</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-comments"></i>
+                    <div class="stat-widget">
+                        <span class="number">98%</span>
+                        <span class="label">Retención</span>
                     </div>
-                    <h3>Incremento en interacciones sociales</h3>
-                    <p>👍 Mejora la participación y engagement de tu audiencia en todas tus plataformas sociales.</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-funnel-dollar"></i>
+                    <div class="stat-widget">
+                        <span class="number">2020</span>
+                        <span class="label">Desde</span>
                     </div>
-                    <h3>Mejora en la tasa de conversión</h3>
-                    <p>💯 Aumenta el porcentaje de visitantes que realizan la acción deseada en tu sitio web o landing page.</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-headset"></i>
-                    </div>
-                    <h3>Soporte continuo y análisis de resultados</h3>
-                    <p>🔍 Recibes informes periódicos y asistencia continua para optimizar constantemente tu estrategia.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sobre Nosotros -->
-    <section id="sobre-nosotros" class="about-us">
-        <div class="container">
-            <h2 class="section-title">Sobre Nosotros</h2>
-            <div class="about-content">
-                <div class="about-image">
-                    <img src="assets/img/SOBRE NOSOTROS.png" alt="Equipo SPMarketing">
-                </div>
-                <div class="about-text">
-                    <div class="about-card">
-                        <div class="about-icon">
-                            <i class="fas fa-history"></i>
-                        </div>
-                        <h3>Nuestra Historia</h3>
-                        <p>SPMarketing Agency nació en 2020 con la visión de revolucionar el marketing digital para pequeñas y medianas empresas.</p>
-                    </div>
-                    
-                    <div class="about-card">
-                        <div class="about-icon">
-                            <i class="fas fa-bullseye"></i>
-                        </div>
-                        <h3>Nuestro Enfoque</h3>
-                        <p>Creemos que cada negocio es único y merece una estrategia personalizada que se adapte a sus objetivos específicos.</p>
-                    </div>
-                    
-                    <div class="about-card">
-                        <div class="about-icon">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <h3>Nuestro Equipo</h3>
-                        <p>Contamos con especialistas en SEO, diseño web, marketing de contenidos y publicidad en redes sociales.</p>
-                    </div>
-                    
-                    <div class="about-card values">
-                        <div class="about-icon">
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <h3>Valores</h3>
-                        <ul class="values-list">
-                            <li><i class="fas fa-check-circle"></i> <span>Integridad</span></li>
-                            <li><i class="fas fa-check-circle"></i> <span>Innovación</span></li>
-                            <li><i class="fas fa-check-circle"></i> <span>Resultados</span></li>
-                            <li><i class="fas fa-check-circle"></i> <span>Colaboración</span></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Planes de Precios -->
-    <section class="pricing" id="precios">
-        <div class="container">
-            <h2 class="section-title">Potencia tu Negocio con Nuestros Planes</h2>
-            <div class="pricing-container">
-                <div class="pricing-card free">
-                    <div class="pricing-header">
-                        <h3>Consulta Inicial</h3>
-                        <div class="price">
-                            <span class="price-value">GRATIS</span>
-                        </div>
-                        <div class="offer-tag">Primera Sesión</div>
-                    </div>
-                    <div class="pricing-features">
-                        <ul>
-                            <li><i class="fas fa-check"></i> Análisis de mercado y competencia</li>
-                            <li><i class="fas fa-check"></i> Propuesta de estrategia</li>
-                            <li><i class="fas fa-check"></i> Diseño e Identificación de Mejoras</li>
-                            <li><i class="fas fa-check"></i> Sin permanencia</li>
-                            <li><i class="fas fa-check"></i> Sin compromiso</li>
-                        </ul>
-                    </div>
-                    <button onclick="location.href='#contacto'" class="cta-btn primary-button destacado-btn">CONSULTA GRATIS</button>
                 </div>
             </div>
         </div>
@@ -620,6 +1134,34 @@
         </div>
     </section>
 
+    <!-- Planes de Precios -->
+    <section class="pricing" id="precios">
+        <div class="container">
+            <h2 class="section-title">¡Multiplica tus Ventas Ahora! - Planes Exclusivos</h2>
+            <div class="pricing-container">
+                <div class="pricing-card free">
+                    <div class="pricing-header">
+                        <h3>Consulta Inicial</h3>
+                        <div class="price">
+                            <span class="price-value">GRATIS</span>
+                        </div>
+                        <div class="offer-tag">Primera Sesión</div>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Análisis de mercado y competencia</li>
+                            <li><i class="fas fa-check"></i> Propuesta de estrategia</li>
+                            <li><i class="fas fa-check"></i> Diseño e Identificación de Mejoras</li>
+                            <li><i class="fas fa-check"></i> Sin permanencia</li>
+                            <li><i class="fas fa-check"></i> Sin compromiso</li>
+                        </ul>
+                    </div>
+                    <button onclick="location.href='#contacto'" class="cta-btn primary-button destacado-btn">CONSULTA GRATIS</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Sección de Contacto -->
     <section id="contacto" class="contact">
         <div class="container">
@@ -634,7 +1176,7 @@
                     <h3>Envíanos un mensaje</h3>
                     <form id="contactForm" action="https://formsubmit.co/6272e52adf5d1fb560a967de6019f639" method="POST">
                         <input type="hidden" name="_subject" value="SPMarketing - Agency">
-                        <input type="hidden" name="_next" value="https://spmarketing97.github.io/SPMarketing-Agency/thank-you.html">
+                        <input type="hidden" name="_next" value="thank-you.html">
                         <input type="hidden" name="_captcha" value="false">
                         <input type="hidden" name="_cc" value="hristiankrasimirov7@gmail.com">
                         
@@ -812,7 +1354,7 @@
     </section>
 
     <!-- Footer -->
-    <footer>
+    <footer id="footer" class="footer-area pt-120">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-contact">
@@ -849,14 +1391,182 @@
         </div>
     </footer>
 
-    <!-- Botón Volver Arriba -->
-    <div class="scroll-top-btn" id="scrollTopBtn">
-        <i class="fas fa-arrow-up"></i>
-        <span></span>
+    <!-- Contador Regresivo Flotante -->
+    <div class="contador-flotante" id="countdown">
+        <div class="contador-titulo">Oferta Especial</div>
+        <div class="contador-tiempo">
+            <span id="minutos">25</span>:<span id="segundos">00</span>
+        </div>
     </div>
-
+    
+    <!-- Cargar primero script.js antes que los demás scripts -->
+    <script src="script.js"></script>
     <script src="assets/js/main.js"></script>
-    <script src="assets/js/scroll-top.js"></script>
-    <script src="assets/js/chatbot-loader.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log("Inicializando chatbot minimalista");
+            
+            // 1. Eliminar cualquier chatbot duplicado
+            const chatbotIcons = document.querySelectorAll('.chatbot-icon');
+            chatbotIcons.forEach(icon => {
+                if (icon && icon.parentNode) {
+                    icon.parentNode.removeChild(icon);
+                }
+            });
+            
+            // 2. Configurar los listeners para abrir/cerrar el chat
+            const chatButton = document.getElementById('chatbot-toggle');
+            const closeButton = document.getElementById('chatbot-close');
+            const chatInput = document.getElementById('chatbot-input');
+            const sendButton = document.getElementById('chatbot-send');
+            
+            if (chatButton) {
+                chatButton.addEventListener('click', function() {
+                    const container = document.getElementById('chatbot-container');
+                    if (container) {
+                        // Abrir el chat
+                        container.classList.add('open');
+                        container.style.opacity = '1';
+                        container.style.visibility = 'visible';
+                        container.style.display = 'flex';
+                        container.style.pointerEvents = 'all';
+                        
+                        // Mostrar mensaje de bienvenida si el chat está vacío
+                        const messages = document.getElementById('chatbot-messages');
+                        if (messages && messages.children.length === 0 && typeof showWelcomeMessage === 'function') {
+                            showWelcomeMessage();
+                        }
+                        
+                        // Enfocar el input
+                        setTimeout(() => {
+                            if (chatInput) chatInput.focus();
+                        }, 300);
+                    }
+                });
+            }
+            
+            if (closeButton) {
+                closeButton.addEventListener('click', function() {
+                    const container = document.getElementById('chatbot-container');
+                    if (container) {
+                        container.classList.remove('open');
+                        container.style.opacity = '0';
+                        container.style.visibility = 'hidden';
+                        container.style.pointerEvents = 'none';
+                    }
+                });
+            }
+            
+            // 3. Configurar los listeners para enviar mensajes
+            if (chatInput && sendButton) {
+                // Enviar al presionar Enter
+                chatInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        if (typeof handleSendMessage === 'function') {
+                            handleSendMessage();
+                        }
+                    }
+                });
+                
+                // Enviar al hacer clic en el botón
+                sendButton.addEventListener('click', function() {
+                    if (typeof handleSendMessage === 'function') {
+                        handleSendMessage();
+                    }
+                });
+            }
+        });
+    </script>
+
+    <!-- Script para el botón de volver arriba -->
+    <script>
+        // Intentar configurar de nuevo si no está listo
+        if (document.readyState === 'complete' || document.readyState === 'interactive') {
+            // No se llama a setupScrollTopButton
+        }
+    </script>
+
+    <!-- Chatbot Container -->
+    <div id="chatbot-container" class="chatbot-container" style="display: none; position: fixed; bottom: 100px; right: 30px; width: 350px; min-height: 450px; background-color: white; border-radius: 15px; box-shadow: 0 5px 25px rgba(0,0,0,0.2); z-index: 9999; flex-direction: column; opacity: 0; transform: translateY(20px); transition: all 0.3s ease;">
+        <div class="chatbot-header" style="padding: 15px; background: linear-gradient(135deg, #003366, #0066cc); color: white; border-top-left-radius: 15px; border-top-right-radius: 15px; display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; align-items: center;">
+                <img src="assets/img/LOGO PRINCIPAL.jpg" alt="SPMarketing Logo" style="height: 30px; width: 30px; border-radius: 50%; margin-right: 10px; object-fit: cover;">
+                <h3 style="margin: 0; font-size: 16px; font-weight: 600;">Chat de SPMarketing</h3>
+            </div>
+            <button id="chatbot-close" style="background: none; border: none; color: white; cursor: pointer; font-size: 20px; padding: 0; display: flex; align-items: center; justify-content: center;">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div id="chatbot-messages" style="padding: 15px; flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 10px;"></div>
+        <div class="chatbot-input-container" style="padding: 15px; border-top: 1px solid #e9ecef; display: flex;">
+            <input type="text" id="chatbot-input" placeholder="Escribe tu mensaje..." style="flex: 1; padding: 12px 15px; border: 1px solid #e9ecef; border-radius: 25px; outline: none;">
+            <button id="chatbot-send" style="background: linear-gradient(135deg, #003366, #0066cc); color: white; border: none; border-radius: 50%; width: 45px; height: 45px; margin-left: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+    
+    <!-- Chat Toggle Button -->
+    <div id="chatbot-toggle" style="position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background: linear-gradient(135deg, #003366, #0066cc); border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; z-index: 9999; transition: all 0.3s ease;">
+        <i class="fas fa-comment-dots" style="color: white; font-size: 24px;"></i>
+    </div>
+    
+    <!-- ========================= scroll-top ========================= -->
+    <!-- Eliminado el botón de scroll-top que ya no se usa -->
+
+    <!-- ========================= JS here ========================= -->
+    <script src="assets/js/bootstrap.bundle-5.0.0.alpha-min.js"></script>
+    <script src="assets/js/wow.min.js"></script>
+    <script src="assets/js/imagesloaded.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="chatbot.js"></script>
+    <script>
+      // ==== for menu scroll
+      const pageLink = document.querySelectorAll(".page-scroll");
+
+      pageLink.forEach((elem) => {
+        elem.addEventListener("click", (e) => {
+          e.preventDefault();
+          document.querySelector(elem.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+            offsetTop: 1 - 60,
+          });
+        });
+      });
+
+      // section menu active
+      function onScroll(event) {
+        const sections = document.querySelectorAll(".page-scroll");
+        const scrollPos =
+          window.pageYOffset ||
+          document.documentElement.scrollTop ||
+          document.body.scrollTop;
+
+        for (let i = 0; i < sections.length; i++) {
+          const currLink = sections[i];
+          const val = currLink.getAttribute("href");
+          const refElement = document.querySelector(val);
+          const scrollTopMinus = scrollPos + 73;
+          if (
+            refElement.offsetTop <= scrollTopMinus &&
+            refElement.offsetTop + refElement.offsetHeight > scrollTopMinus
+          ) {
+            document
+              .querySelector(".page-scroll")
+              .classList.remove("active");
+            currLink.classList.add("active");
+          } else {
+            currLink.classList.remove("active");
+          }
+        }
+      }
+
+      window.document.addEventListener("scroll", onScroll);
+      
+      // Font Awesome para los iconos del chatbot
+      var fontAwesomeScript = document.createElement('script');
+      fontAwesomeScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js';
+      document.head.appendChild(fontAwesomeScript);
+    </script>
 </body>
 </html>
