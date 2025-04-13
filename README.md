@@ -14,13 +14,22 @@ SPMarketing - AGENCY/
 ├── assets/                 # Recursos estáticos
 │   ├── css/                # Archivos CSS
 │   │   ├── animation.css   # Estilos para animaciones
+│   │   ├── chat-widget.css # Estilos para el widget de chat
 │   │   └── styles.css      # Estilos principales
 │   ├── img/                # Imágenes del sitio
 │   │   ├── LOGO PRINCIPAL.jpg
 │   │   └── ...
 │   └── js/                 # Scripts JavaScript
+│       ├── calendar.js     # Funcionalidades del calendario
+│       ├── chat-widget.js  # Widget de chat
 │       ├── chatbot-loader.js # Cargador del chatbot
-│       └── main.js         # Funcionalidades principales
+│       ├── chatbot.js      # Motor principal del chatbot
+│       ├── chatbot-custom.js # Personalización del chatbot
+│       ├── main.js         # Funcionalidades principales
+│       ├── pricing.js      # Funcionalidades de la página de precios
+│       ├── pricing-chat.js # Chat en página de precios
+│       ├── script.js       # Scripts generales
+│       └── scripts.js      # Scripts adicionales
 │
 ├── Python/                 # Scripts y servicios de Python
 │   ├── chatbot.py          # Servicio de chatbot
@@ -34,18 +43,39 @@ SPMarketing - AGENCY/
 │   ├── privacy-policy.html
 │   └── terms-of-use.html
 │
+├── Chatbot/                # Recursos adicionales del chatbot
+│
 ├── Cuestionario/           # Sistema de cuestionarios para clientes
+│
+├── informes/               # Carpeta para almacenar informes generados
 │
 ├── index.html              # Página principal
 ├── precios.html            # Página de planes y precios
 ├── thank-you.html          # Página de agradecimiento post-contacto
-├── iniciar_servicios.bat   # Script para iniciar todos los servicios automáticamente
-├── iniciar_informe.bat     # Script para iniciar el servicio de informes
-├── iniciar_informe.ps1     # Script PowerShell para informes en segundo plano
+├── chatbot-fix.js          # Script de reparación del chatbot
+├── form-handler.php        # Manejador del formulario de contacto
+├── iniciar_informes.bat    # Script para iniciar el servicio de informes
+├── informe_landing_page.py # Generador de informes de la landing page
+├── README.md               # Este archivo
+├── README-INFORMES.md      # Documentación específica de informes
+├── requirements.txt        # Dependencias de Python
+├── styles-old.css          # Versión anterior de estilos (archivo de respaldo)
 ├── .gitignore              # Configuración para excluir archivos en Git
-├── .gitattributes          # Configuración para Git
-└── README.md               # Este archivo
+└── .env                    # Variables de entorno (no subir a GitHub)
 ```
+
+## Archivos para Subir a GitHub
+
+Al subir este proyecto a GitHub, asegúrate de incluir todos los archivos excepto los siguientes (que ya están especificados en el archivo .gitignore):
+
+- `__pycache__/` y archivos `.pyc` (archivos compilados de Python)
+- `.env` (contiene información sensible como credenciales)
+- Archivos temporales en `informes/`
+- Archivos de logs (`.log`)
+- `iniciar_informes.bat` (script específico para entorno local)
+- `pyrightconfig.json` (configuración específica del entorno de desarrollo)
+
+Si necesitas añadir más archivos a la lista de ignorados, edita el archivo `.gitignore` en la raíz del proyecto.
 
 ## Tecnologías Utilizadas
 

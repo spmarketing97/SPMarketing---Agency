@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -22,6 +22,151 @@
     <!-- Script de reparación del chatbot -->
     <script src="chatbot-fix.js" defer></script>
     <style>
+        .pricing-cta-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        /* Mejoras responsivas para dispositivos móviles */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2rem;
+                line-height: 1.3;
+            }
+            
+            .hero-content p {
+                font-size: 1rem;
+            }
+            
+            .minimalista-menu .menu ul {
+                gap: 15px;
+            }
+            
+            .minimalista-menu .menu ul li a {
+                font-size: 0.9rem;
+                letter-spacing: 0.5px;
+            }
+            
+            .testimonial-slide {
+                padding: 15px;
+            }
+            
+            .testimonial-quote p {
+                font-size: 0.95rem;
+                line-height: 1.5;
+            }
+            
+            .pricing-card {
+                padding: 1.2rem;
+            }
+            
+            .benefit-card {
+                padding: 1.2rem;
+            }
+            
+            .about-content-minimal {
+                flex-direction: column;
+            }
+            
+            .about-text-minimal, .about-image-minimal {
+                width: 100%;
+            }
+            
+            #chatbot-container {
+                width: 290px !important;
+                height: 390px !important;
+                bottom: 85px !important;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .section-title {
+                font-size: 1.6rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+            
+            .minimalista-menu {
+                padding: 10px 0;
+            }
+            
+            .minimalista-menu .logo-container img {
+                max-width: 120px;
+            }
+            
+            .section-block {
+                padding: 3rem 0;
+            }
+            
+            .testimonial-quote p {
+                font-size: 0.9rem;
+            }
+            
+            .testimonial-person h3 {
+                font-size: 1rem;
+            }
+            
+            .testimonial-person p {
+                font-size: 0.8rem;
+            }
+            
+            .pricing-card .price {
+                font-size: 2rem;
+            }
+            
+            .contact-form, .contact-calendar {
+                padding: 1.2rem;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            #chatbot-container {
+                width: 250px !important;
+                height: 370px !important;
+                bottom: 75px !important;
+                right: 15px !important;
+            }
+        }
+        
+        .secondary-button {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            padding: 0.8rem 1.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .secondary-button:hover {
+            background-color: rgba(0, 51, 102, 0.1);
+            transform: translateY(-3px);
+        }
+        
+        .pricing-persuasive-text {
+            font-size: 0.9rem;
+            color: #e74c3c;
+            font-weight: 500;
+            margin-top: 12px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse-text {
+            0% { opacity: 0.7; }
+            50% { opacity: 1; }
+            100% { opacity: 0.7; }
+        }
         .nav-cta-btn {
             display: inline-block;
             background-color: var(--accent-color);
@@ -549,6 +694,374 @@
             margin-bottom: 1rem;
             display: inline-block;
         }
+
+        /* Estilos para la flecha minimalista */
+        .scroll-arrow {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        
+        .arrow-down {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+        
+        .arrow-down i {
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        .arrow-down:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.3);
+            }
+            70% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+            }
+        }
+
+        /* Estilos para las pruebas sociales flotantes */
+        .social-proof-container {
+            position: fixed;
+            bottom: 25px;
+            left: 25px;
+            z-index: 999;
+            max-width: 250px;
+        }
+        
+        .social-proof-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            padding: 10px;
+            margin-bottom: 8px;
+            transform: translateY(100px);
+            opacity: 0;
+            animation: slideUp 0.5s forwards, fadeOut 0.5s 5s forwards;
+            overflow: hidden;
+        }
+        
+        @keyframes slideUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+        }
+        
+        .social-proof-name {
+            font-weight: 600;
+            font-size: 0.8rem;
+            color: var(--primary-color);
+            margin-bottom: 3px;
+        }
+        
+        .social-proof-action {
+            font-size: 0.7rem;
+            color: #666;
+            display: flex;
+            align-items: center;
+        }
+        
+        .social-proof-time {
+            font-size: 0.65rem;
+            color: #999;
+            margin-top: 3px;
+        }
+        
+        .social-proof-rating {
+            color: #f8ce0b;
+            font-size: 0.7rem;
+            margin-top: 3px;
+        }
+
+        .social-proof-review {
+            font-size: 0.75rem;
+            color: #555;
+            margin-top: 3px;
+            font-style: italic;
+        }
+        
+        .social-proof-action .plan-badge {
+            background-color: #eef5fc;
+            color: var(--primary-color);
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            margin-left: 5px;
+        }
+        
+        /* Estilos para la sección Sobre Nosotros */
+        .about-us {
+            padding: 5rem 0;
+            background-color: #f9f9f9;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.5s ease;
+            transform: perspective(1000px) rotateY(3deg);
+        }
+        
+        .about-image:hover {
+            transform: perspective(1000px) rotateY(0);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            vertical-align: middle;
+            transition: all 0.5s ease;
+        }
+        
+        .about-text {
+            flex: 1;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+        
+        .about-text h3 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .about-text p {
+            margin-bottom: 1.2rem;
+            line-height: 1.7;
+            color: #555;
+            font-size: 1.05rem;
+        }
+        
+        .about-highlight {
+            background: linear-gradient(135deg, rgba(var(--primary-rgb), 0.05), rgba(var(--accent-rgb), 0.05));
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            border-left: 3px solid var(--accent-color);
+        }
+        
+        .about-highlight p {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: #444;
+            margin: 0;
+            line-height: 1.8;
+        }
+        
+        .about-highlight i {
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            margin: 0 5px;
+            opacity: 0.8;
+        }
+        
+        .highlight-number {
+            color: var(--accent-color);
+            font-weight: 700;
+            font-size: 1.15rem;
+        }
+        
+        .about-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+            text-align: center;
+        }
+        
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .stat-item .number {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-item .label {
+            font-size: 0.9rem;
+            color: #777;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-image, .about-text {
+                width: 100%;
+            }
+        }
+        
+        /* Estilos para las secciones de Beneficios y Servicios */
+        .section-container {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #f9f9f9, #f3f3f3);
+        }
+        
+        .section-block {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto 2.5rem;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.03);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section-block:last-child {
+            margin-bottom: 0;
+        }
+        
+        .section-block:hover {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section-block .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+            letter-spacing: -0.5px;
+            position: relative;
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+        
+        .section-block .section-title::after {
+            content: '';
+            display: block;
+            height: 3px;
+            width: 80px;
+            background: var(--accent-color);
+            margin: 1rem auto 0;
+            border-radius: 2px;
+        }
+        
+        .section-block .minimalista-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .section-block .minimalista-card {
+            background: #f8f9fa;
+            border: none;
+            border-radius: 6px;
+            padding: 1.2rem;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 200px;
+            min-height: 180px;
+        }
+        
+        .section-block .minimalista-card:hover {
+            background: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transform: translateY(-3px);
+        }
+        
+        .section-block .service-icon {
+            color: var(--accent-color);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            background: rgba(255, 69, 0, 0.05);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .section-block .minimalista-card:hover .service-icon {
+            background: rgba(255, 69, 0, 0.15);
+            transform: scale(1.1);
+        }
+        
+        .section-block .service-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .section-block .service-description {
+            text-align: center;
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+        
+        @media (max-width: 992px) {
+            .section-block .minimalista-grid {
+                gap: 1rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .section-block .minimalista-card {
+                width: 45%;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .section-block .minimalista-card {
+                width: 100%;
+            }
+        }
         
         .minimalista-card .service-title {
             font-size: 1.3rem;
@@ -850,6 +1363,579 @@
             from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        /* Estilos para el diseño minimalista flotante */
+        .minimalista-grid-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 10px;
+            margin-bottom: 2rem;
+        }
+        
+        /* Estilos para el slider de testimonios */
+        .testimonial-slider-container {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto 40px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border-radius: 15px;
+            background-color: white;
+        }
+        
+        .testimonial-slider {
+            display: flex;
+            transition: transform 0.5s ease;
+            height: 100%;
+        }
+        
+        .testimonial-slide {
+            min-width: 100%;
+            transition: opacity 0.5s ease;
+        }
+        
+        .testimonial-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 30px;
+            text-align: center;
+        }
+        
+        .testimonial-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 20px;
+            border: 5px solid rgba(0, 51, 102, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .testimonial-quote {
+            margin-bottom: 20px;
+            position: relative;
+            padding: 0 20px;
+        }
+        
+        .quote-icon {
+            color: rgba(0, 51, 102, 0.1);
+            font-size: 30px;
+            position: absolute;
+            top: -15px;
+            left: 0;
+        }
+        
+        .testimonial-quote p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+        }
+        
+        .testimonial-person {
+            margin-top: 20px;
+        }
+        
+        .testimonial-person h3 {
+            font-size: 1.3rem;
+            margin: 0 0 5px 0;
+            color: var(--primary-color);
+        }
+        
+        .testimonial-person p {
+            margin: 0 0 10px 0;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .rating {
+            color: #FFD700;
+            font-size: 1.1rem;
+        }
+        
+        .slider-indicators {
+            display: flex;
+            justify-content: center;
+            position: absolute;
+            bottom: 15px;
+            width: 100%;
+            gap: 10px;
+        }
+        
+        .indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: rgba(0, 51, 102, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .indicator.active {
+            background-color: var(--primary-color);
+            transform: scale(1.2);
+        }
+        
+        /* Animaciones para el slider - más minimalistas */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+        
+        .testimonial-slide.active {
+            animation: fadeIn 1.2s forwards;
+        }
+        
+        .testimonial-slide.inactive {
+            animation: fadeOut 1.2s forwards;
+        }
+        
+        /* Estilos para el menú minimalista */
+        .minimalista-menu {
+            padding: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .minimalista-menu .menu ul {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+        
+        .minimalista-menu .menu ul li a {
+            font-weight: 400;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            color: rgba(0, 51, 102, 0.8);
+            position: relative;
+        }
+        
+        .minimalista-menu .menu ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+        
+        .minimalista-menu .menu ul li a:hover {
+            color: var(--primary-color);
+        }
+        
+        .minimalista-menu .menu ul li a:hover::after {
+            width: 100%;
+        }
+        
+        .minimalista-menu .cta-menu-container {
+            margin-left: 20px;
+        }
+        
+        .cta-center {
+            display: flex;
+            justify-content: center;
+            margin: 30px auto;
+        }
+        
+        /* Estilos para los testimonios minimalistas */
+        .testimonial-slider-container.minimalista {
+            max-width: 700px;
+            margin: 0 auto 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            background-color: white;
+            padding: 0;
+            overflow: hidden;
+        }
+        
+        .testimonial-slider-container.minimalista .testimonial-content {
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .testimonial-slider-container.minimalista .testimonial-quote {
+            margin-bottom: 25px;
+            position: relative;
+            padding: 0;
+        }
+        
+        .testimonial-slider-container.minimalista .quote-icon {
+            color: rgba(0, 51, 102, 0.1);
+            font-size: 24px;
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .testimonial-slider-container.minimalista .testimonial-quote p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-top: 25px;
+            font-style: italic;
+        }
+        
+        .testimonial-slider-container.minimalista .testimonial-person h3 {
+            font-size: 1.1rem;
+            margin: 0 0 5px 0;
+            color: var(--primary-color);
+        }
+        
+        .testimonial-slider-container.minimalista .testimonial-person p {
+            margin: 0;
+            font-size: 0.85rem;
+            color: #666;
+            font-weight: 500;
+        }
+        
+        .highlight-result {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        /* Estilos para el toast de errores */
+        .error-toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background-color: #f44336;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 4px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            z-index: 1000;
+            font-size: 1rem;
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        
+        .error-toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+        
+        /* Estilos para el spinner de carga */
+        .spinner {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 0.8s linear infinite;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Mejorar estilos para los mensajes de error en el formulario */
+        .form-group .error-message {
+            color: #f44336;
+            font-size: 0.85rem;
+            margin-top: 5px;
+            display: none;
+            animation: shake 0.5s ease;
+        }
+        
+        .form-group input.error, 
+        .form-group select.error, 
+        .form-group textarea.error {
+            border-color: #f44336;
+            box-shadow: 0 0 0 2px rgba(244, 67, 54, 0.25);
+        }
+        
+        .privacy-checkbox.error .custom-checkbox {
+            color: #f44336;
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-5px); }
+            40%, 80% { transform: translateX(5px); }
+        }
+
+        .minimalista-card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 25px;
+            width: 220px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .minimalista-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-color: var(--accent-color);
+        }
+
+        .minimalista-card.accent {
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .minimalista-icon {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(0, 51, 102, 0.05);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 15px;
+            transition: all 0.3s ease;
+        }
+
+        .minimalista-card:hover .minimalista-icon {
+            background-color: var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        .minimalista-icon i {
+            font-size: 24px;
+            color: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .minimalista-card:hover .minimalista-icon i {
+            color: white;
+        }
+
+        .minimalista-card h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .minimalista-card p {
+            font-size: 14px;
+            color: #666;
+            margin: 0;
+        }
+        
+        /* Estilos para sección Sobre Nosotros minimalista */
+        .about-us-minimal {
+            background-color: #f9f9f9;
+            padding: 5rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .about-us-minimal::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+        }
+        
+        .about-content-minimal {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            background-color: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        
+        .about-text-minimal {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .about-image-minimal {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .ai-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.5s ease;
+        }
+        
+        .ai-image:hover {
+            transform: scale(1.03);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .about-highlight-minimal {
+            background-color: rgba(0, 51, 102, 0.05);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+            border-left: 3px solid var(--accent-color);
+        }
+        
+        .text-highlight {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .stats-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 30px;
+            gap: 15px;
+        }
+        
+        .stat-item {
+            flex: 1;
+            min-width: 120px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-color: var(--accent-color);
+        }
+        
+        .stat-number {
+            display: block;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            display: block;
+            font-size: 0.8rem;
+            color: #666;
+        }
+        
+        @media (max-width: 768px) {
+            .about-content-minimal {
+                flex-direction: column-reverse;
+            }
+            
+            .about-image-minimal {
+                margin-bottom: 20px;
+            }
+            
+            .stats-container {
+                gap: 10px;
+            }
+        }
+        
+        /* Estilos mejorados para el formulario de contacto */
+        .contact-form input[type="text"],
+        .contact-form input[type="email"],
+        .contact-form input[type="tel"],
+        .contact-form select,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+            margin-top: 5px;
+            cursor: text;
+        }
+        
+        .contact-form select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url('data:image/svg+xml;utf8,<svg fill="%23333" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+        }
+        
+        .contact-form input[type="text"]:focus,
+        .contact-form input[type="email"]:focus,
+        .contact-form input[type="tel"]:focus,
+        .contact-form select:focus,
+        .contact-form textarea:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 5px rgba(0, 51, 102, 0.2);
+            outline: none;
+        }
+        
+        .contact-form input[type="checkbox"] {
+            opacity: 1;
+            position: relative;
+            cursor: pointer;
+            margin-right: 10px;
+            width: auto;
+            height: auto;
+        }
+        
+        .privacy-checkbox {
+            cursor: pointer;
+        }
+        
+        .custom-checkbox {
+            cursor: pointer;
+            user-select: none;
+        }
+        
+        .checkmark {
+            cursor: pointer;
+        }
+        
+        /* Corregir estilos para los mensajes de error */
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .error-message {
+            display: none;
+            color: #e74c3c;
+            font-size: 0.8rem;
+            margin-top: 5px;
+        }
         
         @keyframes fadeOut {
             from { opacity: 1; transform: translateY(0); }
@@ -925,20 +2011,23 @@
     <!-- Header con CTA mejorado -->
     <header id="inicio">
         <div class="container">
-            <nav id="navbar">
-                <div class="logo">
-                    <a href="#inicio"><img src="assets/img/LOGO PRINCIPAL.jpg" alt="SPMarketing Logo"></a>
+            <nav id="navbar" class="minimalista-menu" style="display: flex; align-items: center; justify-content: space-between;">
+                <div class="logo" style="margin-left: 20px;">
+                    <a href="#inicio"><img src="assets/img/LOGO PRINCIPAL.jpg" alt="SPMarketing Logo" style="height: 40px; width: 40px; border-radius: 50%; object-fit: cover; vertical-align: middle;"></a>
                 </div>
-                <div class="menu" id="menu">
-                    <ul>
+
+                <div class="menu" id="menu" style="flex: 1; display: flex; justify-content: center;">
+                    <ul style="display: flex; justify-content: center; gap: 15px;">
                         <li><a href="#inicio">Inicio</a></li>
                         <li><a href="#servicios">Servicios</a></li>
                         <li><a href="#beneficios">Beneficios</a></li>
                         <li><a href="#testimonios">Testimonios</a></li>
-                        <li><a href="#sobre-nosotros">Sobre Nosotros</a></li>
-                        <li><a href="precios.html" target="_blank">PLANES</a></li>
-                        <li><button onclick="location.href='#contacto'" class="nav-cta-btn">CONSULTA GRATUITA</button></li>
+                        <li><a href="#sobre-nosotros">Nosotros</a></li>
+                        <li><a href="precios.html" target="_blank">Planes</a></li>
                     </ul>
+                </div>
+                <div class="cta-menu-container">
+                    <button onclick="location.href='#contacto'" class="nav-cta-btn">CONSULTA GRATUITA</button>
                 </div>
                 <div class="hamburger" id="hamburger">
                     <div class="line"></div>
@@ -954,178 +2043,433 @@
                     </div>
                     <h1 class="hero-title-pricing">Soluciones a Medida para <span class="highlight">Negocios</span></h1>
                     <p class="hero-subtitle-pricing">Revolucionamos a Emprendedores y Negocios con el Marketing Digital y la AI</p>
-                    <div class="hero-cta">
-                        <a href="#servicios" class="cta-btn primary-button" id="scroll-to-services"><i class="fas fa-arrow-down"></i> VER SERVICIOS</a>
+                    <div class="scroll-arrow">
+                        <a href="#servicios" class="arrow-down" id="banner-services-arrow">
+                            <i class="fas fa-chevron-down"></i>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Beneficios -->
-    <section id="beneficios" class="services">
-        <div class="container">
-            <h2 class="section-title">Nuestros Beneficios</h2>
-            <div class="minimalista-grid">
+    <!-- Beneficios y Servicios en bloques separados -->
+    <div class="section-container">
+        <!-- Beneficios - Diseño Minimalista Flotante-->
+        <section id="beneficios" class="section-block">
+            <h2 class="section-title">Por Qué Elegirnos</h2>
+            <div class="minimalista-grid-container">
                 <!-- ROI -->
                 <div class="minimalista-card">
-                    <i class="fas fa-chart-line service-icon"></i>
-                    <h3 class="service-title">ROI Garantizado</h3>
-                    <p class="service-description">+150% ROI promedio con estrategias optimizadas</p>
+                    <div class="minimalista-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Resultados Medibles</h3>
+                    <p>+150% ROI promedio</p>
                 </div>
 
                 <!-- IA -->
-                <div class="minimalista-card">
-                    <i class="fas fa-robot service-icon"></i>
-                    <h3 class="service-title">Tecnología IA</h3>
-                    <p class="service-description">Optimización automática 24/7 con inteligencia artificial</p>
+                <div class="minimalista-card accent">
+                    <div class="minimalista-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>IA Avanzada</h3>
+                    <p>Optimización 24/7</p>
                 </div>
 
                 <!-- Tiempo de Respuesta -->
                 <div class="minimalista-card">
-                    <i class="fas fa-clock service-icon"></i>
-                    <h3 class="service-title">Respuesta Rápida</h3>
-                    <p class="service-description">Atención personalizada en menos de 24 horas</p>
+                    <div class="minimalista-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Atención Inmediata</h3>
+                    <p>Respuesta en 24h</p>
                 </div>
 
-                <!-- Experiencia -->
+                <!-- Sin Permanencia -->
                 <div class="minimalista-card">
-                    <i class="fas fa-trophy service-icon"></i>
-                    <h3 class="service-title">Experiencia Comprobada</h3>
-                    <p class="service-description">+6.849 clientes satisfechos y resultados comprobables</p>
+                    <div class="minimalista-icon">
+                        <i class="fas fa-unlock-alt"></i>
+                    </div>
+                    <h3>Sin Permanencia</h3>
+                    <p>Flexibilidad total</p>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Servicios -->
-    <section id="servicios" class="services">
-        <div class="container">
+        <!-- Servicios - Diseño Minimalista Flotante -->
+        <section id="servicios" class="section-block">
             <h2 class="section-title">Nuestros Servicios</h2>
-            <div class="minimalista-grid">
+            <div class="minimalista-grid-container">
                 <!-- Desarrollo Web -->
                 <div class="minimalista-card">
-                    <i class="fas fa-laptop-code service-icon"></i>
-                    <h3 class="service-title">Desarrollo Web</h3>
-                    <p class="service-description">Sitios web optimizados para conversión</p>
+                    <div class="minimalista-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Desarrollo Web</h3>
+                    <p>Web optimizadas para conversión</p>
                 </div>
 
                 <!-- Landing Pages -->
-                <div class="minimalista-card">
-                    <i class="fas fa-file-code service-icon"></i>
-                    <h3 class="service-title">Landing Pages</h3>
-                    <p class="service-description">Páginas optimizadas para maximizar conversiones</p>
+                <div class="minimalista-card accent">
+                    <div class="minimalista-icon">
+                        <i class="fas fa-file-code"></i>
+                    </div>
+                    <h3>Landing Pages AI</h3>
+                    <p>Diseño optimizado con IA</p>
                 </div>
 
                 <!-- Marketing Digital -->
                 <div class="minimalista-card">
-                    <i class="fas fa-chart-line service-icon"></i>
-                    <h3 class="service-title">Marketing Digital</h3>
-                    <p class="service-description">Estrategias personalizadas para aumentar ventas</p>
+                    <div class="minimalista-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Marketing Digital</h3>
+                    <p>Estrategias de alto impacto</p>
                 </div>
 
-                <!-- Redes Sociales -->
+                <!-- Automatización IA -->
                 <div class="minimalista-card">
-                    <i class="fas fa-share-alt service-icon"></i>
-                    <h3 class="service-title">Gestión de Redes Sociales</h3>
-                    <p class="service-description">Potencia tu marca en las principales redes sociales</p>
+                    <div class="minimalista-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Automatización AI</h3>
+                    <p>Análisis predictivo inteligente</p>
                 </div>
             </div>
             <div class="cta-center">
-                <a href="#contacto" class="primary-button">EMPIEZA AHORA</a>
+                <a href="#contacto" class="primary-button">SOLICITAR CONSULTA GRATUITA</a>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
-    <!-- Sobre Nosotros en modo widget -->
-    <section id="sobre-nosotros" class="about-us widget-section">
+    <!-- Sobre Nosotros - Diseño Minimalista con IA -->
+    <section id="sobre-nosotros" class="about-us-minimal">
         <div class="container">
-            <div class="widget-card large">
-                <div class="stats-grid">
-                    <div class="stat-widget">
-                        <span class="number">+6.849</span>
-                        <span class="label">Clientes</span>
+            <h2 class="section-title">Sobre Nosotros</h2>
+            <div class="about-content-minimal">
+                <div class="about-text-minimal">
+                    <h3>Innovando en Marketing Digital desde 2020</h3>
+                    <p>En <strong>SPMarketing Agency</strong> somos expertos en transformar el panorama online de nuestros clientes a través de estrategias personalizadas e impulsadas por inteligencia artificial.</p>
+                    
+                    <div class="about-highlight-minimal">
+                        <p>Convertirnos en <span class="text-highlight">socios estratégicos</span> de tu negocio, combinando <span class="text-highlight">creatividad humana</span> con <span class="text-highlight">tecnología IA</span></p>
                     </div>
-                    <div class="stat-widget">
-                        <span class="number">98%</span>
-                        <span class="label">Retención</span>
+                    
+                    <div class="stats-container">
+                        <div class="stat-item">
+                            <span class="stat-number">+150%</span>
+                            <span class="stat-label">ROI Promedio</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">+500</span>
+                            <span class="stat-label">Clientes Satisfechos</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">24/7</span>
+                            <span class="stat-label">Optimización IA</span>
+                        </div>
                     </div>
-                    <div class="stat-widget">
-                        <span class="number">2020</span>
-                        <span class="label">Desde</span>
-                    </div>
+                </div>
+                <div class="about-image-minimal">
+                    <img src="assets/img/SOBRE NOSOTROS.png" alt="SPMarketing Agency Team" class="ai-image">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Sección de Testimonios -->
+    <!-- Sección de Testimonios - Slider Automático Minimalista -->
     <section id="testimonios" class="testimonials">
         <div class="container">
             <h2 class="section-title">Lo que dicen nuestros clientes</h2>
-            <div class="testimonials-container" id="testimonialSlider">
-                <div class="testimonial-card fade">
-                    <div class="testimonial-content">
-                        <p>"Desde que comenzamos a trabajar con SPMarketing, nuestras ventas en línea han aumentado un 75%. Su estrategia de SEO nos posicionó en los primeros resultados de Google."</p>
-                    </div>
-                    <div class="testimonial-info">
-                        <div class="testimonial-image">
-                            <img src="assets/img/Testimonio1.jpg" alt="María Rodríguez">
-                        </div>
-                        <h3>María Rodríguez</h3>
-                        <p class="testimonial-business">Boutique Online</p>
-                        <div class="testimonial-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
+            
+            <div class="testimonial-slider-container minimalista">
+                <div class="testimonial-slider" id="testimonialSlider">
+                    <!-- Testimonio 1 -->
+                    <div class="testimonial-slide">
+                        <div class="testimonial-content">
+                            <div class="testimonial-quote">
+                                <i class="fas fa-quote-left quote-icon"></i>
+                                <p>Nuestras ventas en línea han <span class="highlight-result">aumentado un 75%</span>. Su estrategia de SEO nos posicionó en los <span class="highlight-result">primeros resultados de Google</span>.</p>
+                            </div>
+                            <div class="testimonial-person">
+                                <h3>María R.</h3>
+                                <p>Boutique Online</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                
-                <div class="testimonial-card fade">
-                    <div class="testimonial-content">
-                        <p>"Su enfoque en marketing revolucionó nuestra marca. Pasamos de 500 a 15,000 seguidores en solo dos meses. Impresionante servicio."</p>
-                    </div>
-                    <div class="testimonial-info">
-                        <div class="testimonial-image">
-                            <img src="assets/img/Testimonio2.jpg" alt="Carlos Méndez">
-                        </div>
-                        <h3>Carlos Méndez</h3>
-                        <p class="testimonial-business">Marca de Ropa Urbana</p>
-                        <div class="testimonial-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
+                    
+                    <!-- Testimonio 2 -->
+                    <div class="testimonial-slide">
+                        <div class="testimonial-content">
+                            <div class="testimonial-quote">
+                                <i class="fas fa-quote-left quote-icon"></i>
+                                <p>Su enfoque en marketing <span class="highlight-result">revolucionó nuestra marca</span>. Pasamos de 500 a <span class="highlight-result">15,000 seguidores</span> en solo dos meses.</p>
+                            </div>
+                            <div class="testimonial-person">
+                                <h3>Carlos M.</h3>
+                                <p>Marca de Ropa</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                
-                <div class="testimonial-card fade">
-                    <div class="testimonial-content">
-                        <p>"La landing page que diseñaron para nuestra promoción de verano tuvo una tasa de conversión del 12%, muy por encima del 3% que teníamos anteriormente."</p>
-                    </div>
-                    <div class="testimonial-info">
-                        <div class="testimonial-image">
-                            <img src="assets/img/Testimonio3.jpg" alt="Laura Sánchez">
+                    
+                    <!-- Testimonio 3 -->
+                    <div class="testimonial-slide">
+                        <div class="testimonial-content">
+                            <div class="testimonial-quote">
+                                <i class="fas fa-quote-left quote-icon"></i>
+                                <p>La landing page logró una <span class="highlight-result">tasa de conversión del 12%</span>, muy por encima del 3% que teníamos anteriormente.</p>
+                            </div>
+                            <div class="testimonial-person">
+                                <h3>Laura S.</h3>
+                                <p>Agencia de Viajes</p>
+                            </div>
                         </div>
-                        <h3>Laura Sánchez</h3>
-                        <p class="testimonial-business">Agencia de Viajes</p>
-                        <div class="testimonial-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
+                    </div>
+                    
+                    <!-- Testimonio 4 -->
+                    <div class="testimonial-slide">
+                        <div class="testimonial-content">
+                            <div class="testimonial-quote">
+                                <i class="fas fa-quote-left quote-icon"></i>
+                                <p>Desde que implementamos su <span class="highlight-result">estrategia en redes sociales</span>, nuestro engagement ha <span class="highlight-result">incrementado un 200%</span>.</p>
+                            </div>
+                            <div class="testimonial-person">
+                                <h3>Javier P.</h3>
+                                <p>Consultoría Financiera</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonio 5 -->
+                    <div class="testimonial-slide">
+                        <div class="testimonial-content">
+                            <div class="testimonial-quote">
+                                <i class="fas fa-quote-left quote-icon"></i>
+                                <p>El <span class="highlight-result">rediseño de nuestra web</span> atrajo un <span class="highlight-result">40% más de tráfico</span> y mejoró la experiencia de nuestros usuarios.</p>
+                            </div>
+                            <div class="testimonial-person">
+                                <h3>Ana G.</h3>
+                                <p>Centro Educativo</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonio 6 -->
+                    <div class="testimonial-slide">
+                        <div class="testimonial-content">
+                            <div class="testimonial-quote">
+                                <i class="fas fa-quote-left quote-icon"></i>
+                                <p>La <span class="highlight-result">automatización de nuestras campañas</span> nos ha permitido dedicar más tiempo a la creatividad. <span class="highlight-result">ROI incrementado en un 85%</span>.</p>
+                            </div>
+                            <div class="testimonial-person">
+                                <h3>Roberto F.</h3>
+                                <p>Estudio de Diseño</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonio 7 -->
+                    <div class="testimonial-slide">
+                        <div class="testimonial-content">
+                            <div class="testimonial-quote">
+                                <i class="fas fa-quote-left quote-icon"></i>
+                                <p>Nuestra <span class="highlight-result">tienda online ha triplicado las ventas</span> gracias a la estrategia de marketing digital implementada.</p>
+                            </div>
+                            <div class="testimonial-person">
+                                <h3>Sofía M.</h3>
+                                <p>E-commerce</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonio 8 -->
+                    <div class="testimonial-slide">
+                        <div class="testimonial-content">
+                            <div class="testimonial-quote">
+                                <i class="fas fa-quote-left quote-icon"></i>
+                                <p>Las campañas de <span class="highlight-result">geolocalización aumentaron un 60%</span> la afluencia en nuestro local. Profesionales muy competentes.</p>
+                            </div>
+                            <div class="testimonial-person">
+                                <h3>Daniel R.</h3>
+                                <p>Restaurante</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonio 9 -->
+                    <div class="testimonial-slide">
+                        <div class="testimonial-content">
+                            <div class="testimonial-quote">
+                                <i class="fas fa-quote-left quote-icon"></i>
+                                <p>El <span class="highlight-result">posicionamiento SEO</span> nos ha permitido destacar entre la competencia. Ahora somos la <span class="highlight-result">primera opción en Google</span>.</p>
+                            </div>
+                            <div class="testimonial-person">
+                                <h3>Carmen L.</h3>
+                                <p>Academia de Idiomas</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonio 10 -->
+                    <div class="testimonial-slide">
+                        <div class="testimonial-content">
+                            <div class="testimonial-quote">
+                                <i class="fas fa-quote-left quote-icon"></i>
+                                <p>Hemos conseguido atraer un <span class="highlight-result">público más cualificado</span>, aumentando un <span class="highlight-result">45% las consultas</span> de nuevos pacientes.</p>
+                            </div>
+                            <div class="testimonial-person">
+                                <h3>Miguel A.</h3>
+                                <p>Clínica Dental</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonio 11 -->
+                    <div class="testimonial-slide">
+                        <div class="testimonial-content">
+                            <div class="testimonial-quote">
+                                <i class="fas fa-quote-left quote-icon"></i>
+                                <p>Las campañas en redes sociales aumentaron nuestra <span class="highlight-result">visibilidad un 120%</span>. Ahora tenemos seguidores mucho más comprometidos.</p>
+                            </div>
+                            <div class="testimonial-person">
+                                <h3>Isabel T.</h3>
+                                <p>Tienda de Moda</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonio 12 -->
+                    <div class="testimonial-slide">
+                        <div class="testimonial-content">
+                            <div class="testimonial-quote">
+                                <i class="fas fa-quote-left quote-icon"></i>
+                                <p>Su estrategia de <span class="highlight-result">growth hacking</span> nos permitió conseguir más de <span class="highlight-result">10,000 usuarios</span> en solo dos meses.</p>
+                            </div>
+                            <div class="testimonial-person">
+                                <h3>Alejandro B.</h3>
+                                <p>Startup Tecnológica</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonio 13 -->
+                    <div class="testimonial-slide">
+                        <div class="testimonial-content">
+                            <div class="testimonial-quote">
+                                <i class="fas fa-quote-left quote-icon"></i>
+                                <p>Hemos <span class="highlight-result">multiplicado por cinco las consultas</span> cualificadas de potenciales compradores gracias al marketing digital.</p>
+                            </div>
+                            <div class="testimonial-person">
+                                <h3>Patricia N.</h3>
+                                <p>Inmobiliaria</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonio 14 -->
+                    <div class="testimonial-slide">
+                        <div class="testimonial-content">
+                            <div class="testimonial-quote">
+                                <i class="fas fa-quote-left quote-icon"></i>
+                                <p>Gracias a su sistema de captación de leads, hemos conseguido un <span class="highlight-result">70% más de nuevas inscripciones</span>.</p>
+                            </div>
+                            <div class="testimonial-person">
+                                <h3>Martín S.</h3>
+                                <p>Gimnasio</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonio 15 -->
+                    <div class="testimonial-slide">
+                        <div class="testimonial-content">
+                            <div class="testimonial-quote">
+                                <i class="fas fa-quote-left quote-icon"></i>
+                                <p>El rediseño de nuestra identidad digital ha <span class="highlight-result">posicionado nuestra marca como referente</span> en el sector.</p>
+                            </div>
+                            <div class="testimonial-person">
+                                <h3>Elena R.</h3>
+                                <p>Productora Audiovisual</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonio 16 -->
+                    <div class="testimonial-slide">
+                        <div class="testimonial-content">
+                            <div class="testimonial-quote">
+                                <i class="fas fa-quote-left quote-icon"></i>
+                                <p>Las campañas dirigidas nos han proporcionado <span class="highlight-result">clientes mucho más cualificados</span>. Los resultados superan cualquier expectativa.</p>
+                            </div>
+                            <div class="testimonial-person">
+                                <h3>Pablo G.</h3>
+                                <p>Despacho de Abogados</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonio 17 -->
+                    <div class="testimonial-slide">
+                        <div class="testimonial-content">
+                            <div class="testimonial-quote">
+                                <i class="fas fa-quote-left quote-icon"></i>
+                                <p>Mi personal branding ha alcanzado un nivel que jamás imaginé. He <span class="highlight-result">multiplicado por siete mi audiencia</span> en LinkedIn.</p>
+                            </div>
+                            <div class="testimonial-person">
+                                <h3>Lucía D.</h3>
+                                <p>Coach Personal</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonio 18 -->
+                    <div class="testimonial-slide">
+                        <div class="testimonial-content">
+                            <div class="testimonial-quote">
+                                <i class="fas fa-quote-left quote-icon"></i>
+                                <p>Las estrategias de <span class="highlight-result">lead generation</span> nos han permitido captar inversores de alto nivel. El equipo entiende nuestro negocio.</p>
+                            </div>
+                            <div class="testimonial-person">
+                                <h3>Jorge V.</h3>
+                                <p>Servicios Financieros</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonio 19 -->
+                    <div class="testimonial-slide">
+                        <div class="testimonial-content">
+                            <div class="testimonial-quote">
+                                <i class="fas fa-quote-left quote-icon"></i>
+                                <p>Mi <span class="highlight-result">posicionamiento como experta</span> ha mejorado notablemente gracias a su estrategia de contenidos.</p>
+                            </div>
+                            <div class="testimonial-person">
+                                <h3>Marina L.</h3>
+                                <p>Consultora de RRHH</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonio 20 -->
+                    <div class="testimonial-slide">
+                        <div class="testimonial-content">
+                            <div class="testimonial-quote">
+                                <i class="fas fa-quote-left quote-icon"></i>
+                                <p>Las campañas de ASO y SEM nos han permitido <span class="highlight-result">multiplicar por nueve las descargas</span> de nuestra app.</p>
+                            </div>
+                            <div class="testimonial-person">
+                                <h3>Andrés C.</h3>
+                                <p>App Móvil</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <!-- No necesitamos contenedor adicional ya que todos los testimonios están directamente en el slider -->
+        </div>
             
-            <div class="testimonial-cta">
+        <div class="testimonial-cta">
                 <p class="testimonial-highlight">Únete a nuestros clientes satisfechos y potencia tu negocio con estrategias de marketing efectivas.</p>
                 <div class="cta-center">
                     <a href="#contacto" class="btn btn-primary">Solicitar Consulta Gratuita</a>
@@ -1156,7 +2500,11 @@
                             <li><i class="fas fa-check"></i> Sin compromiso</li>
                         </ul>
                     </div>
-                    <button onclick="location.href='#contacto'" class="cta-btn primary-button destacado-btn">CONSULTA GRATIS</button>
+                    <div class="pricing-cta-container">
+                        <button onclick="location.href='#contacto'" class="cta-btn primary-button destacado-btn">CONSULTA GRATIS</button>
+                        <a href="precios.html" class="cta-btn secondary-button">VER TODOS LOS PLANES <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <p class="pricing-persuasive-text" style="text-align: center; margin: 25px auto 10px; font-weight: bold;">¡No esperes más! Los cupos de la 1ª consulta gratuita son limitados ¡APROVECHA AHORA!</p>
                 </div>
             </div>
         </div>
@@ -1174,19 +2522,22 @@
                 <!-- Formulario de contacto -->
                 <div class="contact-form">
                     <h3>Envíanos un mensaje</h3>
-                    <form id="contactForm" action="https://formsubmit.co/6272e52adf5d1fb560a967de6019f639" method="POST">
-                        <input type="hidden" name="_subject" value="SPMarketing - Agency">
+                    <form id="contactForm" action="https://formsubmit.co/hristiankrasimirov7@gmail.com" method="POST">
+                        <input type="hidden" name="_subject" value="SPMarketing - Agency: Nueva Consulta">
                         <input type="hidden" name="_next" value="thank-you.html">
                         <input type="hidden" name="_captcha" value="false">
-                        <input type="hidden" name="_cc" value="hristiankrasimirov7@gmail.com">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_autoresponse" value="¡Gracias por contactar con SPMarketing Agency! Hemos recibido tu consulta y nos pondremos en contacto contigo en menos de 24 horas.">
                         
                         <div class="form-group">
                             <label for="name">Nombre y apellidos <span class="required">*</span></label>
                             <input type="text" id="name" name="name" placeholder="Tu nombre completo" required>
+                            <div class="error-message">Por favor ingresa tu nombre completo</div>
                         </div>
                         <div class="form-group">
                             <label for="email">Correo electrónico <span class="required">*</span></label>
                             <input type="email" id="email" name="email" placeholder="Tu email" required>
+                            <div class="error-message">Por favor ingresa un email válido</div>
                         </div>
                         <div class="form-group">
                             <label for="phone">Teléfono (WhatsApp) <span class="optional">(opcional)</span></label>
@@ -1207,15 +2558,18 @@
                                 <option value="plan_pro">Plan Pro</option>
                                 <option value="plan_business">Plan Business</option>
                             </select>
+                            <div class="error-message">Por favor selecciona un servicio</div>
                         </div>
                         <div class="form-group">
                             <label for="message">Consulta <span class="required">*</span></label>
                             <textarea id="message" name="message" rows="5" placeholder="Explícanos en qué podemos ayudarte" required></textarea>
+                            <div class="error-message">Por favor detalla tu consulta</div>
                         </div>
                         
                         <div class="form-group privacy-checkbox">
-                            <label>
-                                <input type="checkbox" name="acepto_politica" required>
+                            <label class="custom-checkbox">
+                                <input type="checkbox" name="acepto_politica" id="privacyCheckbox" required>
+                                <span class="checkmark"></span>
                                 ACEPTO la <a href="LEGAL/privacy-policy.html" target="_blank" class="privacy-link">política de privacidad</a> y el tratamiento de mis datos.
                             </label>
                         </div>
@@ -1235,48 +2589,204 @@
                     </div>
 
                     <script>
-                        document.getElementById('contactForm').addEventListener('submit', function(e) {
-                            // Store form data before submission
-                            const formData = {
-                                name: document.getElementById('name').value,
-                                email: document.getElementById('email').value,
-                                phone: document.getElementById('phone').value,
-                                service: document.getElementById('service').value,
-                                message: document.getElementById('message').value,
-                                date: new Date().toISOString()
-                            };
+                        // Inicializar el formulario al cargar la página
+                        document.addEventListener('DOMContentLoaded', function() {
+                            const contactForm = document.getElementById('contactForm');
+                            const formInputs = contactForm.querySelectorAll('input, select, textarea');
+                            
+                            // Remover posibles clases de error al inicio
+                            formInputs.forEach(input => {
+                                input.classList.remove('error');
+                                if (input.nextElementSibling && input.nextElementSibling.classList.contains('error-message')) {
+                                    input.nextElementSibling.style.display = 'none';
+                                }
+                            });
 
-                            // Save to localStorage with expiration
-                            const storageKey = 'contact_' + Date.now();
-                            const expirationDate = new Date();
-                            expirationDate.setMonth(expirationDate.getMonth() + 12);
+                            // Habilitar todos los campos
+                            formInputs.forEach(input => {
+                                if (input.type !== 'hidden') {
+                                    input.disabled = false;
+                                }
+                            });
                             
-                            const dataToStore = {
-                                data: formData,
-                                expiration: expirationDate.getTime()
-                            };
+                            // Validación en tiempo real para los campos
+                            formInputs.forEach(input => {
+                                if (input.id && input.type !== 'hidden' && input.type !== 'checkbox') {
+                                    input.addEventListener('input', function() {
+                                        validateField(input);
+                                    });
+                                    
+                                    input.addEventListener('blur', function() {
+                                        validateField(input, true);
+                                    });
+                                }
+                            });
                             
-                            localStorage.setItem(storageKey, JSON.stringify(dataToStore));
-                            
-                            // Clean up expired entries
-                            for (let i = 0; i < localStorage.length; i++) {
-                                const key = localStorage.key(i);
-                                if (key.startsWith('contact_')) {
-                                    try {
-                                        const item = JSON.parse(localStorage.getItem(key));
-                                        if (item.expiration < Date.now()) {
-                                            localStorage.removeItem(key);
+                            // Validación para el checkbox de política de privacidad
+                            const privacyCheckbox = document.getElementById('privacyCheckbox');
+                            if (privacyCheckbox) {
+                                privacyCheckbox.addEventListener('change', function() {
+                                    if (this.checked) {
+                                        const checkboxContainer = this.closest('.privacy-checkbox');
+                                        if (checkboxContainer.classList.contains('error')) {
+                                            checkboxContainer.classList.remove('error');
                                         }
-                                    } catch (error) {
-                                        console.error('Error processing stored contact:', error);
                                     }
+                                });
+                            }
+                            
+                            // No precargamos datos del formulario para mantenerlo siempre vacío
+                            // Asegurarnos de que los campos estén siempre limpios al cargar
+                            document.getElementById('name').value = '';
+                            document.getElementById('email').value = '';
+                            document.getElementById('phone').value = '';
+                            document.getElementById('message').value = '';
+                            document.getElementById('service').selectedIndex = 0;
+                        });
+                        
+                        // Función para validar un campo individual
+                        function validateField(field, showError = false) {
+                            let isValid = true;
+                            let errorMessage = '';
+                            
+                            // Reglas de validación según el tipo de campo
+                            switch(field.id) {
+                                case 'name':
+                                    if (!field.value.trim()) {
+                                        isValid = false;
+                                        errorMessage = 'Por favor ingresa tu nombre completo';
+                                    } else if (field.value.trim().length < 3) {
+                                        isValid = false;
+                                        errorMessage = 'El nombre debe tener al menos 3 caracteres';
+                                    }
+                                    break;
+                                    
+                                case 'email':
+                                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                                    if (!field.value.trim()) {
+                                        isValid = false;
+                                        errorMessage = 'Por favor ingresa tu email';
+                                    } else if (!emailRegex.test(field.value.trim())) {
+                                        isValid = false;
+                                        errorMessage = 'Por favor ingresa un email válido';
+                                    }
+                                    break;
+                                    
+                                case 'phone':
+                                    if (field.value.trim()) {
+                                        const phoneRegex = /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/;
+                                        if (!phoneRegex.test(field.value.trim())) {
+                                            isValid = false;
+                                            errorMessage = 'Por favor ingresa un número de teléfono válido';
+                                        }
+                                    }
+                                    break;
+                                    
+                                case 'service':
+                                    if (!field.value) {
+                                        isValid = false;
+                                        errorMessage = 'Por favor selecciona un servicio';
+                                    }
+                                    break;
+                                    
+                                case 'message':
+                                    if (!field.value.trim()) {
+                                        isValid = false;
+                                        errorMessage = 'Por favor detalla tu consulta';
+                                    } else if (field.value.trim().length < 10) {
+                                        isValid = false;
+                                        errorMessage = 'Tu mensaje es demasiado corto. Por favor proporciona más detalles';
+                                    }
+                                    break;
+                            }
+                            
+                            // Aplicar estado visual
+                            if (!isValid && (showError || field.value.trim())) {
+                                field.classList.add('error');
+                                const errorMsg = field.nextElementSibling;
+                                if (errorMsg && errorMsg.classList.contains('error-message')) {
+                                    errorMsg.textContent = errorMessage;
+                                    errorMsg.style.display = 'block';
+                                }
+                            } else {
+                                field.classList.remove('error');
+                                const errorMsg = field.nextElementSibling;
+                                if (errorMsg && errorMsg.classList.contains('error-message')) {
+                                    errorMsg.style.display = 'none';
                                 }
                             }
-
-                            // Show success popup after short delay
-                            setTimeout(() => {
-                                document.getElementById('successPopup').classList.add('show');
-                            }, 1000);
+                            
+                            return isValid;
+                        }
+                        
+                        // La función getSavedFormData ha sido eliminada para mantener el formulario siempre vacío
+                        
+                        // La función cleanupOldEntries ha sido eliminada ya que no almacenamos datos del formulario
+                        
+                        // Validación de formulario de contacto al enviar
+                        document.getElementById('contactForm').addEventListener('submit', function(e) {
+                            e.preventDefault(); // Siempre prevenir el envío inicial para validar
+                            
+                            let isValid = true;
+                            const formInputs = this.querySelectorAll('input:not([type="hidden"]), select, textarea');
+                            
+                            // Validar todos los campos
+                            formInputs.forEach(input => {
+                                if (input.type !== 'checkbox') {
+                                    if (!validateField(input, true)) {
+                                        isValid = false;
+                                    }
+                                }
+                            });
+                            
+                            // Validar política de privacidad
+                            const privacyCheckbox = document.getElementById('privacyCheckbox');
+                            if (!privacyCheckbox.checked) {
+                                isValid = false;
+                                const checkboxContainer = privacyCheckbox.closest('.privacy-checkbox');
+                                checkboxContainer.classList.add('error');
+                                // Usar un mensaje de error más elegante en lugar de alert
+                                const errorToast = document.createElement('div');
+                                errorToast.className = 'error-toast';
+                                errorToast.textContent = 'Por favor, acepta nuestra política de privacidad para continuar';
+                                document.body.appendChild(errorToast);
+                                
+                                setTimeout(() => {
+                                    errorToast.classList.add('show');
+                                }, 100);
+                                
+                                setTimeout(() => {
+                                    errorToast.classList.remove('show');
+                                    setTimeout(() => {
+                                        document.body.removeChild(errorToast);
+                                    }, 300);
+                                }, 3000);
+                            }
+                            
+                            // Si todo es válido
+                            if (isValid) {
+                                console.log('Formulario válido, enviando...');
+                                // Desactivar el botón y mostrar estado de carga
+                                const submitButton = this.querySelector('button[type="submit"]');
+                                const originalButtonText = submitButton.textContent;
+                                submitButton.disabled = true;
+                                submitButton.innerHTML = '<span class="spinner"></span> Enviando...';
+                                
+                                // No guardamos datos del formulario en localStorage por privacidad
+                                console.log('Formulario válido, enviando sin almacenar datos...');
+                                
+                                // Enviar el formulario
+                                setTimeout(() => {
+                                    this.submit(); // Enviar después de un breve retraso para mostrar el spinner
+                                }, 800);
+                                
+                                // Mostrar un mensaje de éxito si la redirección tarda
+                                setTimeout(() => {
+                                    if (document.getElementById('successPopup')) {
+                                        document.getElementById('successPopup').classList.add('show');
+                                    }
+                                }, 2500);
+                            }
                         });
 
                         function closePopup() {
@@ -1353,36 +2863,42 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Incluir script del calendario -->
+    <script src="assets/js/calendar.js"></script>
+
+    <!-- Footer Mejorado -->
     <footer id="footer" class="footer-area pt-120">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-contact">
                     <h3>Contacto</h3>
                     <ul>
-                        <li><a href="https://wa.link/uxacg0" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
-                        <li><a href="mailto:solucionesworld2016@gmail.com?subject=SPMarketing%20-%20Agency"><i class="far fa-envelope"></i> Email</a></li>
-                        <li><a href="https://t.me/SPMarketing_KR" target="_blank"><i class="fab fa-telegram"></i> Telegram</a></li>
+                        <li><a href="https://wa.link/uxacg0" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
+                        <li><a href="mailto:hristiankrasimirov7@gmail.com?subject=SPMarketing%20-%20Agency" rel="noopener" aria-label="Email"><i class="far fa-envelope"></i> Email</a></li>
+                        <li><a href="https://t.me/SPMarketing_KR" target="_blank" rel="noopener" aria-label="Telegram"><i class="fab fa-telegram"></i> Telegram</a></li>
                     </ul>
                 </div>
                 <div class="footer-social">
                     <h3>Redes Sociales</h3>
                     <ul>
-                        <li><a href="https://www.facebook.com/SPMarketingKR/" target="_blank"><i class="fab fa-facebook"></i> Facebook</a></li>
-                        <li><a href="https://www.instagram.com/spmarketing_agency?igsh=MWM2YTZnd25nbDcwZg=" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
-                        <li><a href="https://www.youtube.com/@SPM3103" target="_blank"><i class="fab fa-youtube"></i> YouTube</a></li>
+                        <li><a href="https://www.facebook.com/SPMarketingKR/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook"></i> Facebook</a></li>
+                        <li><a href="https://www.instagram.com/spmarketing_agency" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i> Instagram</a></li>
+                        <li><a href="https://www.youtube.com/@SPM3103" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i> YouTube</a></li>
                     </ul>
                 </div>
                 <div class="footer-links">
                     <h3>Enlaces Rápidos</h3>
                     <ul>
-                        <li><a href="LEGAL/privacy-policy.html" target="_blank">Política de Privacidad</a></li>
-                        <li><a href="LEGAL/terms-of-use.html" target="_blank">Términos de Uso</a></li>
-                        <li><a href="LEGAL/cookies-policy.html" target="_blank">Política de Cookies</a></li>
+                        <li><a href="LEGAL/privacy-policy.html" rel="noopener" aria-label="Política de Privacidad">Política de Privacidad</a></li>
+                        <li><a href="LEGAL/terms-of-use.html" rel="noopener" aria-label="Términos de Uso">Términos de Uso</a></li>
+                        <li><a href="LEGAL/cookies-policy.html" rel="noopener" aria-label="Política de Cookies">Política de Cookies</a></li>
+                        <li><a href="#inicio" aria-label="Volver al inicio">Volver arriba</a></li>
                     </ul>
                 </div>
                 <div class="footer-logo">
-                    <img src="assets/img/LOGO PRINCIPAL.jpg" alt="SPMarketing Logo">
+                    <a href="#inicio" aria-label="Logo SPMarketing">
+                        <img src="assets/img/LOGO PRINCIPAL.jpg" alt="SPMarketing Logo" width="150" height="150">
+                    </a>
                 </div>
             </div>
             <div class="footer-copyright">
@@ -1567,6 +3083,207 @@
       var fontAwesomeScript = document.createElement('script');
       fontAwesomeScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js';
       document.head.appendChild(fontAwesomeScript);
+    </script>
+
+    <!-- Pruebas sociales flotantes -->
+    <div class="social-proof-container" id="socialProofContainer"></div>
+
+    <script>
+        // Datos de pruebas sociales
+        const socialProofData = [
+            { name: "Miguel Á.", action: "compró", plan: "Plan Pro", time: "hace 2 minutos", rating: 5, review: "¡Justo lo que necesitaba para mi negocio!" },
+            { name: "Laura S.", action: "programó", plan: "Consulta Gratuita", time: "hace 5 minutos", rating: 5, review: "Excelente atención, resolvieron todas mis dudas." },
+            { name: "Carlos M.", action: "compró", plan: "Plan Premium", time: "hace 7 minutos", rating: 5, review: "La mejor inversión para mi empresa este año." },
+            { name: "Ana R.", action: "compró", plan: "Plan Business", time: "hace 10 minutos", rating: 4, review: "Muy buena plataforma y excelente soporte." },
+            { name: "Roberto L.", action: "programó", plan: "Consulta Gratuita", time: "hace 14 minutos", rating: 5, review: "Profesionales y muy atentos, 100% recomendado." },
+            { name: "Elena M.", action: "compró", plan: "Plan Pro", time: "hace 17 minutos", rating: 5, review: "Resultados visibles desde la primera semana." },
+            { name: "Javier P.", action: "compró", plan: "Plan Business", time: "hace 22 minutos", rating: 5, review: "Ha transformado completamente mi estrategia digital." },
+            { name: "Sofía V.", action: "programó", plan: "Consulta Gratuita", time: "hace 25 minutos", rating: 4, review: "Muy informativos y profesionales." },
+            { name: "Daniel R.", action: "compró", plan: "Plan Premium", time: "hace 28 minutos", rating: 5, review: "El mejor servicio de marketing que he contratado." },
+            { name: "Isabel L.", action: "compró", plan: "Plan Pro", time: "hace 32 minutos", rating: 5, review: "Superó todas mis expectativas, muy satisfecha." },
+            { name: "Marcos G.", action: "programó", plan: "Consulta Gratuita", time: "hace 36 minutos", rating: 4, review: "Agradecido por la orientación recibida." },
+            { name: "Lucía F.", action: "compró", plan: "Plan Business", time: "hace 39 minutos", rating: 5, review: "Mi negocio ha crecido un 40% en solo 2 meses." },
+            { name: "Alberto S.", action: "compró", plan: "Plan Premium", time: "hace 43 minutos", rating: 5, review: "Servicio excepcional y resultados tangibles." },
+            { name: "Carmen T.", action: "programó", plan: "Consulta Gratuita", time: "hace 47 minutos", rating: 5, review: "Resolvieron todas mis dudas, muy profesionales." },
+            { name: "Pablo M.", action: "compró", plan: "Plan Pro", time: "hace 51 minutos", rating: 4, review: "Excelente relación calidad-precio." },
+            { name: "Marina R.", action: "compró", plan: "Plan Business", time: "hace 55 minutos", rating: 5, review: "Ha sido un cambio radical para mi empresa." },
+            { name: "Jorge L.", action: "programó", plan: "Consulta Gratuita", time: "hace 58 minutos", rating: 5, review: "Muy buena primera impresión, sin duda contrataré." },
+            { name: "Natalia P.", action: "compró", plan: "Plan Premium", time: "hace 1 hora", rating: 5, review: "Inversión que vale cada céntimo." },
+            { name: "Andrés G.", action: "compró", plan: "Plan Pro", time: "hace 1 hora", rating: 4, review: "Muy satisfecho con los resultados obtenidos." },
+            { name: "Pilar S.", action: "programó", plan: "Consulta Gratuita", time: "hace 1 hora", rating: 5, review: "Excelente servicio de consultoría." },
+            { name: "Alejandro M.", action: "compró", plan: "Plan Business", time: "hace 1 hora", rating: 5, review: "Mi negocio ha dado un giro de 180 grados." },
+            { name: "Beatriz R.", action: "compró", plan: "Plan Premium", time: "hace 1 hora", rating: 5, review: "Equipo profesional y muy competente." },
+            { name: "Fernando L.", action: "programó", plan: "Consulta Gratuita", time: "hace 2 horas", rating: 4, review: "Muy buena atención y asesoramiento." },
+            { name: "Silvia T.", action: "compró", plan: "Plan Pro", time: "hace 2 horas", rating: 5, review: "Estrategias personalizadas que realmente funcionan." },
+            { name: "Raúl V.", action: "compró", plan: "Plan Business", time: "hace 2 horas", rating: 5, review: "Mi inversión más acertada este año." },
+            { name: "Patricia C.", action: "programó", plan: "Consulta Gratuita", time: "hace 2 horas", rating: 5, review: "Increíble servicio y atención al cliente." },
+            { name: "Diego A.", action: "compró", plan: "Plan Premium", time: "hace 2 horas", rating: 4, review: "Muy contento con los resultados hasta ahora." },
+            { name: "Mónica B.", action: "compró", plan: "Plan Pro", time: "hace 2 horas", rating: 5, review: "Han revolucionado mi estrategia de marketing." },
+            { name: "Hugo F.", action: "programó", plan: "Consulta Gratuita", time: "hace 3 horas", rating: 5, review: "Muy profesionales y atentos." },
+            { name: "Cristina E.", action: "compró", plan: "Plan Business", time: "hace 3 horas", rating: 5, review: "Servicio que realmente cumple lo que promete." },
+            { name: "Ricardo N.", action: "compró", plan: "Plan Premium", time: "hace 3 horas", rating: 4, review: "Gran equipo de profesionales y buenos resultados." },
+            { name: "Alicia M.", action: "programó", plan: "Consulta Gratuita", time: "hace 3 horas", rating: 5, review: "Muy satisfecha con el asesoramiento recibido." },
+            { name: "Oscar P.", action: "compró", plan: "Plan Pro", time: "hace 3 horas", rating: 5, review: "El mejor servicio de marketing digital que he probado." },
+            { name: "Luisa R.", action: "compró", plan: "Plan Business", time: "hace 4 horas", rating: 5, review: "Resultados impresionantes en poco tiempo." },
+            { name: "Gabriel S.", action: "programó", plan: "Consulta Gratuita", time: "hace 4 horas", rating: 4, review: "Buena orientación y claras explicaciones." },
+            { name: "Teresa J.", action: "compró", plan: "Plan Premium", time: "hace 4 horas", rating: 5, review: "Totalmente recomendable para cualquier negocio." },
+            { name: "Antonio D.", action: "compró", plan: "Plan Pro", time: "hace 4 horas", rating: 5, review: "Mi tienda online ha triplicado las ventas." },
+            { name: "Eva C.", action: "programó", plan: "Consulta Gratuita", time: "hace 4 horas", rating: 5, review: "Increíble cómo entienden las necesidades de cada negocio." },
+            { name: "Juan L.", action: "compró", plan: "Plan Business", time: "hace 5 horas", rating: 4, review: "Servicio muy completo y profesional." },
+            { name: "Marta H.", action: "compró", plan: "Plan Premium", time: "hace 5 horas", rating: 5, review: "Estrategias que realmente generan resultados." },
+            { name: "Jaime B.", action: "programó", plan: "Consulta Gratuita", time: "hace 5 horas", rating: 5, review: "Excelente experiencia desde el primer contacto." },
+            { name: "Rocío A.", action: "compró", plan: "Plan Pro", time: "hace 5 horas", rating: 5, review: "Ahora mi negocio es visible para mi público objetivo." },
+            { name: "Sergio T.", action: "compró", plan: "Plan Business", time: "hace 5 horas", rating: 4, review: "Muy satisfecho con la estrategia implementada." },
+            { name: "Rosa M.", action: "programó", plan: "Consulta Gratuita", time: "hace 6 horas", rating: 5, review: "Profesionales que saben lo que hacen." },
+            { name: "Víctor G.", action: "compró", plan: "Plan Premium", time: "hace 6 horas", rating: 5, review: "Ha sido la mejor decisión para mi empresa." },
+            { name: "Nuria V.", action: "compró", plan: "Plan Pro", time: "hace 6 horas", rating: 5, review: "Increíble ROI en muy poco tiempo." },
+            { name: "Felipe S.", action: "programó", plan: "Consulta Gratuita", time: "hace 6 horas", rating: 4, review: "Muy contento con la atención recibida." },
+            { name: "Claudia R.", action: "compró", plan: "Plan Business", time: "hace 6 horas", rating: 5, review: "Expertos en marketing que consiguen resultados." },
+            { name: "Guillermo F.", action: "compró", plan: "Plan Premium", time: "hace 7 horas", rating: 5, review: "Mi negocio se ha transformado por completo." },
+            { name: "Sara D.", action: "programó", plan: "Consulta Gratuita", time: "hace 7 horas", rating: 5, review: "Gran profesionalidad y conocimiento del sector." },
+            { name: "Ignacio L.", action: "compró", plan: "Plan Pro", time: "hace 7 horas", rating: 4, review: "Servicio personalizado y muy efectivo." }
+        ];
+
+        // Función para mostrar pruebas sociales aleatorias
+        function showRandomSocialProof() {
+            const container = document.getElementById('socialProofContainer');
+            const randomIndex = Math.floor(Math.random() * socialProofData.length);
+            const proof = socialProofData[randomIndex];
+            
+            const proofElement = document.createElement('div');
+            proofElement.className = 'social-proof-card';
+            
+            // Generar estrellas para la valoración
+            let stars = '';
+            for (let i = 0; i < proof.rating; i++) {
+                stars += '<i class="fas fa-star"></i>';
+            }
+            
+            proofElement.innerHTML = `
+                <div class="social-proof-name">${proof.name}</div>
+                <div class="social-proof-action">
+                    ${proof.action} <span class="plan-badge">${proof.plan}</span>
+                </div>
+                <div class="social-proof-rating">${stars}</div>
+                <div class="social-proof-review">"${proof.review}"</div>
+                <div class="social-proof-time">${proof.time}</div>
+            `;
+            
+            container.appendChild(proofElement);
+            
+            // Eliminar la prueba social después de 6 segundos (5 segundos de visualización + 1 segundo de animación)
+            setTimeout(() => {
+                proofElement.addEventListener('animationend', () => {
+                    proofElement.remove();
+                });
+            }, 6000);
+            
+            // Programar la siguiente prueba social en un intervalo aleatorio entre 10 y 30 segundos
+            const nextInterval = Math.floor(Math.random() * 20000) + 10000;
+            setTimeout(showRandomSocialProof, nextInterval);
+        }
+        
+        // Iniciar las pruebas sociales después de 3 segundos de carga de la página
+        setTimeout(showRandomSocialProof, 3000);
+    </script>
+    
+    <!-- Script para el menú móvil hamburguesa -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.getElementById('hamburger');
+            const menu = document.getElementById('menu');
+            
+            if (hamburger && menu) {
+                hamburger.addEventListener('click', function() {
+                    // Toggle de la clase active para mostrar/ocultar el menú
+                    menu.classList.toggle('active');
+                    hamburger.classList.toggle('active');
+                });
+                
+                // Añadir evento para cerrar el menú cuando se hace clic en un enlace
+                const menuLinks = menu.querySelectorAll('a');
+                menuLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        menu.classList.remove('active');
+                        hamburger.classList.remove('active');
+                    });
+                });
+            }
+        });
+    </script>
+    
+    <!-- Script para el slider de testimonios -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Seleccionar todos los testimonios
+        const slider = document.getElementById('testimonialSlider');
+        const slides = slider.querySelectorAll('.testimonial-slide');
+        
+        // Configuración del slider
+        let currentSlide = 0;
+        let slidesCount = slides.length;
+        let autoSlideInterval;
+        
+        // Ocultar todos los testimonios excepto el primero al inicio
+        function initSlider() {
+            // Ocultar todos los testimonios
+            slides.forEach((slide, index) => {
+                if (index !== 0) {
+                    slide.style.display = 'none';
+                    slide.classList.remove('active');
+                } else {
+                    slide.classList.add('active');
+                    slide.style.display = 'block';
+                }
+            });
+            
+            // Iniciar la rotación automática
+            startAutoSlide();
+        }
+        
+        // Función para mostrar el siguiente testimonio
+        function nextSlide() {
+            // Ocultar el testimonio actual con animación de desaparición
+            slides[currentSlide].classList.add('inactive');
+            slides[currentSlide].classList.remove('active');
+            
+            // Después de la animación, ocultar completamente y mostrar el siguiente
+            setTimeout(() => {
+                slides[currentSlide].style.display = 'none';
+                
+                // Calcular el índice del siguiente testimonio
+                currentSlide = (currentSlide + 1) % slidesCount;
+                
+                // Mostrar el siguiente testimonio
+                slides[currentSlide].style.display = 'block';
+                
+                // Aplicar animación de aparición
+                setTimeout(() => {
+                    slides[currentSlide].classList.remove('inactive');
+                    slides[currentSlide].classList.add('active');
+                }, 50); // Pequeño retraso para asegurar que el navegador procese el cambio de display
+            }, 1000); // Tiempo de la animación de desaparición
+        }
+        
+        // Función para iniciar la rotación automática
+        function startAutoSlide() {
+            // Limpiar cualquier intervalo existente
+            if (autoSlideInterval) {
+                clearInterval(autoSlideInterval);
+            }
+            
+            // Establecer intervalo para cambiar cada 6 segundos
+            autoSlideInterval = setInterval(nextSlide, 6000);
+        }
+        
+        // Iniciar el slider si existe
+        if (slider && slides.length > 0) {
+            console.log('Iniciando slider de testimonios con ' + slides.length + ' testimonios.');
+            initSlider();
+        } else {
+            console.error('No se pudieron encontrar los elementos del slider de testimonios.');
+        }
+      });
     </script>
 </body>
 </html>

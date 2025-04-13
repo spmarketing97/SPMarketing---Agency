@@ -79,9 +79,9 @@
         /* Estilos del contador flotante */
         .contador-flotante {
             position: fixed;
-            top: 150px;
+            top: 300px;
             right: 20px;
-            background-color: rgba(0, 0, 0, 0.85);
+            background: linear-gradient(135deg, #003366, #FF4500);
             color: white;
             width: auto;
             padding: 15px 20px;
@@ -92,6 +92,13 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 69, 0, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(255, 69, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 69, 0, 0); }
         }
         
         .contador-titulo {
@@ -526,6 +533,100 @@
             background-color: transparent;
             transition: all 0.3s ease;
             padding: 1rem 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+        
+        /* Estilos para mover el logotipo más a la derecha */
+        #navbar .logo {
+            margin-right: 30px; /* Aumentar el margen derecho */
+        }
+        
+        #navbar .logo img {
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            vertical-align: middle;
+        }
+        
+        /* Estilos para las pruebas sociales flotantes */
+        .social-proof-container {
+            position: fixed;
+            bottom: 25px;
+            left: 25px;
+            z-index: 999;
+            max-width: 250px;
+        }
+        
+        .social-proof-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            padding: 10px;
+            margin-bottom: 8px;
+            transform: translateY(100px);
+            opacity: 0;
+            animation: slideUp 0.5s forwards, fadeOut 0.5s 5s forwards;
+            overflow: hidden;
+        }
+        
+        @keyframes slideUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+        }
+        
+        .social-proof-name {
+            font-weight: 600;
+            font-size: 0.8rem;
+            color: var(--primary-color);
+            margin-bottom: 3px;
+        }
+        
+        .social-proof-action {
+            font-size: 0.7rem;
+            color: #666;
+            display: flex;
+            align-items: center;
+        }
+        
+        .social-proof-time {
+            font-size: 0.65rem;
+            color: #999;
+            margin-top: 3px;
+        }
+        
+        .social-proof-rating {
+            color: #f8ce0b;
+            font-size: 0.7rem;
+            margin-top: 3px;
+        }
+        
+        .social-proof-review {
+            font-size: 0.75rem;
+            font-style: italic;
+            margin-top: 5px;
+            color: #555;
+        }
+        
+        .plan-badge {
+            background-color: rgba(0, 51, 102, 0.1);
+            color: var(--primary-color);
+            padding: 2px 6px;
+            border-radius: 3px;
+            margin-left: 5px;
+            font-size: 0.65rem;
+            font-weight: 600;
         }
 
         #navbar.scrolled {
@@ -545,6 +646,222 @@
         .pricing-container {
             position: relative;
             z-index: 1;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        
+        /* Ordenar los planes como solicitado - Nuevo orden */
+        .pricing-card.free {
+            grid-column: 1;
+            grid-row: 1;
+        }
+        
+        .pricing-card.pro {
+            grid-column: 2;
+            grid-row: 1;
+            transform: scale(1.05);
+            z-index: 2;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            border: 2px solid var(--accent-color);
+            position: relative;
+        }
+        
+        .pricing-card.pro::before {
+            display: none; /* Oculta la etiqueta MÁS VENDIDO */
+        }
+        
+        @keyframes pulse-label {
+            0% { box-shadow: 0 0 0 0 rgba(255, 69, 0, 0.6); }
+            70% { box-shadow: 0 0 0 8px rgba(255, 69, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 69, 0, 0); }
+        }
+        
+        .pricing-card.business {
+            grid-column: 1 / span 3;
+            grid-row: 2;
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            padding: 30px;
+            background: linear-gradient(to right, rgba(0,51,102,0.05), rgba(255,69,0,0.05));
+            border-top: 3px solid #003366;
+        }
+        
+        .pricing-card.premium {
+            grid-column: 3;
+            grid-row: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .pricing-card.pro .pricing-features ul {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        /* Estilos para el plan Pro destacado */
+        .pricing-card.pro .pricing-header {
+            background-color: rgba(255, 69, 0, 0.05);
+            padding-top: 25px;
+            border-radius: 8px 8px 0 0;
+        }
+        
+        .pricing-card.pro .price-value {
+            font-weight: 700;
+            color: var(--accent-color);
+        }
+        
+        /* Estilos para responsive */
+        @media (max-width: 992px) {
+            .pricing-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .pricing-card.free,
+            .pricing-card.premium,
+            .pricing-card.pro,
+            .pricing-card.business {
+                grid-column: 1;
+                grid-row: auto;
+                margin-bottom: 30px;
+            }
+            
+            .pricing-card.pro {
+                transform: scale(1);
+                order: 2; /* Pro destacado aparece en segundo lugar */
+            }
+            
+            .pricing-card.free {
+                order: 1; /* Consulta gratuita aparece primero */
+            }
+            
+            .pricing-card.premium {
+                order: 3; /* Premium aparece tercero */
+            }
+            
+            .pricing-card.business {
+                order: 4; /* Business aparece al final */
+            }
+            
+            .pricing-card.pro .pricing-features ul {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .pricing-container {
+                gap: 15px;
+            }
+            
+            .pricing-card {
+                padding: 15px;
+            }
+        }
+        
+        /* Estilos para los testimonios emergentes */
+        .testimonial-popup {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            max-width: 300px;
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+            z-index: 9998;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+            border-left: 3px solid var(--accent-color);
+        }
+        
+        .testimonial-popup.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .testimonial-popup-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .testimonial-popup-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .testimonial-popup-info {
+            flex: 1;
+        }
+        
+        .testimonial-popup-name {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 0;
+            color: var(--primary-color);
+        }
+        
+        .testimonial-popup-company {
+            font-size: 12px;
+            color: #777;
+            margin-top: 2px;
+        }
+        
+        .testimonial-popup-stars {
+            display: flex;
+            gap: 2px;
+            font-size: 12px;
+            color: #FFD700;
+            margin-top: 2px;
+        }
+        
+        .testimonial-popup-text {
+            font-size: 13px;
+            line-height: 1.4;
+            color: #555;
+            margin: 0;
+        }
+        
+        .testimonial-popup-plan {
+            font-size: 11px;
+            background-color: rgba(0, 51, 102, 0.1);
+            color: var(--primary-color);
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 20px;
+            margin-top: 8px;
+        }
+        
+        .testimonial-popup-close {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            font-size: 18px;
+            color: #ccc;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 2px;
+        }
+        
+        @media (max-width: 768px) {
+            .testimonial-popup {
+                bottom: 20px;
+                left: 20px;
+                max-width: 250px;
+            }
         }
         
         .pricing-card {
@@ -737,8 +1054,8 @@
         <div class="overlay"></div>
         <div class="container">
             <nav id="navbar">
-                <div class="logo">
-                    <a href="#inicio"><img src="assets/img/LOGO PRINCIPAL.jpg" alt="SPMarketing Logo"></a>
+                <div class="logo" style="margin-right: 50px;">
+                    <a href="#inicio"><img src="assets/img/LOGO PRINCIPAL.jpg" alt="SPMarketing Logo" style="height: 40px; width: 40px; border-radius: 50%; vertical-align: middle;"></a>
                 </div>
                 <div class="menu" id="menu">
                     <ul>
@@ -761,7 +1078,7 @@
                 <h1 class="hero-title-pricing">Planes de <span class="highlight">Marketing Digital + IA</span></h1>
                 <p class="hero-subtitle-pricing">Impulsa tu Presencia Digital con Nuestras Soluciones de Marketing Personalizadas</p>
                 <div class="hero-cta">
-                    <a href="#pricing-section" class="cta-btn primary-button" id="scroll-to-services"><i class="fas fa-arrow-down"></i> VER SERVICIOS</a>
+                    <a href="#pricing-section" class="cta-btn primary-button" id="scroll-to-services"><i class="fas fa-chevron-down"></i> VER PLANES</a>
                 </div>
             </div>
         </div>
@@ -916,7 +1233,7 @@
                         ¿Cuál es la duración mínima de los contratos? <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer" data-accordion="content">
-                        <p>No hay duración mínima en ninguno de nuestros planes. Tanto el Plan Premium como el Pro son flexibles y sin permanencia. El soporte se mantiene activo hasta la cancelación o liquidación del contrato. Solo necesitamos un preaviso de 15 días para gestionar la cancelación.</p>
+                        <p>No hay duración mínima en ninguno de nuestros planes. Todos nuestros servicios son flexibles y sin permanencia. El soporte se mantiene activo hasta la cancelación o liquidación del contrato. Solo necesitamos un preaviso de 15 días para gestionar la cancelación.</p>
                     </div>
                 </div>
                 <div class="faq-item">
@@ -924,7 +1241,7 @@
                         ¿Qué incluye la consulta gratuita inicial? <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer" data-accordion="content">
-                        <p>La consulta inicial incluye un análisis completo de tu situación actual, estudio de competencia, identificación de oportunidades de mejora y una propuesta estratégica personalizada. Esta sesión es totalmente gratuita y sin compromiso, diseñada para que conozcas cómo podemos ayudarte.</p>
+                        <p>La consulta inicial incluye un análisis completo de tu situación actual, estudio de competencia, identificación de oportunidades de mejora, análisis de mercado y una propuesta estratégica personalizada. Esta sesión es totalmente gratuita y sin compromiso, diseñada para que conozcas cómo podemos impulsar tu negocio con nuestras estrategias de marketing digital potenciadas por IA.</p>
                     </div>
                 </div>
                 <div class="faq-item">
@@ -932,15 +1249,15 @@
                         ¿Cuáles son las principales diferencias entre los planes? <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer" data-accordion="content">
-                        <p>El Plan Premium (299€/mes) incluye desarrollo de landing page o sitio web, SEO básico, 5 publicaciones semanales optimizadas con AI y soporte continuo. El Plan Pro (599€/mes) ofrece desarrollo web más avanzado, SEO profesional, 7 publicaciones semanales y características adicionales de automatización con AI. Ambos planes incluyen soporte continuo hasta la finalización del contrato. El Plan Business es totalmente personalizable según las necesidades específicas de empresas más grandes.</p>
+                        <p>El Plan Premium (299€/mes) incluye desarrollo de landing page o sitio web, SEO básico, gestión de redes sociales, 5 publicaciones semanales optimizadas con IA y soporte continuo. El Plan Pro (599€/mes) ofrece desarrollo web más avanzado (incluyendo ecommerce), SEO profesional, 7 publicaciones semanales y características adicionales de automatización con IA. El Plan Business es totalmente personalizable según las necesidades específicas de empresas más grandes, con estrategia avanzada y presencia digital completa. Todos nuestros planes incluyen soporte continuo y no tienen permanencia.</p>
                     </div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question" data-accordion="header">
-                        ¿Qué tipo de soporte ofrecéis? <i class="fas fa-chevron-down"></i>
+                        ¿Qué tipo de servicios de marketing digital ofrecéis? <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer" data-accordion="content">
-                        <p>Todos nuestros planes incluyen soporte continuo hasta la cancelación o liquidación del contrato. Esto significa acceso directo a nuestro equipo para consultas, ajustes de estrategia y resolución de dudas. El Plan Business incluye además soporte prioritario 24/7.</p>
+                        <p>Ofrecemos una amplia gama de servicios que incluyen: desarrollo web y landing pages optimizadas para conversión, marketing digital con estrategias personalizadas, gestión de redes sociales con contenido optimizado por IA, SEO para mejorar el posicionamiento en buscadores, y automatización con IA para maximizar la eficiencia de tus campañas. Nuestro enfoque se basa en soluciones a medida para cada negocio según sus objetivos específicos.</p>
                     </div>
                 </div>
                 <div class="faq-item">
@@ -948,7 +1265,23 @@
                         ¿Cómo medís y reportáis los resultados? <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer" data-accordion="content">
-                        <p>Proporcionamos informes semanales detallados que incluyen métricas clave como tráfico web, conversiones, engagement en redes sociales y ROI de campañas. Utilizamos herramientas avanzadas de análisis y AI para optimizar continuamente las estrategias y garantizar los mejores resultados.</p>
+                        <p>Proporcionamos informes semanales detallados que incluyen métricas clave como tráfico web, conversiones, engagement en redes sociales y ROI de campañas. Nuestros informes son transparentes y muestran tanto los logros como las áreas de mejora. Utilizamos herramientas avanzadas de análisis y tecnología IA para optimizar continuamente las estrategias y garantizar los mejores resultados para tu negocio.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" data-accordion="header">
+                        ¿Qué tipo de soporte ofrecéis en cada plan? <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer" data-accordion="content">
+                        <p>Todos nuestros planes incluyen soporte continuo hasta la cancelación o liquidación del contrato. El Plan Premium y Pro ofrecen soporte personalizado con alta prioridad, mientras que el Plan Business incluye soporte prioritario 24/7. Esto significa acceso directo a nuestro equipo para consultas, ajustes de estrategia y resolución de dudas en cualquier momento. Nuestro tiempo de respuesta promedio es de menos de 24 horas.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" data-accordion="header">
+                        ¿Cómo integráis la inteligencia artificial en vuestras estrategias? <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer" data-accordion="content">
+                        <p>Utilizamos tecnología de IA para optimizar todos nuestros servicios: desde el análisis predictivo para identificar tendencias de mercado, hasta la creación de contenido optimizado para redes sociales. Nuestros sistemas de IA trabajan 24/7 para maximizar el rendimiento de tus campañas, analizar el comportamiento de los usuarios y ajustar automáticamente las estrategias para obtener mejores resultados. Esta combinación de creatividad humana y potencia tecnológica es lo que nos distingue y permite ofrecer un ROI promedio superior al 150%.</p>
                     </div>
                 </div>
             </div>
@@ -1018,10 +1351,16 @@
         </div>
     </div>
     
+    <!-- Contenedores para los testimonios emergentes -->
+    <div id="testimonial-popups-container"></div>
+    
     <!-- Chat Toggle Button -->
     <div id="chatbot-toggle" style="position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background: linear-gradient(135deg, #003366, #0066cc); border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; z-index: 9999; transition: all 0.3s ease;">
         <i class="fas fa-comment-dots" style="color: white; font-size: 24px;"></i>
     </div>
+
+    <!-- Pruebas sociales flotantes -->
+    <div class="social-proof-container" id="socialProofContainer"></div>
 
     <!-- ========================= scroll-top ========================= -->
     <!-- Eliminado el botón de scroll-top que ya no se usa -->
@@ -1032,19 +1371,207 @@
     <script src="assets/js/imagesloaded.min.js"></script>
     <script src="assets/js/main.js"></script>
     <script src="chatbot.js"></script>
+    
+    <!-- Script de reparación del chatbot -->
+    <script src="chatbot-fix.js" defer></script>
+    
+    <!-- Script para los testimonios emergentes -->
     <script>
-      // ==== for menu scroll
-      const pageLink = document.querySelectorAll(".page-scroll");
+        // ==== for menu scroll
+        const pageLink = document.querySelectorAll(".page-scroll");
 
-      pageLink.forEach((elem) => {
-        elem.addEventListener("click", (e) => {
-          e.preventDefault();
-          document.querySelector(elem.getAttribute("href")).scrollIntoView({
-            behavior: "smooth",
-            offsetTop: 1 - 60,
-          });
+        pageLink.forEach((elem) => {
+            elem.addEventListener("click", (e) => {
+                e.preventDefault();
+                document.querySelector(elem.getAttribute("href")).scrollIntoView({
+                    behavior: "smooth",
+                    offsetTop: 1 - 60,
+                });
+            });
         });
-      });
+
+        // Datos de testimonios
+        const testimonials = [
+            {
+                name: "Carlos M.",
+                company: "Diseño Gráfico",
+                text: "El plan Pro nos ayudó a aumentar nuestras conversiones un 185% en solo 2 meses. Impresionante trabajo.",
+                plan: "Plan Pro",
+                stars: 5
+            },
+            {
+                name: "Lucía R.",
+                company: "Inmobiliaria",
+                text: "Increíble cómo ha mejorado nuestra presencia online. Las estrategias con IA son realmente efectivas.",
+                plan: "Plan Pro",
+                stars: 5
+            },
+            {
+                name: "Alejandro T.",
+                company: "E-commerce",
+                text: "Desde que contratamos el Plan Pro nuestras ventas han aumentado un 140%. Estamos encantados.",
+                plan: "Plan Pro",
+                stars: 5
+            },
+            {
+                name: "María F.",
+                company: "Peluquería",
+                text: "El plan Premium ha sido perfecto para nuestro negocio. La gestión de redes sociales es excelente.",
+                plan: "Plan Premium",
+                stars: 5
+            },
+            {
+                name: "Roberto S.",
+                company: "Consultoría",
+                text: "SPMarketing transformó nuestra estrategia digital con el Plan Business. Los resultados hablan por sí solos.",
+                plan: "Plan Business",
+                stars: 5
+            },
+            {
+                name: "Claudia B.",
+                company: "Tienda de Ropa",
+                text: "Excelente trabajo con nuestra web y redes sociales. El retorno de inversión ha sido espectacular.",
+                plan: "Plan Pro",
+                stars: 5
+            },
+            {
+                name: "Juan P.",
+                company: "Agencia de Viajes",
+                text: "La optimización SEO nos ha posicionado en lo más alto. Ahora recibimos reservas diarias.",
+                plan: "Plan Premium",
+                stars: 4
+            },
+            {
+                name: "Marta L.",
+                company: "Despacho Legal",
+                text: "La automatización de contenidos ha sido una verdadera revolución para nuestro despacho.",
+                plan: "Plan Pro",
+                stars: 5
+            },
+            {
+                name: "Pedro G.",
+                company: "Restaurante",
+                text: "Las reservas online han aumentado un 200% gracias a la estrategia SEO y redes sociales.",
+                plan: "Plan Pro",
+                stars: 5
+            },
+            {
+                name: "Elena M.",
+                company: "Academia",
+                text: "Nuestra academia ahora tiene lista de espera gracias a la estrategia de marketing implementada.",
+                plan: "Plan Premium",
+                stars: 5
+            },
+            {
+                name: "Rafael T.",
+                company: "Gimnasio",
+                text: "Hemos duplicado nuestros socios en 3 meses. El marketing con IA es realmente potente.",
+                plan: "Plan Pro",
+                stars: 5
+            },
+            {
+                name: "Sofía P.",
+                company: "Centro de Estética",
+                text: "La agenda está llena desde que implementamos la estrategia de SPMarketing.",
+                plan: "Plan Pro",
+                stars: 5
+            },
+            {
+                name: "Miguel G.",
+                company: "Restaurante Gourmet",
+                text: "Las reservas han aumentado un 250%. El Plan Business ha sido la mejor inversión.",
+                plan: "Plan Business",
+                stars: 5
+            },
+            {
+                name: "Diana F.",
+                company: "Distribuidora",
+                text: "La automatización de marketing nos ha permitido escalar sin aumentar personal.",
+                plan: "Plan Pro",
+                stars: 5
+            },
+            {
+                name: "Pablo M.",
+                company: "Editorial",
+                text: "La estrategia de contenidos ha multiplicado nuestros suscriptores en tiempo récord.",
+                plan: "Plan Premium",
+                stars: 5
+            },
+            {
+                name: "Ana L.",
+                company: "Academia de Idiomas",
+                text: "Las matrículas han crecido exponencialmente desde que implementamos el Plan Pro.",
+                plan: "Plan Pro",
+                stars: 5
+            },
+            {
+                name: "Sergio R.",
+                company: "E-commerce de Moda",
+                text: "Las ventas se han triplicado con la estrategia de redes sociales y SEO.",
+                plan: "Plan Business",
+                stars: 5
+            },
+            {
+                name: "Cristina M.",
+                company: "Centro Wellness",
+                text: "La captación de nuevos clientes ha sido espectacular. Muy satisfechos con los resultados.",
+                plan: "Plan Pro",
+                stars: 5
+            },
+            {
+                name: "Luis G.",
+                company: "Bufete Abogados",
+                text: "El posicionamiento SEO nos ha permitido captar clientes de alto valor. Excelente.",
+                plan: "Plan Premium",
+                stars: 5
+            },
+            {
+                name: "Marina P.",
+                company: "Agencia de Azafatas",
+                text: "Hemos duplicado los contratos desde que implementamos la estrategia digital.",
+                plan: "Plan Pro",
+                stars: 5
+            },
+            {
+                name: "Gabriel S.",
+                company: "Servicio a Domicilio",
+                text: "De 20 a 200 servicios diarios en solo 3 meses. Los resultados hablan por sí solos.",
+                plan: "Plan Business",
+                stars: 5
+            }
+        ];
+        
+        // Función para crear un testimonio emergente
+        function createTestimonialPopup(testimonial) {
+            const popup = document.createElement('div');
+            popup.className = 'testimonial-popup';
+            
+            // Generar las estrellas
+            let starsHTML = '';
+            for (let i = 0; i < testimonial.stars; i++) {
+                starsHTML += '<i class="fas fa-star"></i>';
+            }
+            
+            // Obtener las iniciales para el avatar
+            const nameParts = testimonial.name.split(' ');
+            const initials = nameParts.map(part => part[0]).join('');
+            
+            popup.innerHTML = `
+                <button class="testimonial-popup-close">×</button>
+                <div class="testimonial-popup-header">
+                    <div class="testimonial-popup-avatar">${initials}</div>
+                    <div class="testimonial-popup-info">
+                        <p class="testimonial-popup-name">${testimonial.name}</p>
+                        <p class="testimonial-popup-company">${testimonial.company}</p>
+                        <div class="testimonial-popup-stars">${starsHTML}</div>
+                    </div>
+                </div>
+                <p class="testimonial-popup-text">${testimonial.text}</p>
+                <span class="testimonial-popup-plan">${testimonial.plan}</span>
+            `;
+            
+            return popup;
+        }
 
       // section menu active
       function onScroll(event) {
@@ -1079,6 +1606,109 @@
       var fontAwesomeScript = document.createElement('script');
       fontAwesomeScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js';
       document.head.appendChild(fontAwesomeScript);
+      
+      // Pruebas sociales flotantes
+      document.addEventListener('DOMContentLoaded', function() {
+          // Datos de pruebas sociales
+          const socialProofData = [
+              { name: "Eduardo M.", action: "compró", plan: "Plan Pro", time: "hace 2 minutos", rating: 5, review: "La estrategia de contenidos ha impulsado mi negocio." },
+              { name: "Marta S.", action: "programó", plan: "Consulta Gratuita", time: "hace 5 minutos", rating: 5, review: "Atención personalizada desde el primer contacto." },
+              { name: "Javier C.", action: "compró", plan: "Plan Premium", time: "hace 8 minutos", rating: 5, review: "ROI increíble en solo dos meses de trabajo." },
+              { name: "Lucía R.", action: "compró", plan: "Plan Business", time: "hace 10 minutos", rating: 4, review: "Han transformado nuestra estrategia digital." },
+              { name: "Raúl B.", action: "programó", plan: "Consulta Gratuita", time: "hace 15 minutos", rating: 5, review: "Claridad y profesionalidad en la consultoría." },
+              { name: "Claudia M.", action: "compró", plan: "Plan Pro", time: "hace 19 minutos", rating: 5, review: "Incremento notable en nuestras conversiones." },
+              { name: "Gabriel P.", action: "compró", plan: "Plan Business", time: "hace 23 minutos", rating: 5, review: "Servicio integral que cubre todas las necesidades." },
+              { name: "Alejandra V.", action: "programó", plan: "Consulta Gratuita", time: "hace 27 minutos", rating: 4, review: "Gran enfoque estratégico y práctico." },
+              { name: "Ricardo D.", action: "compró", plan: "Plan Premium", time: "hace 31 minutos", rating: 5, review: "Resultados medibles desde la primera semana." },
+              { name: "Patricia L.", action: "compró", plan: "Plan Pro", time: "hace 34 minutos", rating: 5, review: "Optimización completa de nuestra presencia online." },
+              { name: "Andrés G.", action: "programó", plan: "Consulta Gratuita", time: "hace 38 minutos", rating: 4, review: "Resolución de todas nuestras dudas de marketing." },
+              { name: "Cristina F.", action: "compró", plan: "Plan Business", time: "hace 42 minutos", rating: 5, review: "Hemos triplicado nuestro tráfico orgánico." },
+              { name: "Hugo S.", action: "compró", plan: "Plan Premium", time: "hace 46 minutos", rating: 5, review: "Perfecta combinación de tecnología y estrategia." },
+              { name: "Marina T.", action: "programó", plan: "Consulta Gratuita", time: "hace 50 minutos", rating: 5, review: "Análisis exhaustivo de nuestras necesidades." },
+              { name: "David M.", action: "compró", plan: "Plan Pro", time: "hace 53 minutos", rating: 4, review: "Campañas altamente efectivas y medibles." },
+              { name: "Alicia R.", action: "compró", plan: "Plan Business", time: "hace 57 minutos", rating: 5, review: "Estrategia personalizada que realmente funciona." },
+              { name: "Fernando V.", action: "programó", plan: "Consulta Gratuita", time: "hace 1 hora", rating: 5, review: "Excelente diagnóstico de nuestras necesidades." },
+              { name: "Natalia C.", action: "compró", plan: "Plan Premium", time: "hace 1 hora", rating: 5, review: "Implementación impecable de nuestra estrategia." },
+              { name: "Manuel J.", action: "compró", plan: "Plan Pro", time: "hace 1 hora", rating: 4, review: "Mejora sustancial en la calidad de nuestros leads." },
+              { name: "Sara H.", action: "programó", plan: "Consulta Gratuita", time: "hace 1 hora", rating: 5, review: "Claridad en la propuesta y enfoque práctico." },
+              { name: "Pablo A.", action: "compró", plan: "Plan Business", time: "hace 1 hora", rating: 5, review: "Excelente gestión de nuestras campañas digitales." },
+              { name: "Diana M.", action: "compró", plan: "Plan Premium", time: "hace 2 horas", rating: 5, review: "Estrategia omnicanal perfectamente ejecutada." },
+              { name: "Alberto S.", action: "programó", plan: "Consulta Gratuita", time: "hace 2 horas", rating: 4, review: "Muy satisfecho con la orientación recibida." },
+              { name: "Beatriz L.", action: "compró", plan: "Plan Pro", time: "hace 2 horas", rating: 5, review: "Aumento sustancial en nuestras conversiones." },
+              { name: "Carlos E.", action: "compró", plan: "Plan Business", time: "hace 2 horas", rating: 5, review: "Nuestro e-commerce ha duplicado ventas." },
+              { name: "Ángela P.", action: "programó", plan: "Consulta Gratuita", time: "hace 2 horas", rating: 5, review: "Atención personalizada y soluciones prácticas." },
+              { name: "Daniel R.", action: "compró", plan: "Plan Premium", time: "hace 2 horas", rating: 4, review: "Excelente optimización de nuestro funnel de ventas." },
+              { name: "Silvia N.", action: "compró", plan: "Plan Pro", time: "hace 3 horas", rating: 5, review: "Campañas de email marketing con gran ROI." },
+              { name: "Miguel Á.", action: "programó", plan: "Consulta Gratuita", time: "hace 3 horas", rating: 5, review: "Propuesta clara y adaptada a nuestro sector." },
+              { name: "Teresa J.", action: "compró", plan: "Plan Business", time: "hace 3 horas", rating: 5, review: "Gran mejora en nuestro posicionamiento SEO." },
+              { name: "Victor M.", action: "compró", plan: "Plan Premium", time: "hace 3 horas", rating: 4, review: "Estrategia integral con resultados tangibles." },
+              { name: "Laura C.", action: "programó", plan: "Consulta Gratuita", time: "hace 3 horas", rating: 5, review: "Análisis detallado de nuestra competencia." },
+              { name: "Óscar P.", action: "compró", plan: "Plan Pro", time: "hace 3 horas", rating: 5, review: "Nuestras redes sociales han cobrado vida." },
+              { name: "Mónica S.", action: "compró", plan: "Plan Business", time: "hace 4 horas", rating: 5, review: "Estrategia de contenidos que genera resultados." },
+              { name: "Joaquín L.", action: "programó", plan: "Consulta Gratuita", time: "hace 4 horas", rating: 4, review: "Profesionales que entienden nuestro sector." },
+              { name: "Irene G.", action: "compró", plan: "Plan Premium", time: "hace 4 horas", rating: 5, review: "Automatización de marketing muy efectiva." },
+              { name: "Sergio T.", action: "compró", plan: "Plan Pro", time: "hace 4 horas", rating: 5, review: "Aumento significativo de nuestro tráfico web." },
+              { name: "Eva M.", action: "programó", plan: "Consulta Gratuita", time: "hace 4 horas", rating: 5, review: "Diagnóstico completo de nuestra presencia digital." },
+              { name: "Ignacio B.", action: "compró", plan: "Plan Business", time: "hace 5 horas", rating: 4, review: "Estrategia de contenidos muy bien ejecutada." },
+              { name: "Carmen R.", action: "compró", plan: "Plan Premium", time: "hace 5 horas", rating: 5, review: "Excelente análisis de datos y optimización." },
+              { name: "Francisco J.", action: "programó", plan: "Consulta Gratuita", time: "hace 5 horas", rating: 5, review: "Enfoque muy profesional y personalizado." },
+              { name: "Elena D.", action: "compró", plan: "Plan Pro", time: "hace 5 horas", rating: 5, review: "Gran mejora en nuestra generación de leads." },
+              { name: "Roberto A.", action: "compró", plan: "Plan Business", time: "hace 5 horas", rating: 4, review: "Optimización completa de nuestra web." },
+              { name: "Isabel M.", action: "programó", plan: "Consulta Gratuita", time: "hace 6 horas", rating: 5, review: "Diagnóstico preciso de nuestras necesidades." },
+              { name: "Julián P.", action: "compró", plan: "Plan Premium", time: "hace 6 horas", rating: 5, review: "Estrategia multicanal perfectamente integrada." },
+              { name: "Ana S.", action: "compró", plan: "Plan Pro", time: "hace 6 horas", rating: 5, review: "Nuestras métricas han mejorado notablemente." },
+              { name: "Jorge V.", action: "programó", plan: "Consulta Gratuita", time: "hace 6 horas", rating: 4, review: "Soluciones prácticas para nuestro negocio." },
+              { name: "Rosa G.", action: "compró", plan: "Plan Business", time: "hace 6 horas", rating: 5, review: "Transformación digital exitosa de nuestra empresa." },
+              { name: "Jaime L.", action: "compró", plan: "Plan Premium", time: "hace 7 horas", rating: 5, review: "Estrategia SEO que nos ha posicionado primeros." },
+              { name: "Nuria T.", action: "programó", plan: "Consulta Gratuita", time: "hace 7 horas", rating: 5, review: "Gran conocimiento del sector y sus tendencias." },
+              { name: "Luis C.", action: "compró", plan: "Plan Pro", time: "hace 7 horas", rating: 4, review: "Campañas PPC con excelente retorno." },
+              { name: "María F.", action: "compró", plan: "Plan Business", time: "hace 7 horas", rating: 5, review: "Implementación efectiva de marketing automation." },
+              { name: "Marcelo H.", action: "programó", plan: "Consulta Gratuita", time: "hace 7 horas", rating: 5, review: "Enfoque estratégico adaptado a nuestro sector." },
+              { name: "Carla P.", action: "compró", plan: "Plan Premium", time: "hace 8 horas", rating: 5, review: "Análisis competitivo que nos dio ventaja." }
+          ];
+          
+          // Función para mostrar pruebas sociales aleatorias
+          function showRandomSocialProof() {
+              const container = document.getElementById('socialProofContainer');
+              const randomIndex = Math.floor(Math.random() * socialProofData.length);
+              const proof = socialProofData[randomIndex];
+              
+              const proofElement = document.createElement('div');
+              proofElement.className = 'social-proof-card';
+              
+              // Generar estrellas para la valoración
+              let stars = '';
+              for (let i = 0; i < proof.rating; i++) {
+                  stars += '<i class="fas fa-star"></i>';
+              }
+              
+              proofElement.innerHTML = `
+                  <div class="social-proof-name">${proof.name}</div>
+                  <div class="social-proof-action">
+                      ${proof.action} <span class="plan-badge">${proof.plan}</span>
+                  </div>
+                  <div class="social-proof-rating">${stars}</div>
+                  <div class="social-proof-review">"${proof.review}"</div>
+                  <div class="social-proof-time">${proof.time}</div>
+              `;
+              
+              container.appendChild(proofElement);
+              
+              // Eliminar la prueba social después de 6 segundos (5 segundos de visualización + 1 segundo de animación)
+              setTimeout(() => {
+                  proofElement.addEventListener('animationend', () => {
+                      proofElement.remove();
+                  });
+              }, 6000);
+              
+              // Programar la siguiente prueba social en un intervalo aleatorio entre 10 y 30 segundos
+              const nextInterval = Math.floor(Math.random() * 20000) + 10000;
+              setTimeout(showRandomSocialProof, nextInterval);
+          }
+          
+          // Iniciar las pruebas sociales después de 3 segundos de carga de la página
+          setTimeout(showRandomSocialProof, 3000);
+      });
       
       // Funcionalidad de las preguntas frecuentes
       document.addEventListener('DOMContentLoaded', function() {
